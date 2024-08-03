@@ -1,0 +1,56 @@
+<!-- ======= Sidebar ======= -->
+
+<aside id="sidebar" class="sidebar ">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="{% url 'dashboard_apprenant' %}">
+                <i class="bi bi-grid"></i>
+                <span>Tableau de Bord</span>
+            </a>
+        </li><!-- End Tableau de Bord Nav -->
+
+        <li class="nav-heading">Main</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'formation_apprenant' %}">
+                <i class="bi bi-journals"></i>
+                <span>Mes Formations</span>
+            </a>
+        </li><!-- end mes formations nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'ressource_apprenant' %}">
+                <i class="bi bi-hand-index-fill"></i>
+                <span>Ressources</span>
+            </a>
+        </li><!-- end ressources nav-->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'chat_apprenant' %}">
+                <i class="bi bi-chat-dots"></i>
+                <span>Chat</span>
+            </a>
+        </li>
+        <!--end chat-->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'horaire_apprenant' %}">
+                <i class="bi bi-calendar-week"></i>
+                <span>Horaire</span>
+            </a>
+        </li>
+         <!--end horaire-->
+        <li class="nav-heading">Others</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="">
+                <i class="bi bi-person-circle"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+         <!--end horaire-->
+        
+       
+    </ul>
+
+</aside><!-- End Sidebar-->
+
