@@ -47,16 +47,6 @@ class Enseignant(models.Model):
     class Meta:
         db_table='Enseignant'
         
-class Formation(models.Model):
-    code=models.AutoField(primary_key=True)
-    titre=models.CharField(max_length=50)
-    duree=models.TimeField()
-    date_debut=models.DateField()
-    date_fin=models.DateField()
-    enseignant=models.ForeignKey(Enseignant, on_delete=models.CASCADE)
-    
-    class Meta:
-        db_table='Formation'
     
 class TypeRessource(models.Model):
     code=models.AutoField(primary_key=True)
@@ -81,12 +71,22 @@ class Module(models.Model):
     description=models.CharField(max_length=255)
     prix=models.DecimalField(max_digits=10, decimal_places=2)
     niveau=models.ForeignKey(Niveau,on_delete=models.CASCADE)
-    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)
     ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE)
     
     class Meta:
         db_table='Module'
         
+class Formation(models.Model):
+    code=models.AutoField(primary_key=True)
+    titre=models.CharField(max_length=50)
+    duree=models.TimeField()
+    date_debut=models.DateField()
+    date_fin=models.DateField()
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    enseignant=models.ForeignKey(Enseignant, on_delete=models.CASCADE)
+    
+    class Meta:
+        db_table='Formation'
 class ModalitePaie(models.Model):
     code=models.AutoField(primary_key=True)
     tranche=models.CharField(max_length=25)
@@ -116,21 +116,21 @@ class Evaluation(models.Model):
     class Meta:
         db_table='Evaluation'
         
-class CompteUtilisateur(models.Model):
-    code=models.AutoField(primary_key=True)
-    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-    enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
-    photo=models.ImageField(upload_to='Image/',blank=True)
-    fonction=models.CharField(max_length=25)
-    password=models.CharField(max_length=50)
+# class CompteUtilisateur(models.Model):
+#     code=models.AutoField(primary_key=True)
+#     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
+#     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
+#     photo=models.ImageField(upload_to='Image/',blank=True)
+#     fonction=models.CharField(max_length=25)
+#     password=models.CharField(max_length=50)
     
-    class Meta:
-        db_table='CompteUtilisateur'
+#     class Meta:
+#         db_table='CompteUtilisateur'
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
     description=models.CharField(max_length=255)
-    compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
+    # compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
     date_publication=models.DateTimeField()
     
     class Meta:
