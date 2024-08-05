@@ -56,7 +56,7 @@ def Enseignant_admin(request):
     return render(request,'admin/enseignant.html')
 
 def Domaine_admin(request):
-    return render(request,'admin/domain.html')
+    return render(request,'admin/domaine.html')
 
 def Formation_admin(request):
     return render(request,'admin/formation.html')
