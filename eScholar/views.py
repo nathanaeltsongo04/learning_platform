@@ -4,76 +4,81 @@ from django.contrib import messages
 from .models import *
 # Create your views here.
 
-def Index(request):
+def index(request):
     return render(request, 'index.html')
 
-def Test(request):
-    return render(request,'Test.html')
+def test(request):
+    try:
+      test = Test.objects.all()
+      context = {'tests':test}
+    except:
+      print('An exception occurred')
+    return render(request,'Test.html', context)
 
-def Dashboard_apprenant(request):
+def dashboard_apprenant(request):
     return render(request, 'apprenant/dashboard.html')
 
-def Formation_apprenant(request):
+def formation_apprenant(request):
     return render(request,'apprenant/formation.html')
 
-def Ressource_apprenant(request):
+def ressource_apprenant(request):
     return render(request,'apprenant/ressource.html')
 
-def Chat_apprenant(request):
+def chat_apprenant(request):
     return render(request,'apprenant/chat.html')
 
-def Horaire_apprenant(request):
+def horaire_apprenant(request):
     return render(request,'apprenant/horaire.html')
 
-def Formation_enseignant(request):
+def formation_enseignant(request):
     return render(request,'enseignant/formation.html')
 
-def Module_enseignant(request):
+def module_enseignant(request):
     return render(request,'enseignant/module.html')
 
-def Interrogation_enseignant(request):
+def interrogation_enseignant(request):
     return render(request,'enseignant/interrogation.html')
 
-def Cote_enseignant(request):
+def cote_enseignant(request):
     return render(request,'enseignant/cote.html')
 
-def Correction_enseignant(request):
+def correction_enseignant(request):
     return render(request,'enseignant/correction.html')
 
-def Dashboard_enseignant(request):
+def dashboard_enseignant(request):
     return render(request,'enseignant/dashboard.html')
 
-def Publication_enseignant(request):
+def publication_enseignant(request):
     return render(request,'enseignant/publication.html')
 
-def Dashboard_admin(request):
+def dashboard_admin(request):
     return render(request,'admin/dashboard.html')
 
-def Apprenant_admin(request):
+def apprenant_admin(request):
     return render(request,'admin/apprenant.html')
 
-def Enseignant_admin(request):
+def enseignant_admin(request):
     return render(request,'admin/enseignant.html')
 
-def Domaine_admin(request):
-    return render(request,'admin/domaine.html')
+def domaine_admin(request):
+    return render(request,'admin/domain.html')
 
-def Formation_admin(request):
+def formation_admin(request):
     return render(request,'admin/formation.html')
 
-def Modalitepaiement(request):
+def modalitepaiement(request):
     return render(request,'admin/modalitepaiement.html')
 
-def Niveau(request):
+def niveau(request):
     return render(request,'admin/niveau.html')
 
-def Paiement(request):
+def paiement(request):
     return render(request,'admin/paiement.html')
 
-def Publication_admin(request):
+def publication_admin(request):
     return render(request,'admin/publication.html')
 
-def Typeressource(request):
+def typeressource(request):
     return render(request,'admin/typeressource.html')
 
 
