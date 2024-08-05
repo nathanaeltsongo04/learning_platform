@@ -4,6 +4,84 @@ from django.contrib import messages
 from .models import *
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
+def test(request):
+    try:
+      test = Test.objects.all()
+      context = {'tests':test}
+    except:
+      print('An exception occurred')
+    return render(request,'Test.html', context)
+
+def dashboard_apprenant(request):
+    return render(request, 'apprenant/dashboard.html')
+
+def formation_apprenant(request):
+    return render(request,'apprenant/formation.html')
+
+def ressource_apprenant(request):
+    return render(request,'apprenant/ressource.html')
+
+def chat_apprenant(request):
+    return render(request,'apprenant/chat.html')
+
+def horaire_apprenant(request):
+    return render(request,'apprenant/horaire.html')
+
+def formation_enseignant(request):
+    return render(request,'enseignant/formation.html')
+
+def module_enseignant(request):
+    return render(request,'enseignant/module.html')
+
+def interrogation_enseignant(request):
+    return render(request,'enseignant/interrogation.html')
+
+def cote_enseignant(request):
+    return render(request,'enseignant/cote.html')
+
+def correction_enseignant(request):
+    return render(request,'enseignant/correction.html')
+
+def dashboard_enseignant(request):
+    return render(request,'enseignant/dashboard.html')
+
+def publication_enseignant(request):
+    return render(request,'enseignant/publication.html')
+
+def dashboard_admin(request):
+    return render(request,'admin/dashboard.html')
+
+def apprenant_admin(request):
+    return render(request,'admin/apprenant.html')
+
+def enseignant_admin(request):
+    return render(request,'admin/enseignant.html')
+
+def domaine_admin(request):
+    return render(request,'admin/domain.html')
+
+def formation_admin(request):
+    return render(request,'admin/formation.html')
+
+def modalitepaiement(request):
+    return render(request,'admin/modalitepaiement.html')
+
+def niveau(request):
+    return render(request,'admin/niveau.html')
+
+def paiement(request):
+    return render(request,'admin/paiement.html')
+
+def publication_admin(request):
+    return render(request,'admin/publication.html')
+
+def typeressource(request):
+    return render(request,'admin/typeressource.html')
+
+
 # =======================================================================================================
 # NIVEAU
 # =======================================================================================================
