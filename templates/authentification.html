@@ -1,0 +1,71 @@
+{% extends 'base/auth_signup_layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block content%}
+
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'hello',
+                showConfirmButton: false,
+                timer: 2800
+            }).then(function() {
+                {% comment %} location.replace('login.php'); {% endcomment %}
+            });
+        </script>
+   
+
+    <main>
+        <div class="container">
+
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <div class="pt-4 pb-2 mb-3">
+                                        <h5 class="card-title text-center pb-0 fs-4 fw-bold">SE CONNECTE</h5>
+
+                                    </div>
+
+                                    <form class="row g-3 " method="POST" action="./controller/seconnecter.php">
+
+                                        <div class="col-12 mb-3">
+
+                                            <div class="input-group has-validation">
+                                                <input type="text" name="nomdutilisateur" class="form-control" id="yourPassword" placeholder="Nom d'Utilisateur" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+
+                                            <input type="password" name="password" class="form-control" id="yourPassword" placeholder="Mot de Passe" required>
+                                            <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+
+                                        <div class="col-12 text-center">
+                                            <button name="connecter" class="btn btn-primary w-50 " type="submit">Se
+                                                Connecter</button>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <p class="small mb-0 ">Je n'ai pas de compte? <a href="{% url 'creation_compte_utilisateur' %}">Créer un compte</a></p>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main><!-- End #main -->
+
+{% endblock%}
