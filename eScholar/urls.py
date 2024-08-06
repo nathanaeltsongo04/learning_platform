@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('Test', views.test,name='Test'),
     path('dashboard_apprenant/', views.dashboard_apprenant, name='dashboard_apprenant'),
     path('formation/', views.formation_apprenant, name='formation_apprenant'),
     path('ressource/', views.ressource_apprenant, name='ressource_apprenant'),
@@ -28,12 +27,9 @@ urlpatterns = [
     path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
     path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
-<<<<<<< HEAD
     path('authentification/',views.authentification,name='authentification'),
-    path('créer compte/',views.creer_compte,name='creation_compte_utilisateur'),
+    path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('profile/',views.profile,name='profile'),
-=======
-
 
     path('inscription/',views.inscription_admin,name='inscription_admin'),
 
@@ -49,5 +45,4 @@ urlpatterns = [
 
 
 
->>>>>>> Lydie
 ]

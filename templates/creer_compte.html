@@ -1,83 +1,83 @@
 {% extends 'base/auth_signup_layout.html' %}
 
-{% block title %}eScholar |Création compte utilisateur{% endblock %}
+{% block title %}eScholar{% endblock %}
 
 {% block content%}
+    
+    <script>
+    Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'hello',
+        showConfirmButton: false,
+        timer: 2800
+    }).then(function() {
+        {% comment %} location.replace('compte.php'); {% endcomment %}
+    });
+    </script>
 
-        <script>
-        Swal.fire({
-            position: 'center',
-            icon: 'warning',
-            title: 'faild',
-            showConfirmButton: false,
-            timer: 2800
-        }).then(function() {
-            {% comment %} location.replace('compte.php'); {% endcomment %}
-        });
-        </script>
+    <main>
+        <div class="container">
 
-        <main>
-            <div class="container">
+            <section
+                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                            <div class="card mb-3">
 
-                <section
-                    class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                                <div class="card mb-3">
+                                <div class="card-body">
 
-                                    <div class="card-body">
-
-                                        <div class="pt-4 pb-2 mb-3">
-                                            <h5 class="card-title text-center pb-0 fs-4 fw-bold">CREER VOTRE COMPTE
-                                                UTILISATEUR</h5>
-
-                                        </div>
-                                        <form class="row g-3 " method="POST" action="./controller/compte.php">
-                                            <div class="col-12 mb-3">
-                                                <div class="input-group has-validation">
-                                                    <input type="text" name="matricule" class="form-control"
-                                                        id="yourPassword" placeholder="Votre Matricule" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <div class="input-group has-validation">
-                                                    <input type="text" name="nomdutilisateur" class="form-control"
-                                                        id="yourPassword" placeholder="Nom d'Utilisateur" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 mb-3">
-                                                <input type="password" name="password" class="form-control"
-                                                    id="yourPassword" placeholder="Mot de Passe" required>
-                                                <div class="invalid-feedback">Please enter your password!</div>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <input type="password" name="confirmpassword" class="form-control"
-                                                    id="yourPassword" placeholder="Mot de Passe" required>
-                                                <div class="invalid-feedback">Please enter your password!</div>
-                                            </div>
-
-                                            <div class="col-12 text-center">
-                                                <button name="save" class="btn btn-primary w-50 fw-bold "
-                                                    type="submit">Créer</button>
-                                            </div>
-                                            <div class="col-12 text-center">
-                                                <p class="small mb-0 ">Je ai déjà un compte <a href="{% url 'authentification' %}">Se
-                                                        Connecter</a>
-                                                </p>
-                                            </div>
-                                        </form>
+                                    <div class="pt-4 pb-2 mb-3">
+                                        <h5 class="card-title text-center pb-0 fs-4 fw-bold">CREER VOTRE COMPTE
+                                            AGENT</h5>
 
                                     </div>
+                                    <form class="row g-3 " method="POST" action="./controller/compte.php">
+                                        <div class="col-12 mb-3">
+                                            <div class="input-group has-validation">
+                                                <input type="text" name="matricule" class="form-control"
+                                                    id="yourPassword" placeholder="Votre Matricule" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <div class="input-group has-validation">
+                                                <input type="text" name="nomdutilisateur" class="form-control"
+                                                    id="yourPassword" placeholder="Nom d'Utilisateur" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <input type="password" name="password" class="form-control"
+                                                id="yourPassword" placeholder="Mot de Passe" required>
+                                            <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <input type="password" name="confirmpassword" class="form-control"
+                                                id="yourPassword" placeholder="Mot de Passe" required>
+                                            <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+
+                                        <div class="col-12 text-center">
+                                            <button name="save" class="btn btn-primary w-50 fw-bold "
+                                                type="submit">Créer</button>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <p class="small mb-0 ">Je ai déjà un compte <a href="{% url 'authentification'  %}">Se
+                                                    Connecter</a>
+                                            </p>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </section>
+            </section>
 
-            </div>
-        </main><!-- End #main -->
+        </div>
+    </main><!-- End #main -->
 
 {% endblock%}

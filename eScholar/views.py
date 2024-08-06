@@ -14,15 +14,7 @@ def creer_compte(request):
     return render(request,'creer_compte.html')
 
 def profile(request):
-    return render (request,'profile.html')
-
-def test(request):
-    try:
-      test = Test.objects.all()
-      context = {'tests':test}
-    except:
-      print('An exception occurred')
-    return render(request,'Test.html', context)
+    return render(request,'profile.html')
 
 def dashboard_apprenant(request):
     return render(request, 'apprenant/dashboard.html')
