@@ -7,6 +7,15 @@ from .models import *
 def index(request):
     return render(request, 'index.html')
 
+def authentification(request):
+    return render(request,'authentification.html')
+
+def creer_compte(request):
+    return render(request,'creer_compte.html')
+
+def profile(request):
+    return render (request,'profile.html')
+
 def test(request):
     try:
       test = Test.objects.all()

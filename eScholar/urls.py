@@ -28,4 +28,7 @@ urlpatterns = [
     path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
     path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
+    path('authentification/',views.authentification,name='authentification'),
+    path('créer compte/',views.creer_compte,name='creation_compte_utilisateur'),
+    path('profile/',views.profile,name='profile'),
 ]
