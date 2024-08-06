@@ -6,10 +6,10 @@
 {% include 'partials/learner_sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %} Formations{% endblock %}
+{% block Dashboard %} Inscriptions{% endblock %}
 
 {% block ContentTitle %}
-Apprenant
+Admin
 {% endblock %}
 
 {% block ContentSubTitle %}
@@ -43,33 +43,28 @@ Tableau de Bord
                             class="bi bi-plus-circle-fill h4"></i></a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Formations</h5>
+                    <h5 class="card-title">Inscriptions</h5>
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Titre</th>
-                                <th scope="col">Duree</th>
-                                <th scope="col">Date_debut</th>
-                                <th scope="col">Date_fin</th>
-                                <th scope="col">Enseignant</th>
-                                <th scope="col">Module</th>
+                                <th scope="col">Date_inscription</th>
+                                <th scope="col">Apprenant</th>
+                                <th scope="col">Formation</th>
+                                <th scope="col">Modalite</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for formation in Formations %}
+                            {% for inscription in Inscriptions %}
                             <tr>
-                                <th scope="row">{{ formation.code }}</th>
-                                <td>{{ formation.titre }}</td>
-                                <td>{{ formation.duree }}</td>
-                                <td>{{ formation.date_debut }}</td>
-                                <td>{{ formation.date_fin }}</td>
-                                <td>{{ formation.enseignant_id.nom }} {{formation.enseignant_id.postnom}}
-                                    {{formation.enseignant_id.prenom}}</td>
-                                <td>{{ formation.module_id.titre }}</td>
-                                <td>
+                                <th scope="row">{{ inscription.code }}</th>
+                                <td>{{ inscription.date_inscription }}</td>
+                                <td>{{ insciption.apprenant_id.nom }} {{inscription.apprenant_id.postnom}}
+                                    {{inscription.apprenant_id.prenom}}</td>
+                                <td>{{ inscription.formation_id.titre }}</td>
+                                <td>{{ inscription.modalite_id.tranche }}</td>
                                     <a class="text-info mx-auto md-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1-{{forloop.counter}}">
                                         <span class="badge bg-success ">
@@ -77,7 +72,7 @@ Tableau de Bord
                                                 data-placement="top" title="Modifier cet élément"></i>
                                         </span>
                                     </a>
-                                    <a class="text-info mx-auto pd-2" href="{{ formation.code }}">
+                                    <a class="text-info mx-auto pd-2" href="{{ inscription.code }}">
                                         <span class="badge bg-danger ">
                                             <i class="bi bi-trash fa-lg "></i>
                                         </span>
@@ -101,45 +96,43 @@ Tableau de Bord
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle Formation </h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle inscription </h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'insertFormation' %}">
+                <form method="POST" action="{% url 'insertInscription' %}">
                     {% csrf_token %}
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre"
+                            <input type="text" name="date_inscription" class="form-control mb-3" id="date_inscription" placeholder="Date_inscription"
                                 required>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="text" name="duree" class="form-control" id="durée" placeholder="Duree"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="date_debut" class="form-control" id="date_début"
-                                placeholder="Date_debut" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="date_fin" class="form-control" id="date_fin" placeholder="Date_fin"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="enseignant_id" id="">
-                                <option value="">--select Enseignant--</option>
+                            <select class="form-select mb-3" name="apprenant_id" id="">
+                                <option value="">--select Apprenant--</option>
 
-                                {% for e in enseignants %}
-                                <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
+                                {% for a in apprenants %}
+                                <option value="{{ a.matricule }}">{{ a.nom }} {{a.postnom}} {{a.prenom}}</option>
                                 {% endfor %}
 
                             </select>
                         </div>
                         <div class="input-group has-validation">
-                            <select name="module_id" id="">
-                                <option value="">--select Module--</option>
+                            <select name="formation_id" id="">
+                                <option value="">--select formation--</option>
 
-                                {% for m in modules %}
-                                <option value="{{ m.code }}">{{ m.titre }} </option>
+                                {% for f in formations %}
+                                <option value="{{ f.code }}">{{ f.titre }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select name="modalite_id" id="">
+                                <option value="">--select modalitepaie--</option>
+
+                                {% for m in modalitepaie %}
+                                <option value="{{ m.code }}">{{ m.tranche }} </option>
                                 {% endfor %}
 
                             </select>
@@ -158,45 +151,57 @@ Tableau de Bord
     </div>
 </div>
 
-<!-- Modal Modification Formation-->
-{% for formation in formations %}
+<!-- Modal Modification inscription-->
+{% for inscription in inscriptions %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Formation</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Inscription</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url " updateFormation" %}">
+                <form method="POST" action="{% url 'updateInscription' %}">
                     {% csrf_token %}
-                    <input type='hidden' value="{{formation.code}}" name='code'>
+                    <input type='hidden' value="{{inscription.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">
-                        <div class="input-group has-validation">
-                            <input type="text" name="titre" class="form-control" id="titre" value="{{formation.titre}}" placeholder="Titre"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="duree" class="form-control" id="durée" value="{formation.duree}}" placeholder="Duree"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="date_debut" class="form-control" id="date_début" value="{formation.date_debut}}"  placeholder="Date_debut" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="date_fin" class="form-control" id="date_fin" value="{formation.date_fin}}" placeholder="Date_fin"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select value="{{ formation.enseignant_id.nom }} {{formation.enseignant_id.postnom}}
-                                    {{formation.enseignant_id.prenom}}"name="enseignant_id" id="">
-                                <option value="">--select Enseignant--</option>
-                                {% for e in enseignants %}
-                                <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
-                                {% endfor %}
-
-                            </select>
+                        <div class="col-md-12 mb-4 ">
+                            <div class="input-group has-validation">
+                                <input type="text" name="date_inscription" class="form-control" id="date_inscription" value="{{ inscription.date_inscription }}"placeholder="Date_inscription"
+                                    required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select value="{{ insciption.apprenant_id.nom }} {{inscription.apprenant_id.postnom}}
+                                    {{inscription.apprenant_id.prenom}" name="apprenant_id" id="">
+                                    <option value="">--select Apprenant--</option>
+    
+                                    {% for a in apprenants %}
+                                    <option value="{{ a.matricule }}">{{ a.nom }} {{a.postnom}} {{a.prenom}}</option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select value="{{ inscription.formation_id.titre }}" name="formation_id" id="">
+                                    <option value="">--select formation--</option>
+    
+                                    {% for f in formations %}
+                                    <option value="{{ f.code }}">{{ f.titre }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select value="{{ inscription.modalite_id.tranche }}" name="modalite_id" id="">
+                                    <option value="">--select modalitepaie--</option>
+    
+                                    {% for m in modalitepaie %}
+                                    <option value="{{ m.code }}">{{ m.tranche }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
                         </div>
                         <div class="input-group has-validation">
                             <select value="{{ formation.module_id.titre }}" name="module" id="">

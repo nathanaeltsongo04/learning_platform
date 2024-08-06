@@ -20,7 +20,7 @@ urlpatterns = [
     path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
     path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
-    path('modalite paiement',views.modalitepaiement,name='modalite_paiement'),
+    path('modalite_paiement',views.modalitepaiement,name='modalite_paiement'),
     path('niveau/',views.niveau,name='niveau_admin'),
     path('paiement/',views.paiement,name='paiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
@@ -28,7 +28,26 @@ urlpatterns = [
     path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
     path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
+<<<<<<< HEAD
     path('authentification/',views.authentification,name='authentification'),
     path('créer compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('profile/',views.profile,name='profile'),
+=======
+
+
+    path('inscription/',views.inscription_admin,name='inscription_admin'),
+
+
+    path('insertFormation/', views.insertFormation, name = 'insertFormation'),
+    path('updateFormation/', views.updateFormation, name='updateFormation'),
+    path('insertModalitePaie/', views.insertModalitePaie, name='insertModalitePaie'),
+    path('updateModulePaie/', views.updateModulePaie, name='updateModulePaie'),
+    path('insertInscription/', views.insertInscription, name='insertInscription'),
+    path('updateInscription/', views.updateInscription, name='updateInscription'),
+
+
+
+
+
+>>>>>>> Lydie
 ]
