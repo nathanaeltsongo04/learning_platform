@@ -18,12 +18,14 @@ urlpatterns = [
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
     path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
-    path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
     path('modalite paiement',views.modalitepaiement,name='modalite_paiement'),
     path('niveau/',views.niveau,name='niveau_admin'),
     path('paiement/',views.paiement,name='paiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
-    path('ressource/',views.typeressource,name='type_ressource')
+    path('ressource/',views.typeressource,name='type_ressource'),
+    path('domaine/',views.domaine_admin,name='domaine_admin'),
+    path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
+    path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
 ]
