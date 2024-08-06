@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from .models import *
 # Create your views here.
@@ -61,7 +61,12 @@ def enseignant_admin(request):
     return render(request,'admin/enseignant.html')
 
 def domaine_admin(request):
-    return render(request,'admin/domaine.html')
+    try:
+        domaine = Domaine.objects.all()
+        context = {'domaines':domaine}
+    except:
+        messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/domaine.html', context)
 
 def formation_admin(request):
     return render(request,'admin/formation.html')
@@ -119,7 +124,7 @@ def updateNiveau(request, code):
             ).save()
             messages.success("Modifié avec succès !")
     except:
-      print('An exception occurred')
+      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return HttpResponse("Modifié avec succès")
 
 # =======================================================================================================
@@ -137,19 +142,18 @@ def insertDomaine(request):
             Domaine.objects.create(
                 designation = designation
             )
-            messages.success("Ajouté avec succès !")
+            messages.success(request, "Ajouté avec succès !")
+            return redirect('domaine_admin')
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+    return render(request, 'admin/domaine.html')
 
-def updateDomaine(request, code):
+def updateDomaine(request):
     try:
-      domaine = get_object_or_404(Domaine, pk = code)
-      context = {'domaine':domaine}
-      
       if request.method == "POST":
+        code = request.POST.get("code")
         designation = request.POST.get("designation")
-
+        
         if Domaine.objects.filter(designation = designation):
             messages.error("Cette information existe déjà !")
         else:
@@ -157,11 +161,13 @@ def updateDomaine(request, code):
                 code = code,
                 designation = designation
             ).save()
-            messages.success("Modifié avec succès !")
+            messages.success(request, "Modifié avec succès !")
+            return redirect("domaine_admin")
     except:
-      print('An exception occurred')
-    return HttpResponse("Modifié avec succès")
-    
+      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request, 'chargement_modal/domaine.html', context)
+
+
 # =======================================================================================================
 # APPRENANT
 # =======================================================================================================
