@@ -86,6 +86,14 @@ def publication_admin(request):
 def typeressource(request):
     return render(request,'admin/typeressource.html')
 
+def inscription_admin(request):
+    try:
+        inscription = Inscription.objects.all()
+        context = {'inscriptions':inscription}
+    except:
+        messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/inscription.html', context)
+
 
 # =======================================================================================================
 # NIVEAU
@@ -105,7 +113,7 @@ def insertNiveau(request):
             messages.success("Ajouté avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+    return render("Ajouté avec succès")
 
 def updateNiveau(request, code):
     try:
@@ -532,10 +540,10 @@ def insertFormation(request):
               module = module,
               enseignant = enseignant
           )
-          messages.success("Formation ajoutée avec succès !")
+          messages.success(request,"Formation ajoutée avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès !")
+    return render(request,'Apprenant/formation.html')
 
 def updateFormation(request, code):
     try:
@@ -571,10 +579,10 @@ def updateFormation(request, code):
                     module = module,
                     enseignant = enseignant
                 ).save()
-          messages.success("Formation modifiée avec succès !")
+          messages.success(request,"Formation modifiée avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifiée avec succès")
+    return render(request,'Apprenant/formation.html')
 
 # =======================================================================================================
 # MODALITE PAIE
@@ -594,10 +602,10 @@ def insertModalitePaie(request):
               montant_fixe = montant_fixe,
               module = module
           )
-          messages.success("Ajouté avec succès !")
+          messages.success(request,"Ajouté avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès !")
+    return render(request,'Admin/modalitepaiement.html')
 
 def updateModulePaie(request, code):
     try:
@@ -617,10 +625,10 @@ def updateModulePaie(request, code):
               montant_fixe = montant_fixe,
               module = module
           ).save()
-          messages.success("Modifié avec succès !")
+          messages.success(request,"Modifié avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+    return render(request,'Admin/modalitepaiement')
 
 # =======================================================================================================
 # INSCRIPTION
