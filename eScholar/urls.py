@@ -15,11 +15,13 @@ urlpatterns = [
     path('interrogation/',views.interrogation_enseignant,name='interrogation_enseignant'),
     path('module/',views.module_enseignant,name='module_enseignant'),
     path('publication/',views.publication_enseignant,name='publication_enseignant'),
+    path('publication/',views.insertPublication,name='insertPublication'),
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
     path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
     path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
+    path('paiement/',views.insertPaiement,name='insertPaiement'),
     path('modalite paiement',views.modalitepaiement,name='modalite_paiement'),
     path('niveau/',views.niveau,name='niveau_admin'),
     path('paiement/',views.paiement,name='paiement'),
@@ -28,4 +30,7 @@ urlpatterns = [
     path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
     path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
+
+
+    path('insertEvaluation/', views.insertEvaluation, name = 'insertEvaluation'),
 ]

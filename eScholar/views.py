@@ -682,6 +682,8 @@ def updateInscription(request, code):
 
 def insertEvaluation(request):
     try:
+      formation = Formation.objects.all()
+      context = {'formations':formation}
       if request.method == "POST":
           id_formation = request.POST.get("formation")
           maximum = request.POST.get("maximum")
@@ -699,9 +701,9 @@ def insertEvaluation(request):
           messages.success("Résultat de l'évaluation inseré avec succès !")
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Résultat de l'évaluation inseré avec succès !")
+    return render(request, "enseignant/interrogation.html", context)
 
-def updateEvaluation(request, code):
+def updateEvaluation(request):
     try:
       evaluation = get_object_or_404(Evaluation, pk = code)
       context = {'evaluation' : evaluation}
@@ -735,7 +737,7 @@ def insertPublication(request):
       if request.method == "POST":
           titre = request.POST.get("titre")
           description = request.POST.get("description")
-        #   id_compte_utilisateur = request.POST.get("compte_utilisateur")
+        #   id_compte_utilisateur = request.POST.get("auteur")
           date_publication = request.POST.get("date_publication")
           
         #   compte_utilisateur = get_object_or_404(User, pk = id_compte_utilisateur)
