@@ -17,15 +17,23 @@ urlpatterns = [
     path('publication/',views.publication_enseignant,name='publication_enseignant'),
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
-    path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
-    path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
     path('modalite paiement',views.modalitepaiement,name='modalite_paiement'),
     path('niveau/',views.niveau,name='niveau_admin'),
     path('paiement/',views.paiement,name='paiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
     path('ressource/',views.typeressource,name='type_ressource'),
+    
+    
+    path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
+    path('insert_apprenant/',views.insertApprenant,name='insert_apprenant'),
+    path('update_apprenant/',views.updateApprenant,name='update_apprenant'),
+    
     path('domaine/',views.domaine_admin,name='domaine_admin'),
     path('insertDomaine/', views.insertDomaine, name = 'insertDomaine'),
     path('updateDomaine/', views.updateDomaine, name='updateDomaine'),
+    
+    path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
+    path('insert_enseignant/', views.insertEnseignant, name = 'insert_enseignant'),
+    path('update_enseignant/', views.updateEnseignant, name='update_enseignant'),
 ]

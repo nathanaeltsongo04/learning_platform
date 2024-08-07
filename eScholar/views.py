@@ -54,18 +54,12 @@ def publication_enseignant(request):
 def dashboard_admin(request):
     return render(request,'admin/dashboard.html')
 
-def apprenant_admin(request):
-    return render(request,'admin/apprenant.html')
-
-def enseignant_admin(request):
-    return render(request,'admin/enseignant.html')
-
 def domaine_admin(request):
     try:
         domaine = Domaine.objects.all()
         context = {'domaines':domaine}
     except:
-        messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return render(request,'admin/domaine.html', context)
 
 def formation_admin(request):
@@ -97,14 +91,14 @@ def insertNiveau(request):
         designation = request.POST.get("designation")
 
         if Niveau.objects.filter(designation = designation):
-            messages.error("Cette information existe déjà !")
+            messages.error(request, "Cette information existe déjà !")
         else:
             Niveau.objects.create(
                 designation = designation
             )
-            messages.success("Ajouté avec succès !")
+            messages.success(request, "Ajouté avec succès !")
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return HttpResponse("Ajouté avec succès")
 
 def updateNiveau(request, code):
@@ -116,15 +110,15 @@ def updateNiveau(request, code):
         designation = request.POST.get("designation")
 
         if Niveau.objects.filter(designation = designation):
-            messages.error("Cette information existe déjà !")
+            messages.error(request, request, "Cette information existe déjà !")
         else:
             Niveau(
                 code = code,
                 designation = designation
             ).save()
-            messages.success("Modifié avec succès !")
+            messages.success(request, request, "Modifié avec succès !")
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      messages.error(request, request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return HttpResponse("Modifié avec succès")
 
 # =======================================================================================================
@@ -137,15 +131,15 @@ def insertDomaine(request):
         designation = request.POST.get("designation")
 
         if Domaine.objects.filter(designation = designation):
-            messages.error("Cette information existe déjà !")
+            messages.error(request, "Cette information existe déjà !")
         else:
             Domaine.objects.create(
                 designation = designation
             )
-            messages.success(request, "Ajouté avec succès !")
+            messages.success(request, request, "Ajouté avec succès !")
             return redirect('domaine_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return render(request, 'admin/domaine.html')
 
 def updateDomaine(request):
@@ -155,22 +149,30 @@ def updateDomaine(request):
         designation = request.POST.get("designation")
         
         if Domaine.objects.filter(designation = designation):
-            messages.error("Cette information existe déjà !")
+            messages.error(request, "Cette information existe déjà !")
         else:
             Domaine(
                 code = code,
                 designation = designation
             ).save()
-            messages.success(request, "Modifié avec succès !")
+            messages.success(request, request, "Modifié avec succès !")
             return redirect("domaine_admin")
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return render(request, 'chargement_modal/domaine.html', context)
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request, 'chargement_modal/domaine.html')
 
 
 # =======================================================================================================
 # APPRENANT
 # =======================================================================================================
+
+def apprenant_admin(request):
+    try:
+      apprenant = Apprenant.objects.all()
+      context = {'apprenants':apprenant}
+    except:
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/apprenant.html', context)
 
 def insertApprenant(request):
     try:
@@ -186,7 +188,8 @@ def insertApprenant(request):
         photo = request.FILES.get("photo")
         
         if Apprenant.objects.filter(nom = nom, postnom = postnom, prenom = prenom):
-            messages.error("L'apprenant existe déjà !")
+            messages.error(request, "L'apprenant existe déjà !")
+            return redirect('apprenant_admin')
         else:
             Apprenant.objects.create(
                 nom = nom,
@@ -199,18 +202,17 @@ def insertApprenant(request):
                 profession = profession,
                 photo = photo
             )
-            messages.success("Apprenant ajouté avec succès !")
-            # return redirect('')
+            messages.success(request, "Apprenant ajouté avec succès !")
+            return redirect('apprenant_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('apprenant_admin')
+    return render(request,'admin/apprenant.html')
 
-def updateApprenant(request, matricule):
-    apprenant = get_object_or_404(Apprenant, matricule = matricule)
-    context = {'apprenant':apprenant}
-    
+def updateApprenant(request):
     try:
       if request.method == "POST":
+        matricule = request.POST.get("matricule")
         nom = request.POST.get("nom")
         postnom = request.POST.get("postnom")
         prenom = request.POST.get("prenom")
@@ -221,47 +223,58 @@ def updateApprenant(request, matricule):
         profession = request.POST.get("profession")
         photo = request.FILES.get("photo")
         
-        if photo:
-            if Apprenant.objects.filter(nom = nom, postnom = postnom, prenom = prenom, genre = genre, etatcivil = etatcivil, addresse = addresse, contact = contact,profession = profession):
-                messages.info("Ces informations existent déjà !")
+        if Apprenant.objects.filter(nom = nom, postnom = postnom, prenom = prenom, genre = genre, etatcivil = etatcivil, addresse = addresse, contact = contact, profession = profession):
+                messages.info(request, "Ces informations existent déjà !")
+                return redirect('apprenant_admin')
+        else:
+            if photo:
+                Apprenant(
+                    matricule = matricule,
+                    nom = nom,
+                    postnom = postnom,
+                    prenom = prenom,
+                    genre = genre,
+                    etatcivil = etatcivil,
+                    addresse = addresse,
+                    contact = contact,
+                    profession = profession,
+                    photo = photo
+                ).save()
+                messages.success(request, "La modification a été appliquée avec succés !")
+                return redirect('apprenant_admin')
             else:
-                if photo:
-                    Apprenant(
-                        matricule = matricule,
-                        nom = nom,
-                        postnom = postnom,
-                        prenom = prenom,
-                        genre = genre,
-                        etatcivil = etatcivil,
-                        addresse = addresse,
-                        contact = contact,
-                        profession = profession,
-                        photo = photo
-                    ).save()
-                    messages.success("La modification a été appliquée avec succés !")
-                    # return redirect('')
-                else:
-                    Apprenant(
-                        matricule = matricule,
-                        nom = nom,
-                        postnom = postnom,
-                        prenom = prenom,
-                        genre = genre,
-                        etatcivil = etatcivil,
-                        addresse = addresse,
-                        contact = contact,
-                        profession = profession,
-                        photo = apprenant.photo
-                    ).save()
-                    messages.success("La modification a été appliquée avec succés !")
-                    # return redirect('')
+                apprenant = get_object_or_404(Apprenant, pk = matricule)
+                Apprenant(
+                    matricule = matricule,
+                    nom = nom,
+                    postnom = postnom,
+                    prenom = prenom,
+                    genre = genre,
+                    etatcivil = etatcivil,
+                    addresse = addresse,
+                    contact = contact,
+                    profession = profession,
+                    photo = apprenant.photo
+                ).save()
+                messages.success(request, "La modification a été appliquée avec succés !")
+                return redirect('apprenant_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('apprenant_admin')
+    return render(request,'admin/apprenant.html')
 
 # =======================================================================================================
 # ENSEIGNANT
 # =======================================================================================================
+
+def enseignant_admin(request):
+    try:
+      enseignant = Enseignant.objects.all()
+      context = {'enseignants':enseignant}
+    except:
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('apprenant_admin')
+    return render(request,'admin/enseignant.html', context)
 
 def insertEnseignant(request):
     try:
@@ -277,7 +290,7 @@ def insertEnseignant(request):
         photo = request.FILES.get("photo")
         
         if Enseignant.objects.filter(nom = nom, postnom = postnom, prenom = prenom):
-            messages.error("L'enseignant existe déjà !")
+            messages.error(request, "L'enseignant existe déjà !")
         else:
             Enseignant.objects.create(
                 nom = nom,
@@ -290,19 +303,17 @@ def insertEnseignant(request):
                 profession = profession,
                 photo = photo
             )
-            messages.success("Enseignant ajouté avec succès !")
-            # return redirect('')
+            messages.success(request, "Enseignant ajouté avec succès !")
+            return redirect('enseignant_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('enseignant_admin')
+    return render(request,'admin/enseignant.html')
 
-def updateEnseignant(request, matricule):
-    
-    
+def updateEnseignant(request):
     try:
-        enseignant = get_object_or_404(Enseignant, matricule = matricule)
-        context = {'enseignant':enseignant}
         if request.method == "POST":
+            matricule = request.POST.get("matricule")
             nom = request.POST.get("nom")
             postnom = request.POST.get("postnom")
             prenom = request.POST.get("prenom")
@@ -313,12 +324,12 @@ def updateEnseignant(request, matricule):
             profession = request.POST.get("profession")
             photo = request.FILES.get("photo")
             
-            if photo:
-                if Enseignant.objects.filter(nom = nom, postnom = postnom, prenom = prenom, genre = genre, etatcivil = etatcivil, addresse = addresse, contact = contact,profession = profession):
-                    messages.info("Ces informations existent déjà !")
-                else:
-                    if photo:
-                        Enseignant(
+            if Enseignant.objects.filter(nom = nom, postnom = postnom, prenom = prenom, genre = genre, etatcivil = etatcivil, addresse = addresse, contact = contact,profession = profession):
+                    messages.info(request, "Ces informations existent déjà !")
+                    return redirect('enseignant_admin')
+            else:
+                if photo:
+                    Enseignant(
                             matricule = matricule,
                             nom = nom,
                             postnom = postnom,
@@ -329,11 +340,12 @@ def updateEnseignant(request, matricule):
                             contact = contact,
                             profession = profession,
                             photo = photo
-                        ).save()
-                        messages.success("La modification a été appliquée avec succés !")
-                        # return redirect('')
-                    else:
-                        Enseignant(
+                    ).save()
+                    messages.success(request, "La modification a été appliquée avec succés !")
+                    return redirect('enseignant_admin')
+                else:
+                    enseignant = get_object_or_404(Enseignant, pk = matricule)
+                    Enseignant(
                             matricule = matricule,
                             nom = nom,
                             postnom = postnom,
@@ -344,12 +356,13 @@ def updateEnseignant(request, matricule):
                             contact = contact,
                             profession = profession,
                             photo = enseignant.photo
-                        ).save()
-                        messages.success("La modification a été appliquée avec succés !")
-                        # return redirect('')
+                    ).save()
+                    messages.success(request, "La modification a été appliquée avec succés !")
+                    return redirect('enseignant_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('enseignant_admin')
+    return render(request,'admin/enseignant.html')
 
 # =======================================================================================================
 # TYPE RESSOURCE
@@ -361,14 +374,14 @@ def insertTypeRessource(request):
           designation = request.POST.get("designation")
           
           if TypeRessource.objects.filter(designation = designation):
-              messages.error("Cette information existe déjà !")
+              messages.error(request, "Cette information existe déjà !")
           else:
             TypeRessource.objects.create(
                 designation = designation
             )
-          messages.success("Ajouté avec succès !")
+          messages.success(request, "Ajouté avec succès !")
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return HttpResponse("Ajouté avec succès")
 
 def updateRessource(request, code):

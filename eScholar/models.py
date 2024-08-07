@@ -1,9 +1,8 @@
 from django.db import models
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-
 class Niveau(models.Model):
-    
     code = models.AutoField(primary_key=True)
     designation = models.CharField(max_length=25)
     class Meta:
@@ -78,7 +77,9 @@ class Module(models.Model):
         
 class Formation(models.Model):
     code=models.AutoField(primary_key=True)
+    domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
     titre=models.CharField(max_length=50)
+    description = models.TextField ()
     duree=models.TimeField()
     date_debut=models.DateField()
     date_fin=models.DateField()
@@ -126,6 +127,13 @@ class Evaluation(models.Model):
     
 #     class Meta:
 #         db_table='CompteUtilisateur'
+
+# class CompteUtilisateur(AbstractUser):
+#     adresse = models.CharField(max_length=100)
+#     photo = models.ImageField(upload_to='Clients_photos', blank=True)
+
+    def __str__(self) -> str:
+        return (f"{self.first_name} {self.last_name} {self.username}")
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
