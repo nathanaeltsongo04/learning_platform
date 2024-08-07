@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('Test', views.test,name='Test'),
     path('dashboard_apprenant/', views.dashboard_apprenant, name='dashboard_apprenant'),
     path('formation/', views.formation_apprenant, name='formation_apprenant'),
     path('ressource/', views.ressource_apprenant, name='ressource_apprenant'),
@@ -18,7 +17,7 @@ urlpatterns = [
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
-    path('modalite paiement',views.modalitepaiement,name='modalite_paiement'),
+    path('modalite_paiement',views.modalitepaiement,name='modalite_paiement'),
     path('niveau/',views.niveau,name='niveau_admin'),
     path('paiement/',views.paiement,name='paiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
@@ -36,4 +35,19 @@ urlpatterns = [
     path('enseignant/',views.enseignant_admin,name='enseignant_admin'),
     path('insert_enseignant/', views.insertEnseignant, name = 'insert_enseignant'),
     path('update_enseignant/', views.updateEnseignant, name='update_enseignant'),
+    
+    path('authentification/',views.authentification,name='authentification'),
+    path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
+    path('profile/',views.profile,name='profile'),
+
+    path('insertFormation/', views.insertFormation, name = 'insertFormation'),
+    path('updateFormation/', views.updateFormation, name='updateFormation'),
+    path('insertModalitePaie/', views.insertModalitePaie, name='insertModalitePaie'),
+    path('updateModulePaie/', views.updateModalitePaie, name='updateModulePaie'),
+    path('inscription/',views.inscription_admin,name='inscription_admin'),
+    path('insertInscription/', views.insertInscription, name='insertInscription'),
+    path('updateInscription/', views.updateInscription, name='updateInscription'),
+    
+    path('Evaluation/', views.evaluation, name='Evaluation'),
+    path('insertEvaluation/', views.insertEvaluation, name='insertEvaluation'),
 ]

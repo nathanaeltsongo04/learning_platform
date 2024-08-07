@@ -90,7 +90,7 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "insertDomaine" %}">
+                <form method="POST" action="{% url 'insertDomaine' %}">
                     {% csrf_token %}
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
@@ -120,7 +120,7 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "updateDomaine" %}">
+                <form method="POST" action="{% url 'updateDomaine' %}">
                     {% csrf_token %}
                     <input type='hidden' value="{{domaine.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">

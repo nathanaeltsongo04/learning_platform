@@ -7,13 +7,14 @@ from .models import *
 def index(request):
     return render(request, 'index.html')
 
-def test(request):
-    try:
-      test = Test.objects.all()
-      context = {'tests':test}
-    except:
-      print('An exception occurred')
-    return render(request,'Test.html', context)
+def authentification(request):
+    return render(request,'authentification.html')
+
+def creer_compte(request):
+    return render(request,'creer_compte.html')
+
+def profile(request):
+    return render(request,'profile.html')
 
 def dashboard_apprenant(request):
     return render(request, 'apprenant/dashboard.html')
@@ -80,6 +81,15 @@ def publication_admin(request):
 def typeressource(request):
     return render(request,'admin/typeressource.html')
 
+def inscription_admin(request):
+    try:
+        inscription = Inscription.objects.all()
+        context = {'inscriptions':inscription}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+        return redirect('inscription_admin')
+    return render(request,'admin/inscription.html', context)
+
 
 # =======================================================================================================
 # NIVEAU
@@ -99,14 +109,12 @@ def insertNiveau(request):
             messages.success(request, "Ajouté avec succès !")
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+    return render(request, "admin/niveau.html")
 
-def updateNiveau(request, code):
+def updateNiveau(request):
     try:
-      niveau = get_object_or_404(Niveau, pk = code)
-      context = {'niveau':niveau}
-      
       if request.method == "POST":
+        code = request.POST.get("code")
         designation = request.POST.get("designation")
 
         if Niveau.objects.filter(designation = designation):
@@ -116,10 +124,10 @@ def updateNiveau(request, code):
                 code = code,
                 designation = designation
             ).save()
-            messages.success(request, request, "Modifié avec succès !")
+            messages.success(request, "Modifié avec succès !")
     except:
-      messages.error(request, request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request, "admin/niveau.html")
 
 # =======================================================================================================
 # DOMAINE
@@ -136,7 +144,7 @@ def insertDomaine(request):
             Domaine.objects.create(
                 designation = designation
             )
-            messages.success(request, request, "Ajouté avec succès !")
+            messages.success(request, "Ajouté avec succès !")
             return redirect('domaine_admin')
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
@@ -155,7 +163,7 @@ def updateDomaine(request):
                 code = code,
                 designation = designation
             ).save()
-            messages.success(request, request, "Modifié avec succès !")
+            messages.success(request, "Modifié avec succès !")
             return redirect("domaine_admin")
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
@@ -545,17 +553,17 @@ def insertFormation(request):
               module = module,
               enseignant = enseignant
           )
-          messages.success("Formation ajoutée avec succès !")
+          messages.success(request,"Formation ajoutée avec succès !")
+          return redirect('formation_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('formation_admin')
+    return render(request,'admin/formation.html')
 
-def updateFormation(request, code):
+def updateFormation(request):
     try:
-      formation = get_object_or_404(Formation, pk = code)
-      context = {'formation':formation}
-      
       if request.method == "POST":
+          code = request.POST.get("code")
           titre = request.POST.get("titre")
           duree = request.POST.get("duree")
           date_debut = request.POST.get("date_debut")
@@ -574,9 +582,12 @@ def updateFormation(request, code):
                                 module = module,
                                 enseignant = enseignant
                             ):
-              messages.info("Ces information existent déjà !")
+              messages.info(request, "Ces information existent déjà !")
+              return redirect('formation_admin')
           else:
               Formation(
+                  
+                    code = code,
                     titre = titre,
                     duree = duree,
                     date_debut = date_debut,
@@ -584,10 +595,12 @@ def updateFormation(request, code):
                     module = module,
                     enseignant = enseignant
                 ).save()
-          messages.success("Formation modifiée avec succès !")
+          messages.success(request,"Formation modifiée avec succès !")
+          return redirect('formation_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifiée avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('formation_admin')
+    return render(request,'Apprenant/formation.html')
 
 # =======================================================================================================
 # MODALITE PAIE
@@ -607,17 +620,17 @@ def insertModalitePaie(request):
               montant_fixe = montant_fixe,
               module = module
           )
-          messages.success("Ajouté avec succès !")
+          messages.success(request,"Ajouté avec succès !")
+          return redirect('modalite_paiement')
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès !")
+      return redirect('modalite_paiement')
+    return render(request,'Admin/modalitepaiement.html')
 
-def updateModulePaie(request, code):
+def updateModalitePaie(request):
     try:
-      modalitepaie = get_object_or_404(ModalitePaie, pk = code)
-      context = {'modalitepaie': modalitepaie}
-      
       if request.method == "POST":
+          code = request.POST.get("code")
           tranche = request.POST.get("tranche")
           montant_fixe = request.POST.get("montant_fixe")
           id_module = request.POST.get("id_module")
@@ -630,10 +643,12 @@ def updateModulePaie(request, code):
               montant_fixe = montant_fixe,
               module = module
           ).save()
-          messages.success("Modifié avec succès !")
+          messages.success(request,"Modifié avec succès !")
+          return redirect('modalite_paiement')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('modalite_paiement')
+    return render(request,'Admin/modalitepaiement.html')
 
 # =======================================================================================================
 # INSCRIPTION
@@ -657,17 +672,17 @@ def insertInscription(request):
               modalite = modalite,
               date_inscription = date_inscription
           )
-          messages.success("Inscription éffectuée avec succès !")
+          messages.success(request, "Inscription éffectuée avec succès !")
+          return redirect('inscription_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Inscription éffectuée avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('inscription_admin')
+    return render(request, 'admin/inscription.html')
 
-def updateInscription(request, code):
+def updateInscription(request):
     try:
-      inscription = get_object_or_404(Inscription, pk = code)
-      context = {'inscription' : inscription}
-      
       if request.method == "POST":
+          code = request.POST.get("code")
           id_apprenant = request.POST.get("apprenant")
           id_formation = request.POST.get("formation")
           id_modalite = request.POST.get("modalite")
@@ -684,14 +699,24 @@ def updateInscription(request, code):
               modalite = modalite,
               date_inscription = date_inscription
           ).save()
-          messages.success("Inscription modifiée avec succès !")
+          messages.success(request, "Inscription modifiée avec succès !")
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Inscription modifiée avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('inscription_admin')
+    return render(request, 'admin/inscription.html')
 
 # =======================================================================================================
 # EVALUATION
 # =======================================================================================================
+
+def evaluation(request):
+    try:
+      evaluation = Evaluation.objects.all()
+      context = {'evaluations':evaluation}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+        return redirect('evaluation')    
+    return render(request, "enseignant/interrogation.html", context)
 
 def insertEvaluation(request):
     try:
@@ -709,17 +734,17 @@ def insertEvaluation(request):
               cote = cote,
               date_evaluation = date_evaluation
           )
-          messages.success("Résultat de l'évaluation inseré avec succès !")
+          messages.success(request, "Résultat de l'évaluation inseré avec succès !")
+          return redirect('evaluation')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Résultat de l'évaluation inseré avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('evaluation')  
+    return render(request, "enseignant/interrogation.html")
 
-def updateEvaluation(request, code):
+def updateEvaluation(request):
     try:
-      evaluation = get_object_or_404(Evaluation, pk = code)
-      context = {'evaluation' : evaluation}
-      
       if request.method == "POST":
+          code = request.POST.get("code")
           id_formation = request.POST.get("formation")
           maximum = request.POST.get("maximum")
           cote = request.POST.get("cote")
@@ -734,10 +759,12 @@ def updateEvaluation(request, code):
               cote = cote,
               date_evaluation = date_evaluation
           ).save()
-          messages.success("Résultat de l'évaluation modifié avec succès !")
+          messages.success(request, "Résultat de l'évaluation modifié avec succès !")
+          return redirect('evaluation')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('evaluation')
+    return render(request, "enseignant/interrogation.html")
 
 # =======================================================================================================
 # PUBLICATION

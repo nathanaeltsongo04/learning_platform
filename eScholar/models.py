@@ -129,11 +129,11 @@ class Evaluation(models.Model):
 #         db_table='CompteUtilisateur'
 
 # class CompteUtilisateur(AbstractUser):
-#     adresse = models.CharField(max_length=100)
-#     photo = models.ImageField(upload_to='Clients_photos', blank=True)
-
-    def __str__(self) -> str:
-        return (f"{self.first_name} {self.last_name} {self.username}")
+#     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
+#     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
+#     photo=models.ImageField(upload_to='Image/',blank=True)
+#     fonction=models.CharField(max_length=25)
+    
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
