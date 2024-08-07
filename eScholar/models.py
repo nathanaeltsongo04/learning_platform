@@ -58,7 +58,7 @@ class Ressource(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=25)
     description=models.CharField(max_length=100)
-    contenu=models.CharField(max_length=255)
+    contenu=models.FileField(upload_to="Ressource/", max_length=500)
     type_ressource=models.ForeignKey(TypeRessource,on_delete=models.CASCADE)
     
     class Meta:
@@ -77,17 +77,18 @@ class Module(models.Model):
         
 class Formation(models.Model):
     code=models.AutoField(primary_key=True)
-    domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
     titre=models.CharField(max_length=50)
     description = models.TextField ()
     duree=models.TimeField()
     date_debut=models.DateField()
     date_fin=models.DateField()
+    domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     enseignant=models.ForeignKey(Enseignant, on_delete=models.CASCADE)
     
     class Meta:
         db_table='Formation'
+        
 class ModalitePaie(models.Model):
     code=models.AutoField(primary_key=True)
     tranche=models.CharField(max_length=25)

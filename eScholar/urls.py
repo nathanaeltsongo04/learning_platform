@@ -3,25 +3,22 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
+    path('Test', views.test,name='Test'),
     path('dashboard_apprenant/', views.dashboard_apprenant, name='dashboard_apprenant'),
-    path('formation/', views.formation_apprenant, name='formation_apprenant'),
-    path('ressource/', views.ressource_apprenant, name='ressource_apprenant'),
+    # path('formation/', views.formation_apprenant, name='formation_apprenant'),
     path('chat/', views.chat_apprenant, name='chat_apprenant'),
     path('horaire/', views.horaire_apprenant, name='horaire_apprenant'),
     path('correcton/',views.correction_enseignant,name='correction_enseignant'),
     path('cote/',views.correction_enseignant,name='cote_enseignant'),
-    path('formation/',views.formation_enseignant,name='formation_enseignant'),
+    # path('formation/',views.formation_enseignant,name='formation_enseignant'),
     path('interrogation/',views.interrogation_enseignant,name='interrogation_enseignant'),
-    path('module/',views.module_enseignant,name='module_enseignant'),
     path('publication/',views.publication_enseignant,name='publication_enseignant'),
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
-    path('modalite_paiement',views.modalitepaiement,name='modalite_paiement'),
-    path('niveau/',views.niveau,name='niveau_admin'),
+    path('modalite_paiement/',views.modalitepaiement,name='modalite_paiement'),
     path('paiement/',views.paiement,name='paiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
-    path('ressource/',views.typeressource,name='type_ressource'),
     
     
     path('apprenant/',views.apprenant_admin,name='apprenant_admin'),
@@ -36,9 +33,9 @@ urlpatterns = [
     path('insert_enseignant/', views.insertEnseignant, name = 'insert_enseignant'),
     path('update_enseignant/', views.updateEnseignant, name='update_enseignant'),
     
-    path('authentification/',views.authentification,name='authentification'),
-    path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
-    path('profile/',views.profile,name='profile'),
+    # path('authentification/',views.authentification,name='authentification'),
+    # path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
+    # path('profile/',views.profile,name='profile'),
 
     path('insertFormation/', views.insertFormation, name = 'insertFormation'),
     path('updateFormation/', views.updateFormation, name='updateFormation'),
@@ -50,4 +47,23 @@ urlpatterns = [
     
     path('Evaluation/', views.evaluation, name='Evaluation'),
     path('insertEvaluation/', views.insertEvaluation, name='insertEvaluation'),
+    
+    
+    path('module/',views.module_enseignant,name='module_enseignant'),
+    path('insertModule/', views.insertModule, name = 'insertModule'),
+    path('updateModule/', views.updateModule, name='updateModule'),
+    
+    path('niveau/',views.niveau,name='niveau_admin'),
+    path('insertNiveau/', views.insertNiveau, name = 'insertNiveau'),
+    path('updateNiveau/', views.updateNiveau, name='updateNiveau'),
+    
+    path('typeressource/',views.typeressource,name='typeressource'),
+    path('insertTypeRessource/',views.insertTypeRessource,name='insertTypeRessource'),
+    path('updateTypeRessource/',views.updateTypeRessource,name='updateTypeRessource'),
+    
+    path('ressource/', views.ressource_admin, name='ressource_admin'),
+    path('ressource_apprenant/', views.ressource_apprenant, name='ressource_apprenant'),
+    path('insertRessource/', views.insertRessource, name='insertRessource'),
+    path('updateRessource/', views.updateRessource, name='updateRessource'),
+    path('downloadFile/<int:code>', views.download_file, name='downloadFile'),
 ]

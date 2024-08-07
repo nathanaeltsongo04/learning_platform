@@ -3,12 +3,13 @@
 {% block title %}eScholar{% endblock %}
 
 {% block sidebar%}
-    {% include 'partials/learner_sidebar.html' %}
+    {% include 'partials/sidebar.html' %}
 {% endblock %}
-{% block Dashboard %} Ressources{% endblock %}
+
+{% block Dashboard %} Les Ressources{% endblock %}
 
 {% block ContentTitle %}
-    Apprenant
+    Administrateur
 {% endblock %}
 
 {% block ContentSubTitle %}
@@ -16,5 +17,149 @@
 {% endblock %}
 
 {% block content %}
+{% for msg in messages %}
+{% if msg %}
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: msg,
+        showConfirmButton: false,
+        timer: 2800
+    }).then(function() {
+    });
+</script>
+{% endif %}
+{% endfor %}
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">Ressources</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Déscription</th>
+                  <th scope="col">Contenu</th>
+                  <th scope="col">Type ressource</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for ressource in ressources %}
+                    <tr>
+                    <th scope="row">{{ ressource.code }}</th>
+                        <td>{{ ressource.titre }}</td>
+                        <td>{{ ressource.description }}</td>
+                        <td>{{ ressource.contenu }}</td>
+                        <td>{{ ressource.type_ressource_id.designation }}</td>
+                        <td>
+                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                <span class="badge bg-success " >
+                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
+                            <a class="text-info mx-auto pd-2" href="{{ domaine.code }}">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-trash fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle ressource</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insertTypeRessource' %}">
+                    {% csrf_token %}
+                    <div class="col-md-12 mb-4 ">
+                        <div class="input-group has-validation">
+                            <input type="text" name="titre" class="form-control mb-3" id="titre" placeholder="Titre" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <input type="text" name="description" class="form-control mb-3" id="description" placeholder="Déscription" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <input type="text" name="contenu" class="form-control mb-3" id="contenu" placeholder="Contenu" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select name="type_ressourcejean-louis" class="form-select mb-3" id="">
+                                <option value=""> Select ressource type </option>
+                                {%for type in types %}
+                                <option value="{{ type.code }}">{{ type.designation }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modification Domaine-->
+ {% for domaine in  domaines %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Ressource</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'updateTypeRessource' %}">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{domaine.code}}" name='code'>
+                    <div class="col-md-12 mb-4 ">
+                        <div class="input-group has-validation">
+                            <input type="text" name="designation" class="form-control" id="yourPassword" value="{{domaine.designation}}" placeholder="Désignation" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

@@ -59,7 +59,7 @@
                     <th scope="row">{{ modalitepaie.code }}</th>
                         <td>{{ modalitepaie.tranche }}</td>
                         <td>{{ modalitepaie.montant_fixe }}</td>
-                        <td>{{ modalitepaie.module_id.titre }}</td>
+                        <td>{{ modalitepaie.module.titre }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
@@ -94,17 +94,22 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "insertModalitePaie" %}">
+                <form method="POST" action="{% url 'insertModalitePaie' %}">
                     {% csrf_token %}
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="tranche" class="form-control" id="tranche" placeholder="Tranche" required>
+                            <input type="text" name="tranche" class="form-control mb-3" id="tranche" placeholder="Tranche" required>
+                            <select name="module" class="form-select mb-3" id="">
+                                <option value="Par semaine">Par semaine</option>
+                                <option value="Par Mois">Par Mois</option>
+                                <option value="Par Trimestre">Par Trimestre</option>
+                            </select>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="text" name="montant_fixe" class="form-control" id="montant_fixe" placeholder="Montant_fixe" required>
+                            <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
                         </div>
                         <div class="input-group has-validation">
-                            <select name="module_id" id="">
+                            <select name="module" class="form-select mb-3" id="">
                                 <option value="">--select Module--</option>
 
                                 {% for m in modules %}
@@ -137,7 +142,7 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "updateModalitepaie" %}">
+                <form method="POST" action="{% url 'updateModulePaie' %}">
                     {% csrf_token %}
                     <input type='hidden' value="{{modalitepaie.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">

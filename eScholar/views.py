@@ -1,5 +1,7 @@
+import os
+from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.contrib import messages
 from .models import *
 # Create your views here.
@@ -7,14 +9,13 @@ from .models import *
 def index(request):
     return render(request, 'index.html')
 
-def authentification(request):
-    return render(request,'authentification.html')
-
-def creer_compte(request):
-    return render(request,'creer_compte.html')
-
-def profile(request):
-    return render(request,'profile.html')
+def test(request):
+    try:
+      test = Test.objects.all()
+      context = {'tests':test}
+    except:
+      print('An exception occurred')
+    return render(request,'Test.html', context)
 
 def dashboard_apprenant(request):
     return render(request, 'apprenant/dashboard.html')
@@ -23,7 +24,14 @@ def formation_apprenant(request):
     return render(request,'apprenant/formation.html')
 
 def ressource_apprenant(request):
-    return render(request,'apprenant/ressource.html')
+    try:
+        type = TypeRessource.objects.all()
+        ressource = Ressource.objects.all()
+        context = {'ressources':ressource, 'types':type}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'apprenant/ressource.html', context)
+
 
 def chat_apprenant(request):
     return render(request,'apprenant/chat.html')
@@ -33,9 +41,6 @@ def horaire_apprenant(request):
 
 def formation_enseignant(request):
     return render(request,'enseignant/formation.html')
-
-def module_enseignant(request):
-    return render(request,'enseignant/module.html')
 
 def interrogation_enseignant(request):
     return render(request,'enseignant/interrogation.html')
@@ -63,14 +68,22 @@ def domaine_admin(request):
         messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return render(request,'admin/domaine.html', context)
 
-def formation_admin(request):
-    return render(request,'admin/formation.html')
-
 def modalitepaiement(request):
-    return render(request,'admin/modalitepaiement.html')
+    try:
+      modalite = ModalitePaie.objects.all()
+      module = Module.objects.all()
+      context = {'modalitepaies':modalite, 'modules':module}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/modalitepaiement.html', context)
 
 def niveau(request):
-    return render(request,'admin/niveau.html')
+    try:
+        niveau = Niveau.objects.all()
+        context = {'niveaux':niveau}
+    except:
+        messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/niveau.html',context)
 
 def paiement(request):
     return render(request,'admin/paiement.html')
@@ -79,16 +92,13 @@ def publication_admin(request):
     return render(request,'admin/publication.html')
 
 def typeressource(request):
-    return render(request,'admin/typeressource.html')
-
-def inscription_admin(request):
     try:
-        inscription = Inscription.objects.all()
-        context = {'inscriptions':inscription}
+        type = TypeRessource.objects.all()
+        context = {'types':type}
     except:
         messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
         return redirect('inscription_admin')
-    return render(request,'admin/inscription.html', context)
+    return render(request,'admin/typeressource.html', context)
 
 
 # =======================================================================================================
@@ -106,10 +116,12 @@ def insertNiveau(request):
             Niveau.objects.create(
                 designation = designation
             )
-            messages.success(request, "Ajouté avec succès !")
+            messages.success(request,"Ajouté avec succès !")
+            return redirect('niveau_admin')
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return render(request, "admin/niveau.html")
+      return redirect('niveau_admin')
+    return render(request,'admin/niveau.html')
 
 def updateNiveau(request):
     try:
@@ -118,16 +130,18 @@ def updateNiveau(request):
         designation = request.POST.get("designation")
 
         if Niveau.objects.filter(designation = designation):
-            messages.error(request, request, "Cette information existe déjà !")
+            messages.error(request, "Cette information existe déjà !")
         else:
             Niveau(
                 code = code,
                 designation = designation
             ).save()
-            messages.success(request, "Modifié avec succès !")
+            messages.success(request,"Modifié avec succès !")
+            return redirect('niveau_admin')
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return render(request, "admin/niveau.html")
+      return redirect('niveau_admin')
+    return render(request, 'admin/niveau.html')
 
 # =======================================================================================================
 # DOMAINE
@@ -383,16 +397,19 @@ def insertTypeRessource(request):
           
           if TypeRessource.objects.filter(designation = designation):
               messages.error(request, "Cette information existe déjà !")
+              return redirect('typeressource')
           else:
             TypeRessource.objects.create(
                 designation = designation
             )
-          messages.success(request, "Ajouté avec succès !")
+          messages.success(request,"Ajouté avec succès !")
+          return redirect('typeressource')
     except:
-      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+      messages.error(request,"Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('typeressource')
+    return render(request, "admin/typeressource.html")
 
-def updateRessource(request, code):
+def updateTypeRessource(request, code):
     try:
         type_ressource = get_object_or_404(TypeRessource, pk = code)
         context = {'type_ressource':type_ressource}
@@ -401,33 +418,43 @@ def updateRessource(request, code):
             designation = request.POST.get("designation")
             
             if TypeRessource.objects.filter(designation = designation):
-                messages.error("Cette information existe déjà !")
+                messages.error(request,"Cette information existe déjà !")
             else:
                 TypeRessource(
                     code = code,
                     designation = designation
                 ).save()
-                messages.success("Modifié avec succès !")
+                messages.success(request,"Modifié avec succès !")
     except:
       print('An exception occurred')
-    return HttpResponse("Modifié avec succès")
+    return render(request, "admin/typeRessource.html")
 
 # =======================================================================================================
 # RESSOURCE
 # =======================================================================================================
+
+def ressource_admin(request):
+    try:
+        type = TypeRessource.objects.all()
+        ressource = Ressource.objects.all()
+        context = {'ressources':ressource, 'types':type}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request, 'admin/ressource.html', context)
 
 def insertRessource(request):
     try:
       if request.method == "POST":
           titre = request.POST.get("titre")
           description = request.POST.get("description")
-          contenu = request.POST.get("contenu")
+          contenu = request.FILES.get("contenu")
           id_type_ressource = request.POST.get("type_ressource")
           
           type_ressource = get_object_or_404(TypeRessource, pk = id_type_ressource)
           
           if Ressource.objects.filter(titre = titre, description = description):
-              messages.error("Ces informations existent déjà !")
+              messages.error(request,"Ces informations existent déjà !")
+              return redirect('ressource_admin')
           else:
               Ressource.objects.create(
                   titre = titre,
@@ -435,42 +462,79 @@ def insertRessource(request):
                   contenu = contenu,
                   type_ressource = type_ressource
               )
-              messages.success("Ressource ajoutée avec succès !")
+              messages.success(request,"Ressource ajoutée avec succès !")
+              return redirect('ressource_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+      messages.error(request,"Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+    return render(request,'admin/ressource.html')
 
-def updateRessource(request, code):
+def updateRessource(request):
     try:
-      ressource = get_object_or_404(Ressource, pk = code)
-      context = {'ressource':ressource}
-      
       if request.method == "POST":
+          code = request.POST.get("code")
           titre = request.POST.get("titre")
           description = request.POST.get("description")
-          contenu = request.POST.get("contenu")
+          contenu = request.FILES.get("contenu")
           id_type_ressource = request.POST.get("type_ressource")
           
           type_ressource = get_object_or_404(TypeRessource, pk = id_type_ressource)
           
-          if Ressource.objects.filter(titre = titre, description = description):
-              messages.error("Ces informations existent déjà !")
+          if Ressource.objects.filter(titre = titre, description = description, contenu = contenu):
+              messages.error(request, "Ces informations existent déjà !")
+              return redirect('ressource_admin')
           else:
-              Ressource(
-                  code = code,
-                  titre = titre,
-                  description = description,
-                  contenu = contenu,
-                  type_ressource = type_ressource
-              ).save()
-              messages.success("Ressource modifeé avec succès !")
+              if contenu:
+                    Ressource(
+                        code = code,
+                        titre = titre,
+                        description = description,
+                        contenu = contenu,
+                        type_ressource = type_ressource
+                    ).save()
+                    messages.success(request,"Ressource modifeé avec succès !")
+                    return redirect('ressource_admin')
+              else:
+                    ressource = get_object_or_404(Ressource, pk = code)
+                    Ressource(
+                        code = code,
+                        titre = titre,
+                        description = description,
+                        contenu = ressource.contenu,
+                        type_ressource = type_ressource
+                    ).save()
+                    messages.success(request,"Ressource modifeé avec succès !")
+                    return redirect('ressource_admin')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('ressource_admin')
+    return render(request,'admin/ressource.html')
+
+def download_file(request, code):
+    uploaded_file = get_object_or_404(Ressource, pk=code)
+    file_path = os.path.join(settings.MEDIA_ROOT, uploaded_file.contenu.name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename={uploaded_file.contenu.name}'
+            return response
+    raise Http404("File does not exist")
+
 
 # =======================================================================================================
 # MODULE
 # =======================================================================================================
+
+def module_enseignant(request):
+    try:
+        module = Module.objects.all()
+        niveau = Niveau.objects.all()
+        ressource = Ressource.objects.all()
+        context = {'modules': module, 'niveaux':niveau, 'ressources':ressource}
+    except:
+        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+        return redirect('module_enseignant')
+    return render(request,'enseignant/module.html', context)
+
 def insertModule(request):
     try:
       if request.method == "POST":
@@ -485,6 +549,7 @@ def insertModule(request):
         
         if Module.objects.filter(titre = titre, description = description):
             messages.error("Ce module eisxte déjà !")
+            return redirect('module_enseignant')
         else:
             Module.objects.create(
                 titre = titre,
@@ -493,17 +558,17 @@ def insertModule(request):
                 niveau = niveau,
                 ressource = ressource
             )
-            messages.success("Module ajouté avec succès !")
+            messages.success(request,"Module ajouté avec succès !")
+            return redirect('module_enseignant')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('module_enseignant')
+    return render(request,"ensignant/module.html")
 
-def updateModule(request, code):
+def updateModule(request):
     try:
-      module = get_object_or_404(Module, pk = code)
-      context = {'module':module}
-      
       if request.method == "POST":
+            code = request.POST.get("code")
             titre = request.POST.get("titre")
             description = request.POST.get("description")
             prix = request.POST.get("prix")
@@ -513,8 +578,9 @@ def updateModule(request, code):
             niveau = get_object_or_404(Niveau, pk = id_niveau)
             ressource = get_object_or_404(Ressource, pk = id_ressource)
             
-            if Module.objects.filter(titre = titre, description = description):
-                messages.error("Ce module eisxte déjà !")
+            if Module.objects.filter(titre = titre, description = description, prix = prix, niveau = niveau, ressource = ressource):
+                messages.error(request, "Ce module existe déjà !")
+                return redirect('module_enseignant')
             else:
                 Module(
                     code = code,
@@ -524,37 +590,68 @@ def updateModule(request, code):
                     niveau = niveau,
                     ressource = ressource
                 ).save()
-                messages.success("Module modifié avec succès !")
+                messages.success(request, "Module modifié avec succès !")
+                return redirect('module_enseignant')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('module_enseignant')
+    return render(request,"enseignant/module.html")
 
 # =======================================================================================================
 # FORMATION
 # =======================================================================================================
+
+def formation_admin(request):
+    try:
+      formation = Formation.objects.all()
+      module = Module.objects.all()
+      enseignant = Enseignant.objects.all()
+      domaine = Domaine.objects.all()
+      context = {'formations':formation, 'enseignants':enseignant, 'modules':module, 'domaines':domaine}
+    except:
+        messages.success(request,"Formation ajoutée avec succès !")
+        return redirect('formation_admin')    
+    return render(request,'admin/formation.html', context)
+
 def insertFormation(request):
     try:
       if request.method == "POST":
           titre = request.POST.get("titre")
+          description = request.POST.get("description")
           duree = request.POST.get("duree")
           date_debut = request.POST.get("date_debut")
           date_fin = request.POST.get("date_fin")
+          id_domaine = request.POST.get("domaine")
           id_module = request.POST.get("module")
           id_enseignant = request.POST.get("enseignant")
           
           module = get_object_or_404(Module, pk = id_module)
           enseignant = get_object_or_404(Enseignant, pk = id_enseignant)
+          domaine = get_object_or_404(Domaine, pk = id_domaine)
           
-          Formation.objects.create(
-              titre = titre,
-              duree = duree,
-              date_debut = date_debut,
-              date_fin = date_fin,
-              module = module,
-              enseignant = enseignant
-          )
-          messages.success(request,"Formation ajoutée avec succès !")
-          return redirect('formation_admin')
+          if Formation.objects.filter(
+                                titre = titre,
+                                duree = duree,
+                                date_debut = date_debut,
+                                date_fin = date_fin,
+                                module = module,
+                                enseignant = enseignant
+                            ):
+              messages.info(request, "Ces information existent déjà !")
+              return redirect('formation_admin')
+          else:
+            Formation.objects.create(
+                titre = titre,
+                duree = duree,
+                description = description,
+                date_debut = date_debut,
+                date_fin = date_fin,
+                module = module,
+                enseignant = enseignant,
+                domaine = domaine
+            )
+            messages.success(request,"Formation ajoutée avec succès !")
+            return redirect('formation_admin')
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
       return redirect('formation_admin')
@@ -565,14 +662,17 @@ def updateFormation(request):
       if request.method == "POST":
           code = request.POST.get("code")
           titre = request.POST.get("titre")
+          description = request.POST.get("description")
           duree = request.POST.get("duree")
           date_debut = request.POST.get("date_debut")
           date_fin = request.POST.get("date_fin")
+          id_domaine = request.POST.get("domaine")
           id_module = request.POST.get("module")
           id_enseignant = request.POST.get("enseignant")
           
           module = get_object_or_404(Module, pk = id_module)
           enseignant = get_object_or_404(Enseignant, pk = id_enseignant)
+          domaine = get_object_or_404(Domaine, pk = id_domaine)
           
           if Formation.objects.filter(
                                 titre = titre,
@@ -586,14 +686,15 @@ def updateFormation(request):
               return redirect('formation_admin')
           else:
               Formation(
-                  
                     code = code,
                     titre = titre,
+                    description = description,
                     duree = duree,
                     date_debut = date_debut,
                     date_fin = date_fin,
                     module = module,
-                    enseignant = enseignant
+                    enseignant = enseignant,
+                    domaine = domaine
                 ).save()
           messages.success(request,"Formation modifiée avec succès !")
           return redirect('formation_admin')
@@ -611,7 +712,7 @@ def insertModalitePaie(request):
       if request.method == "POST":
           tranche = request.POST.get("tranche")
           montant_fixe = request.POST.get("montant_fixe")
-          id_module = request.POST.get("id_module")
+          id_module = request.POST.get("module")
           
           module = get_object_or_404(Module, pk = id_module)
           
@@ -623,7 +724,7 @@ def insertModalitePaie(request):
           messages.success(request,"Ajouté avec succès !")
           return redirect('modalite_paiement')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
       return redirect('modalite_paiement')
     return render(request,'Admin/modalitepaiement.html')
 
@@ -633,7 +734,7 @@ def updateModalitePaie(request):
           code = request.POST.get("code")
           tranche = request.POST.get("tranche")
           montant_fixe = request.POST.get("montant_fixe")
-          id_module = request.POST.get("id_module")
+          id_module = request.POST.get("module")
           
           module = get_object_or_404(Module, pk = id_module)
           
@@ -653,6 +754,18 @@ def updateModalitePaie(request):
 # =======================================================================================================
 # INSCRIPTION
 # =======================================================================================================
+
+def inscription_admin(request):
+    try:
+      inscription = Inscription.objects.all()
+      apprenant = Apprenant.objects.all()
+      formation = Formation.objects.all()
+      modalite = ModalitePaie.objects.all()
+      context = {'inscriptions':inscription, 'apprenants':apprenant, 'modalites':modalite, 'formations':formation}
+    except:
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('inscription_admin')
+    return render(request, "admin/inscription.html", context)
 
 def insertInscription(request):
     try:
