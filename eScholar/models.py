@@ -154,6 +154,7 @@ class Paiement(models.Model):
     
     class Meta:
         db_table='Paiement'
+        
 class Questionnaire(models.Model):
     code=models.AutoField(primary_key=True)
     module=models.ForeignKey(Module, on_delete=models.CASCADE)

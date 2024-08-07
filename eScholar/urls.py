@@ -11,13 +11,15 @@ urlpatterns = [
     path('correcton/',views.correction_enseignant,name='correction_enseignant'),
     path('cote/',views.correction_enseignant,name='cote_enseignant'),
     # path('formation/',views.formation_enseignant,name='formation_enseignant'),
-    path('interrogation/',views.interrogation_enseignant,name='interrogation_enseignant'),
+    # path('interrogation/',views.interrogation_enseignant,name='interrogation_enseignant'),
     path('publication/',views.publication_enseignant,name='publication_enseignant'),
     path('dashboard_enseignant',views.dashboard_enseignant,name='dashboard_enseignant'),
     path('dashboard_admin/',views.dashboard_admin,name='dashboard_admin'),
     path('formation/',views.formation_admin,name='formation_admin'),
     path('modalite_paiement/',views.modalitepaiement,name='modalite_paiement'),
     path('paiement/',views.paiement,name='paiement'),
+    path('insertPaiement/',views.insertPaiement,name='insertPaiement'),
+    path('updatePaiement/',views.updatePaiement,name='updatePaiement'),
     path('publication/',views.publication_admin,name='publication_admin'),
     
     
@@ -45,8 +47,9 @@ urlpatterns = [
     path('insertInscription/', views.insertInscription, name='insertInscription'),
     path('updateInscription/', views.updateInscription, name='updateInscription'),
     
-    path('Evaluation/', views.evaluation, name='Evaluation'),
+    path('evaluation/', views.evaluation, name='evaluation'),
     path('insertEvaluation/', views.insertEvaluation, name='insertEvaluation'),
+    path('updateEvaluation/', views.updateEvaluation, name='updateEvaluation'),
     
     
     path('module/',views.module_enseignant,name='module_enseignant'),

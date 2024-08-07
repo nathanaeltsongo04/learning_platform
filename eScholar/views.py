@@ -42,9 +42,6 @@ def horaire_apprenant(request):
 def formation_enseignant(request):
     return render(request,'enseignant/formation.html')
 
-def interrogation_enseignant(request):
-    return render(request,'enseignant/interrogation.html')
-
 def cote_enseignant(request):
     return render(request,'enseignant/cote.html')
 
@@ -86,7 +83,15 @@ def niveau(request):
     return render(request,'admin/niveau.html',context)
 
 def paiement(request):
-    return render(request,'admin/paiement.html')
+    try:
+        paiement = Paiement.objects.all()
+        apprenant = Apprenant.objects.all()
+        module = Module.objects.all()
+        context = {'paiements':paiement, 'apprenants':apprenant, 'modules':module}
+    except:
+        messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+        return redirect('paiement')
+    return render(request,'admin/paiement.html', context)
 
 def publication_admin(request):
     return render(request,'admin/publication.html')
@@ -824,8 +829,9 @@ def updateInscription(request):
 
 def evaluation(request):
     try:
-      evaluation = Evaluation.objects.all()
-      context = {'evaluations':evaluation}
+        evaluation = Evaluation.objects.all()
+        formation = Formation.objects.all()
+        context = {'evaluations':evaluation, 'formations':formation}
     except:
         messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
         return redirect('evaluation')    
@@ -851,7 +857,7 @@ def insertEvaluation(request):
           return redirect('evaluation')
     except:
       messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-      return redirect('evaluation')  
+      return redirect('evaluation')
     return render(request, "enseignant/interrogation.html")
 
 def updateEvaluation(request):
@@ -942,8 +948,8 @@ def updatePublication(request, code):
 def insertPaiement(request):
     try:
       if request.method == "POST":
-          id_apprenant = request.POST.get("id_apprenant")
-          id_module = request.POST.get("id_module")
+          id_apprenant = request.POST.get("apprenant")
+          id_module = request.POST.get("module")
           montant = request.POST.get("montant")
           date_paiement = request.POST.get("date_paiement")
           
@@ -956,19 +962,19 @@ def insertPaiement(request):
               montant = montant,
               date_paiement = date_paiement
           )
-          messages.success("Paiement éffectué avec succès !")
+          messages.success(request, "Paiement éffectué avec succès !")
+          return redirect('paiement')
     except:
       messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Effectué avec succès !")
+      return redirect('paiement')
+    return render(request,'admin/paiement.html')
 
-def updatePaiement(request, code):
+def updatePaiement(request):
     try:
-      paiement = get_object_or_404(Paiement, pk = code)
-      context = {'paiement' : paiement}
-      
       if request.method == "POST":
-          id_apprenant = request.POST.get("id_apprenant")
-          id_module = request.POST.get("id_module")
+          code = request.POST.get("code")
+          id_apprenant = request.POST.get("apprenant")
+          id_module = request.POST.get("module")
           montant = request.POST.get("montant")
           date_paiement = request.POST.get("date_paiement")
           
@@ -982,10 +988,12 @@ def updatePaiement(request, code):
               montant = montant,
               date_paiement = date_paiement
           ).save()
-          messages.success("Paiement modifié avec succès !")
+          messages.success(request, "Paiement modifié avec succès !")
+          return redirect('paiement')
     except:
-      messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+      messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
+      return redirect('paiement')
+    return render(request,'admin/paiement.html')
 
 # =======================================================================================================
 # QUESTIONNAIRE
