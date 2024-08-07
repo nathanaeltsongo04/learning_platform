@@ -30,6 +30,7 @@ urlpatterns = [
     path('authentification/',views.authentification,name='authentification'),
     path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('profile/',views.profile,name='profile'),
+    path('video_conference/', views.video_conference, name='video_conference'),
 
     path('inscription/',views.inscription_admin,name='inscription_admin'),
 
