@@ -17,20 +17,42 @@
 {% endblock %}
 
 {% block content %}
-{% for msg in messages %}
-{% if msg %}
 <script>
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2800
-    }).then(function() {
-    });
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
 </script>
-{% endif %}
-{% endfor %}
 
 <section class="section">
     <div class="row">
@@ -151,8 +173,7 @@
                             <input type="text" name="titre" class="form-control mb-3" id="titre" value="{{ressource.titre}}" placeholder="Titre" required>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="text" name="description" class="form-control mb-3" value="{{ ressource.description }}" id="description" placeholder="Déscription" required>
-                            {% comment %} <textarea name="description" class="form-control mb-3"  placeholder="Déscription" id=""></textarea> {% endcomment %}
+                            <textarea name="description" class="form-control mb-3"  placeholder="Déscription" id="" required>{{ ressource.description }}</textarea>
                         </div>
                         <div class="input-group has-validation">
                             <select name="type_ressource" class="form-select mb-3" id="" required>

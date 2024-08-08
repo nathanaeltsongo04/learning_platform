@@ -1,5 +1,6 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 class Niveau(models.Model):
@@ -17,7 +18,7 @@ class Domaine(models.Model):
         db_table='Domaine'
         
 class Apprenant(models.Model):
-    matricule=models.AutoField(primary_key=True)
+    matricule=models.CharField(max_length=25, primary_key=True)
     nom=models.CharField(max_length=25)
     postnom=models.CharField(max_length=25)
     prenom=models.CharField(max_length=25)
@@ -32,7 +33,7 @@ class Apprenant(models.Model):
         db_table='Apprenant'
         
 class Enseignant(models.Model):
-    matricule=models.AutoField(primary_key=True)
+    matricule=models.CharField(max_length=25, primary_key=True)
     nom=models.CharField(max_length=25)
     postnom=models.CharField(max_length=25)
     prenom=models.CharField(max_length=25)
@@ -57,7 +58,7 @@ class TypeRessource(models.Model):
 class Ressource(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=25)
-    description=models.CharField(max_length=100)
+    description=models.TextField()
     contenu=models.FileField(upload_to="Ressource/", max_length=500)
     type_ressource=models.ForeignKey(TypeRessource,on_delete=models.CASCADE)
     
@@ -67,7 +68,7 @@ class Ressource(models.Model):
 class Module(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=25)
-    description=models.CharField(max_length=255)
+    description=models.TextField()
     prix=models.DecimalField(max_digits=10, decimal_places=2)
     niveau=models.ForeignKey(Niveau,on_delete=models.CASCADE)
     ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE)
@@ -79,7 +80,7 @@ class Formation(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
     description = models.TextField ()
-    duree=models.TimeField()
+    duree=models.CharField(max_length = 20)
     date_debut=models.DateField()
     date_fin=models.DateField()
     domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
@@ -118,28 +119,16 @@ class Evaluation(models.Model):
     class Meta:
         db_table='Evaluation'
         
-# class CompteUtilisateur(models.Model):
-#     code=models.AutoField(primary_key=True)
-#     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-#     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
-#     photo=models.ImageField(upload_to='Image/',blank=True)
-#     fonction=models.CharField(max_length=25)
-#     password=models.CharField(max_length=50)
-    
-#     class Meta:
-#         db_table='CompteUtilisateur'
 
-# class CompteUtilisateur(AbstractUser):
-#     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-#     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
-#     photo=models.ImageField(upload_to='Image/',blank=True)
-#     fonction=models.CharField(max_length=25)
+class CompteUtilisateur(AbstractUser):
+    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)
+    enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE, null = True)
     
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
-    description=models.CharField(max_length=255)
-    # compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
+    description=models.TextField()
+    compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
     date_publication=models.DateTimeField()
     
     class Meta:
@@ -154,12 +143,12 @@ class Paiement(models.Model):
     
     class Meta:
         db_table='Paiement'
-        
+
 class Questionnaire(models.Model):
     code=models.AutoField(primary_key=True)
     module=models.ForeignKey(Module, on_delete=models.CASCADE)
-    question=models.CharField(max_length=50)
-    reponse=models.CharField(max_length=50)
+    question=models.TextField()
+    reponse=models.TextField()
     
     class Meta:
         db_table='Questionnaire'
@@ -168,7 +157,7 @@ class Test(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
     questionnaire=models.ForeignKey(Questionnaire,on_delete=models.CASCADE)
-    reponse=models.CharField(max_length=100)
+    reponse=models.TextField()
     
     class Meta:
         db_table='Test'
