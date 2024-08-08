@@ -1,0 +1,84 @@
+
+{% extends 'base/auth_signup_layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block content%}
+<style>
+    /* Assurez-vous que le conteneur Jitsi Meet occupe toute la page sans débordement */
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* Eviter les barres de défilement */
+        background-color: black;
+    }
+    #meet {
+        width: 100vw;
+        height: 90vh;
+        box-sizing: border-box;
+    }
+</style>
+<div class="header d-flex justify-content-between align-items-center bg-dark p-0">
+    <h4 class="text-white fw-bold text-center ms-4 mt-2 mb-2"><b>eScholar Vidéo Conférence</b></h4>
+    {% comment %} <a href="#" id="closeLink" class="text-white ml-auto">Fermer</a> {% endcomment %}
+    <button id="joinConference" class="btn btn-primary mt-0 me-4"><b>Joindre</b></button>
+    <button id="leaveConference" class="btn btn-danger mt-0 me-4" style="display:none;">Quitter</button>
+</div>
+
+<div id="meet"></div>
+<script>
+    const domain = 'meet.jit.si';
+    const options = {
+        roomName: 'YourCustomRoomName',
+        width: window.innerWidth,
+        height: window.innerHeight,
+        parentNode: document.querySelector('#meet'),
+        configOverwrite: {},
+        interfaceConfigOverwrite: {}
+    };
+    let api;
+
+    document.getElementById('joinConference').addEventListener('click', () => {
+        document.getElementById('meet').style.display = 'block';
+        document.getElementById('joinConference').style.display = 'none';
+        document.getElementById('leaveConference').style.display = 'inline';
+        
+        api = new JitsiMeetExternalAPI(domain, options);
+
+        api.on('videoConferenceJoined', () => {
+            console.log('Vidéoconférence commencée');
+        });
+
+        api.on('readyToClose', () => {
+            console.log('La vidéoconférence est terminée');
+            leaveConference();
+        });
+
+        window.addEventListener('resize', resizeMeet);
+    });
+
+    document.getElementById('leaveConference').addEventListener('click', leaveConference);
+    document.getElementById('closeLink').addEventListener('click', leaveConference);
+
+    function leaveConference() {
+        if (api) {
+            api.dispose();
+        }
+        document.getElementById('meet').style.display = 'none';
+        document.getElementById('joinConference').style.display = 'inline';
+        document.getElementById('leaveConference').style.display = 'none';
+        window.removeEventListener('resize', resizeMeet);
+    }
+
+    function resizeMeet() {
+        const meetElement = document.querySelector('#meet');
+        meetElement.style.width = window.innerWidth + 'px';
+        meetElement.style.height = window.innerHeight + 'px';
+        if (api) {
+            api.resizeLargeVideo(window.innerWidth, window.innerHeight);
+        }
+    }
+</script>
+{% endblock%}

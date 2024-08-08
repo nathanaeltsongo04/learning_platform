@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
+from django.shortcuts import render
 from .models import *
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html')
+
+def video_conference(request):
+    return render(request, 'video_conference.html')
 
 def authentification(request):
     return render(request,'authentification.html')
