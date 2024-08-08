@@ -1,9 +1,8 @@
 from django.db import models
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-
 class Niveau(models.Model):
-    
     code = models.AutoField(primary_key=True)
     designation = models.CharField(max_length=25)
     class Meta:
@@ -59,7 +58,7 @@ class Ressource(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=25)
     description=models.CharField(max_length=100)
-    contenu=models.CharField(max_length=255)
+    contenu=models.FileField(upload_to="Ressource/", max_length=500)
     type_ressource=models.ForeignKey(TypeRessource,on_delete=models.CASCADE)
     
     class Meta:
@@ -79,14 +78,17 @@ class Module(models.Model):
 class Formation(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
+    description = models.TextField ()
     duree=models.TimeField()
     date_debut=models.DateField()
     date_fin=models.DateField()
+    domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     enseignant=models.ForeignKey(Enseignant, on_delete=models.CASCADE)
     
     class Meta:
         db_table='Formation'
+        
 class ModalitePaie(models.Model):
     code=models.AutoField(primary_key=True)
     tranche=models.CharField(max_length=25)
@@ -126,6 +128,13 @@ class Evaluation(models.Model):
     
 #     class Meta:
 #         db_table='CompteUtilisateur'
+
+# class CompteUtilisateur(AbstractUser):
+#     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
+#     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE)
+#     photo=models.ImageField(upload_to='Image/',blank=True)
+#     fonction=models.CharField(max_length=25)
+    
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
@@ -145,6 +154,7 @@ class Paiement(models.Model):
     
     class Meta:
         db_table='Paiement'
+        
 class Questionnaire(models.Model):
     code=models.AutoField(primary_key=True)
     module=models.ForeignKey(Module, on_delete=models.CASCADE)
