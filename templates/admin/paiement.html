@@ -1,0 +1,200 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Les Paiements{% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: msg,
+        showConfirmButton: false,
+        timer: 2800
+    }).then(function() {
+    });
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">Paiements</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Noms Apprenant</th>
+                  <th scope="col">Module</th>
+                  <th scope="col">Montant</th>
+                  <th scope="col">Date de paiement</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for paiement in paiements %}
+                    <tr>
+                    <th scope="row">{{ paiement.code }}</th>
+                        <td>{{ paiement.apprenant.nom }} {{ paiement.apprenant.postnom }} {{ paiement.apprenant.prenom }}</td>
+                        <td>{{ paiement.module.titre }}</td>
+                        <td>{{ paiement.montant }}</td>
+                        <td>{{ paiement.date_paiement }}</td>
+                        <td>
+                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                <span class="badge bg-success " >
+                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
+                            <a class="text-info mx-auto pd-2" href="">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-trash fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouveau Paiement</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insertPaiement' %}">
+                    {% csrf_token %}
+                        <div class="col-md-12 mb-4 ">
+                            <select name="apprenant" id="" class="form-select mb-3" required>
+                                <option value="">--Selectionner Apprenant--</option>
+                                
+                                {% for apprenant in apprenants %}
+                                <option value="{{apprenant.matricule}}">{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</option>
+                                {% endfor %}
+                                    
+                            </select>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-3" id="">
+                                    <option value="">--select Module--</option>
+
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="number" name="montant" class="form-control mb-3" id="" placeholder="Montant" required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_paiement" class="form-control mb-3" id="" required>
+                            </div>
+                            
+                            
+                        </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modification Domaine-->
+ {% for paiement in paiements %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  inscription</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'updatePaiement' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{paiement.code}}" name="code">
+                    <div class="col-md-12 mb-4 ">
+                            <select name="apprenant" id="" class="form-select mb-3" required>
+                                <option value="{{ paiement.apprenant.matricule }}">{{ paiement.apprenant.nom }} {{ paiement.apprenant.postnomnom }} {{ paiement.apprenant.prenom }}</option>
+                                <option value="">--Selectionner Apprenant--</option>
+                                
+                                {% for apprenant in apprenants %}
+                                <option value="{{apprenant.matricule}}">{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</option>
+                                {% endfor %}
+                                    
+                            </select>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-3" id="">
+                                    <option value="{{ paiement.module.code }}">{{ paiement.module.titre }}</option>
+                                    <option value="">--select Module--</option>
+
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="number" name="montant" class="form-control mb-3" id="" placeholder="Montant" value="{{ paiement.montant }}" required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_paiement" class="form-control mb-3" id="" required>
+                            </div>
+                            
+                            
+                        </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

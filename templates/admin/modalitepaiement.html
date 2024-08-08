@@ -1,0 +1,180 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Modalites de payement{% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+{% for msg in messages %}
+{% if msg %}
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: msg,
+        showConfirmButton: false,
+        timer: 2800
+    }).then(function() {
+    });
+</script>
+{% endif %}
+{% endfor %}
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">Modalite de payement</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Tranche</th>
+                  <th scope="col">Montant_fixe</th>
+                  <th scope="col">Module</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for modalitepaie in modalitepaies %}
+                    <tr>
+                    <th scope="row">{{ modalitepaie.code }}</th>
+                        <td>{{ modalitepaie.tranche }}</td>
+                        <td>{{ modalitepaie.montant_fixe }}</td>
+                        <td>{{ modalitepaie.module.titre }}</td>
+                        <td>
+                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                <span class="badge bg-success " >
+                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
+                            <a class="text-info mx-auto pd-2" href="{{ modalitepaie.code }}">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-trash fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modalite Paiement</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insertModalitePaie' %}">
+                    {% csrf_token %}
+                    <div class="col-md-12 mb-4 ">
+                        <div class="input-group has-validation">
+                            <input type="text" name="tranche" class="form-control mb-3" id="tranche" placeholder="Tranche" required>
+                            <select name="module" class="form-select mb-3" id="">
+                                <option value="Par semaine">Par semaine</option>
+                                <option value="Par Mois">Par Mois</option>
+                                <option value="Par Trimestre">Par Trimestre</option>
+                            </select>
+                        </div>
+                        <div class="input-group has-validation">
+                            <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select name="module" class="form-select mb-3" id="">
+                                <option value="">--select Module--</option>
+
+                                {% for m in modules %}
+                                <option value="{{ m.code }}">{{ m.titre }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modification Modalitepaie-->
+ {% for modalitepaie in  modalitepaies %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Modalitepaie</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'updateModulePaie' %}">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{modalitepaie.code}}" name='code'>
+                    <div class="col-md-12 mb-4 ">
+                        <div class="input-group has-validation">
+                            <input type="text" name="tranche" class="form-control" id="tranche" value="{{modalitepaie.tranche}}" placeholder="Tranche" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <input type="text" name="montant_fixe" class="form-control" id="montant_fixe" value="{{modalitepaie.montant_fixe}}" placeholder="Montant_fixe" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select value="{{ modalitepaie.module_id.titre }}" name="module"  class="form-select mb-3" id="">
+                                <option value="">--select Module--</option>
+
+                                {% for m in modules %}
+                                <option value="{{ m.code }}">{{ m.titre }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>    
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
