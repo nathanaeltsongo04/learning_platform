@@ -3,7 +3,7 @@
 {% block title %}eScholar{% endblock %}
 
 {% block sidebar%}
-{% include 'partials/learner_sidebar.html' %}
+{% include 'partials/sidebar.html' %}
 {% endblock %}
 
 {% block Dashboard %} Formations{% endblock %}
@@ -99,7 +99,7 @@ Tableau de Bord
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
                 <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle Formation </h5>
@@ -108,58 +108,63 @@ Tableau de Bord
             <div class="modal-body ">
                 <form method="POST" action="{% url 'insertFormation' %}">
                     {% csrf_token %}
-                    <div class="col-md-12 mb-4 ">
-                        <div class="input-group has-validation">
-                            <input type="text" name="titre" class="form-control mb-3" id="titre" placeholder="Titre"
-                                required>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <input type="text" name="titre" class="form-control mb-3" id="titre" placeholder="Titre"
+                                    required>
+                            </div>
+                            <div class="input-group has-validation">
+                                    <textarea name="description" class="form-control mb-3" id=""></textarea>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="time" name="duree" class="form-control mb-3" id="durée" placeholder="Duree"
+                                    required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
+                                    placeholder="Date_debut" required>
+                            </div>
                         </div>
-                        <div class="input-group has-validation">
-                                <textarea name="description" class="form-control mb-3" id=""></textarea>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="time" name="duree" class="form-control mb-3" id="durée" placeholder="Duree"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
-                                placeholder="Date_debut" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="domaine" class="form-select mb-3" id="">
-                                <option value="">--selectionner Domaine--</option>
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <select name="domaine" class="form-select mb-4" id="">
+                                    <option value="">--selectionner Domaine--</option>
+    
+                                    {% for d in domaines %}
+                                    <option value="{{ d.code }}">{{ d.designation }}</option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="enseignant" class="form-select mb-4" id="">
+                                    <option value="">--selectionner Enseignant--</option>
+    
+                                    {% for e in enseignants %}
+                                    <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-4" id="">
+                                    <option value="">--selectionner Module--</option>
+    
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>                      
+                        
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
+                                    required>
+                            </div>                       
 
-                                {% for d in domaines %}
-                                <option value="{{ d.code }}">{{ d.designation }}</option>
-                                {% endfor %}
-
-                            </select>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="enseignant" class="form-select mb-3" id="">
-                                <option value="">--selectionner Enseignant--</option>
-
-                                {% for e in enseignants %}
-                                <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
-                                {% endfor %}
-
-                            </select>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="module" class="form-select mb-3" id="">
-                                <option value="">--selectionner Module--</option>
-
-                                {% for m in modules %}
-                                <option value="{{ m.code }}">{{ m.titre }} </option>
-                                {% endfor %}
-
-                            </select>
-                        </div>
                     </div>
-
+                   
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
                     </div>
@@ -176,7 +181,7 @@ Tableau de Bord
 {% for formation in formations %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
                 <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Formation</h5>
@@ -186,58 +191,65 @@ Tableau de Bord
                 <form method="POST" action="{% url 'updateFormation' %}">
                     {% csrf_token %}
                     <input type='hidden' value="{{formation.code}}" name='code'>
-                    <div class="input-group has-validation">
-                        <input type="text" name="titre" class="form-control mb-3" value="{{formation.titre}}" id="titre" placeholder="Titre"
-                            required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
-                    </div>
-                    <div class="input-group has-validation">
-                        <input type="time" name="duree" class="form-control mb-3" value="{{formation.duree}}" id="durée" placeholder="Duree"
-                            required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <input type="date" name="date_debut" class="form-control mb-3" value="{{formation.date_debut}}" id="date_début"
-                            placeholder="Date_debut" required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
-                            required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <select name="domaine" class="form-select mb-3" id="">
-                            <option value="{{formation.domaine.code}}" selected>{{ formation.domaine.designation }}</option>
-                            <option value="" disabled>--selectionner Domaine--</option>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <input type="text" name="titre" class="form-control mb-3" value="{{formation.titre}}" id="titre" placeholder="Titre"
+                                    required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="time" name="duree" class="form-control mb-3" value="{{formation.duree}}" id="durée" placeholder="Duree"
+                                    required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_debut" class="form-control mb-3" value="{{formation.date_debut}}" id="date_début"
+                                    placeholder="Date_debut" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <select name="domaine" class="form-select mb-4" id="">
+                                    <option value="{{formation.domaine.code}}" selected>{{ formation.domaine.designation }}</option>
+                                    <option value="" disabled>--selectionner Domaine--</option>
+        
+                                    {% for d in domaines %}
+                                    <option value="{{ d.code }}">{{ d.designation }}</option>
+                                    {% endfor %}
+        
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="enseignant" class="form-select mb-4" id="">
+                                    <option value="{{ formation.enseignant.matricule }}" selected>{{ formation.enseignant.nom }} {{ formation.enseignant.postnom }} {{ formation.enseignant.prenom }}</option>
+                                    <option value="" disabled>--selectionner Enseignant--</option>
+        
+                                    {% for e in enseignants %}
+                                    <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
+                                    {% endfor %}
+        
+                                </select>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-4" id="">
+                                    <option value="{{formation.module.code}}" selected>{{ formation.module.titre }}</option>
+                                    <option value="" disabled>--selectionner Module--</option>
+        
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="input-group has-validation">
+                                    <input type="date" name="date_fin" class="form-control mb-4" id="date_fin" placeholder="Date_fin"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
 
-                            {% for d in domaines %}
-                            <option value="{{ d.code }}">{{ d.designation }}</option>
-                            {% endfor %}
-
-                        </select>
+                        
                     </div>
-                    <div class="input-group has-validation">
-                        <select name="enseignant" class="form-select mb-3" id="">
-                            <option value="{{ formation.enseignant.matricule }}" selected>{{ formation.enseignant.nom }} {{ formation.enseignant.postnom }} {{ formation.enseignant.prenom }}</option>
-                            <option value="" disabled>--selectionner Enseignant--</option>
-
-                            {% for e in enseignants %}
-                            <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
-                            {% endfor %}
-
-                        </select>
-                    </div>
-                    <div class="input-group has-validation">
-                        <select name="module" class="form-select mb-3" id="">
-                            <option value="{{formation.module.code}}" selected>{{ formation.module.titre }}</option>
-                            <option value="" disabled>--selectionner Module--</option>
-
-                            {% for m in modules %}
-                            <option value="{{ m.code }}">{{ m.titre }} </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
 
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>

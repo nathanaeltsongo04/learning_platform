@@ -58,7 +58,7 @@
                     <tr>
                     <th scope="row">{{ ressource.code }}</th>
                         <td>{{ ressource.titre }}</td>
-                        <td>{{ ressource.contenu.name }}</td>
+                        <td><p class="text-justify">{{ ressource.contenu.name }}</p></td>
                         <td>{{ ressource.type_ressource.designation }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >

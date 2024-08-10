@@ -10,67 +10,67 @@ from .models import *
 def index(request):
     return render(request, 'index.html')
 
-<<<<<<< HEAD
 def video_conference(request):
     return render(request, 'video_conference.html')
 
 def authentification(request):
-    return render(request,'authentification.html')
+    return render(request, 'authentification.html')
 
 def creer_compte(request):
-    return render(request,'creer_compte.html')
+    return render(request, 'creer_compte.html')
 
 def profile(request):
-    return render(request,'profile.html')
-=======
+    return render(request, 'profile.html')
+
+def interrogation_enseignant(request):
+    render(request,'enseignant/interrogation.html')
+
 def test(request):
     try:
-      test = Test.objects.all()
-      context = {'tests':test}
+        test = Test.objects.all()
+        context = {'tests': test}
     except:
-      print('An exception occurred')
-    return render(request,'Test.html', context)
->>>>>>> jean-louis
+        print('An exception occurred')
+    return render(request, 'Test.html', context)
 
 def dashboard_apprenant(request):
     return render(request, 'apprenant/dashboard.html')
 
 def formation_apprenant(request):
-    return render(request,'apprenant/formation.html')
+    return render(request, 'apprenant/formation.html')
 
 def ressource_apprenant(request):
     try:
         type = TypeRessource.objects.all()
         ressource = Ressource.objects.all()
-        context = {'ressources':ressource, 'types':type}
+        context = {'ressources': ressource, 'types': type}
     except:
         messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return render(request,'apprenant/ressource.html', context)
-
+    return render(request, 'apprenant/ressource.html', context)
 
 def chat_apprenant(request):
-    return render(request,'apprenant/chat.html')
+    return render(request, 'apprenant/chat.html')
 
 def horaire_apprenant(request):
-    return render(request,'apprenant/horaire.html')
+    return render(request, 'apprenant/horaire.html')
 
 def formation_enseignant(request):
-    return render(request,'enseignant/formation.html')
+    return render(request, 'enseignant/formation.html')
 
 def cote_enseignant(request):
-    return render(request,'enseignant/cote.html')
+    return render(request, 'enseignant/cote.html')
 
 def correction_enseignant(request):
-    return render(request,'enseignant/correction.html')
+    return render(request, 'enseignant/correction.html')
 
 def dashboard_enseignant(request):
-    return render(request,'enseignant/dashboard.html')
+    return render(request, 'enseignant/dashboard.html')
 
 def publication_enseignant(request):
-    return render(request,'enseignant/publication.html')
+    return render(request, 'enseignant/publication.html')
 
 def dashboard_admin(request):
-    return render(request,'admin/dashboard.html')
+    return render(request, 'admin/dashboard.html')
 
 def domaine_admin(request):
     try:

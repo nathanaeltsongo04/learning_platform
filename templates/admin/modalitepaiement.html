@@ -96,30 +96,40 @@
             <div class="modal-body ">
                 <form method="POST" action="{% url 'insertModalitePaie' %}">
                     {% csrf_token %}
-                    <div class="col-md-12 mb-4 ">
-                        <div class="input-group has-validation">
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
                             <input type="text" name="tranche" class="form-control mb-3" id="tranche" placeholder="Tranche" required>
+                        </div>
+                        <div class="col-md-6 mb-2">
                             <select name="module" class="form-select mb-3" id="">
                                 <option value="Par semaine">Par semaine</option>
                                 <option value="Par Mois">Par Mois</option>
                                 <option value="Par Trimestre">Par Trimestre</option>
                             </select>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="module" class="form-select mb-3" id="">
-                                <option value="">--select Module--</option>
-
-                                {% for m in modules %}
-                                <option value="{{ m.code }}">{{ m.titre }} </option>
-                                {% endfor %}
-
-                            </select>
-                        </div>
+                        </div> 
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12 mb-4 ">
+                            <div class="input-group has-validation">
+                                                       
+                                
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-3" id="">
+                                    <option value="">--select Module--</option>
+    
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
+                    
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
                     </div>
