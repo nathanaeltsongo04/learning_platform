@@ -9,6 +9,13 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+.description-cell {
+  max-height: 100px; /* Limitez la hauteur selon vos besoins */
+  overflow-y: auto;  /* Ajoute un défilement vertical */
+  white-space: nowrap; /* Empêche le retour à la ligne automatique */
+}
+
 :root {
   scroll-behavior: smooth;
 }
