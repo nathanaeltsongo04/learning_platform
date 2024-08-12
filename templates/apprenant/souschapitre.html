@@ -6,28 +6,50 @@
     {% include 'partials/teacher_sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %} Les Evaluations{% endblock %}
+{% block Dashboard %} Les sous chapitres{% endblock %}
 
 {% block ContentTitle %}
-    Enseignant
+Enseignant
 {% endblock %}
 
 {% block ContentSubTitle %}
-    Tableau de Bord
+Les sous chapitres
 {% endblock %}
 
 {% block content %}
 <script>
     {% if messages %}
     {% for msg in messages %}
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2800
-    }).then(function() {
-    });
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
     {% endfor %}
     {% endif %}
 </script>
@@ -41,34 +63,30 @@
                 <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
             </div>
           <div class="card-body">
-            <h5 class="card-title">Evaluations</h5>
+            <h5 class="card-title">Les sous chapitres</h5>
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Formation</th>
-                  <th scope="col">Maximum</th>
-                  <th scope="col">Cote</th>
-                  <th scope="col">Date Evaluation</th>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Contenu</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                  {% for evaluation in evaluations %}
+                  {% for souschapitre in souschapitres %}
                     <tr>
-                    <th scope="row">{{ evaluation.code }}</th>
-                        <td>{{ evaluation.formation.titre }}</td>
-                        <td>{{ evaluation.maximum }}</td>
-                        <td>{{ evaluation.cote }}</td>
-                        <td>{{ evaluation.date_evaluation }}</td>
+                    <th scope="row">{{ souschapitre.code }}</th>
+                        <td>{{ souschapitre.titre }}</td>
+                        <td>{{ souschapitre.contenu }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
                                 </span>
                             </a>
-                            <a class="text-info mx-auto pd-2" href="{{ domaine.code }}">
+                            <a class="text-info mx-auto pd-2" href="{{ type.code }}">
                                 <span class="badge bg-danger ">
                                     <i class="bi bi-trash fa-lg "></i>
                                 </span>
@@ -92,29 +110,20 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle Evaluation</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouveau sous chapitre</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'insertEvaluation' %}">
+                <form method="POST" action="{% url 'insertSousChapitre' %}">
                     {% csrf_token %}
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <select name="formation" class="form-select mb-3" required>
-                                <option>--Selectionner Formation--</option>
-                                {% for formation in formations %}
-                                <option value="{{formation.code}}">{{ formation.titre }}</option>
-                                {% endfor %}
-                            </select>
+                            <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre" required>
                         </div>
+                    </div>
+                    <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="number" name="maximum" class="form-control mb-3" placeholder="Maximum" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="number" name="cote" class="form-control mb-3" placeholder="Cote" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_evaluation" class="form-control mb-3" placeholder="" required>
+                            <input type="text" name="contenu" class="form-control" id="contenu" placeholder="Contenu" required>
                         </div>
                     </div>
 
@@ -130,41 +139,32 @@
     </div>
 </div>
 
-<!-- Modal Modification Domaine-->
-{% for evaluation in evaluations %}
+<!-- Modal Modification type ressource-->
+ {% for type in  types %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Evaluation</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Sous Chapitre</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'updateEvaluation' %}">
+                <form method="POST" action="{% url 'updateSousChapitre' %}">
                     {% csrf_token %}
-                    <input type="hidden" value="{{evaluation.code}}" name="code">
-                    <div class="input-group has-validation">
-                            <select name="formation" class="form-select mb-3" required>
-                                <option value="{{ evaluation.formation.code }}" selected>{{ evaluation.formation.titre }}</option>
-                                <option disabled>--Selectionner Formation--</option>
-                                {% for formation in formations %}
-                                <option value="{{formation.code}}">{{ formation.titre }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                    <input type='hidden' value="{{type.code}}" name='code'>
+                    <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="number" name="maximum" class="form-control mb-3" value="{{evaluation.maximum}}" placeholder="Maximum" required>
+                            <input type="text" name="titre" class="form-control" id="titre" value="{{souschapitre.titre}}" placeholder="Titre" required>
                         </div>
+                    </div>
+                    <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="number" name="cote" class="form-control mb-3" value="{{evaluation.cote}}" placeholder="Cote" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_evaluation" class="form-control mb-3" placeholder="" required>
+                            <input type="text" name="contenu" class="form-control" id="titre" value="{{souschapitre.contenu}}" placeholder="Contenu" required>
                         </div>
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
                     </div>
                 </form>
             </div>

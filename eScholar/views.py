@@ -20,7 +20,20 @@ def test(request):
     return render(request,'Test.html', context)
 
 def dashboard_apprenant(request):
-    return render(request, 'apprenant/dashboard.html')
+    try:
+        publications = Publication.objects.all()
+        total_publications = publications.count()
+        total_modules = Module.objects.all().count()
+        total_evaluations=Formation.objects.all().count()
+        context = {
+            'publications': publications, 
+            'total_publications':total_publications,
+            'total_modules':total_modules,
+            'total_evaluations':total_evaluations
+            }
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request,'apprenant/dashboard.html', context)
 
 def formation_apprenant(request):
     return render(request,'apprenant/formation.html')
@@ -51,7 +64,21 @@ def correction_enseignant(request):
     return render(request,'enseignant/correction.html')
 
 def dashboard_enseignant(request):
-    return render(request,'enseignant/dashboard.html')
+    try:
+        ressources = Ressource.objects.all()
+        total_ressources = ressources.count()
+        total_publications = Publication.objects.all().count()
+        total_modules=Module.objects.all().count()
+        context = {
+            'ressources': ressources, 
+            'total_ressources':total_ressources,
+            'total_publications':total_publications,
+            'total_modules':total_modules
+            }
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request,'enseignant/dashboard.html', context)
+
 
 def publication_enseignant(request):
     return render(request,'enseignant/publication.html')
@@ -138,7 +165,20 @@ def logout_view(request):
     return redirect('home')
 
 def dashboard_admin(request):
-    return render(request,'admin/dashboard.html')
+    try:
+        apprenants = Apprenant.objects.all()
+        total_apprenants = apprenants.count()
+        total_enseignants = Enseignant.objects.all().count()
+        total_formations=Formation.objects.all().count()
+        context = {
+            'apprenants': apprenants, 
+            'total_apprenants':total_apprenants,
+            'total_enseignants':total_enseignants,
+            'total_formations':total_formations
+            }
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request,'admin/dashboard.html', context)
 
 def domaine_admin(request):
     try:
@@ -183,7 +223,7 @@ def typeressource(request):
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
         return redirect('inscription_admin')
-    return render(request,'admin/typeressource.html', context)
+    return render(request,'enseignant/typeressource.html', context)
 
 
 # =======================================================================================================
@@ -514,7 +554,7 @@ def insertTypeRessource(request):
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
       return redirect('typeressource')
-    return render(request, "admin/typeressource.html")
+    return render(request, "enseignant/typeressource.html")
 
 def updateTypeRessource(request):
     try:
@@ -534,7 +574,7 @@ def updateTypeRessource(request):
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
       return redirect('typeressource')
-    return render(request, "admin/typeRessource.html")
+    return render(request, "enseignant/typeRessource.html")
 
 # =======================================================================================================
 # RESSOURCE
@@ -547,7 +587,7 @@ def ressource_admin(request):
         context = {'ressources':ressource, 'types':type}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request, 'admin/ressource.html', context)
+    return render(request, 'enseignant/ressource.html', context)
 
 def insertRessource(request):
     try:
@@ -573,7 +613,7 @@ def insertRessource(request):
               return redirect('ressource_admin')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request,'admin/ressource.html')
+    return render(request,'enseignant/ressource.html')
 
 def updateRessource(request):
     try:
@@ -614,7 +654,7 @@ def updateRessource(request):
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
       return redirect('ressource_admin')
-    return render(request,'admin/ressource.html')
+    return render(request,'enseignant/ressource.html')
 
 def download_file(request, code):
     uploaded_file = get_object_or_404(Ressource, pk=code)
@@ -1328,3 +1368,60 @@ def prendre_test(request, formation_id, question_index=0):
 
 def test_termine(request):
     return render(request, 'test_complete.html')
+
+
+
+
+
+
+
+# ===============================================================================
+# ============================== Partie Apprenant ================================
+# ============================= Affichage module dans Apprenant===================
+def affichageModule(request):
+    return render(request,'apprenant/module.html')
+
+# ============================= Affichage formation dans Apprenant=================
+def affichageFormationApprenant(request):
+    return render(request,'apprenant/formation.html')
+
+# ============================ Affichage evaluation dans Apprenant=================
+def affichageEvaluation(request):
+    return render(request,'apprenant/evaluation.html')
+
+# =========================== Affichage publication dans Apprenant=================
+def affichagePublication(request):
+    return render(request,'apprenant/publication.html')
+
+
+
+# ============================= Affichage sous chapitre dans Apprenant=================
+def sous_chapitre_apprenant(request):
+    return render(request,'apprenant/souschapitre.html')
+
+# ============================= Affichage chapitre dans Apprenant=================
+def chapitre_apprenant(request):
+    return render(request,'apprenant/chapitre.html')
+
+
+# ============================== Partie Enseignant ================================
+# ============================= Affichage Apprenant dans Enseignant===================
+def affichageApprenant(request):
+    return render(request,'enseignant/listeApprenant.html')
+
+# ============================= Affichage formation dans Enseignant=================
+def affichageFormationEnseignant(request):
+    return render(request,'enseignant/formation.html')
+
+# ============================= Affichage sous chapitre dans Enseignant=================
+def sous_chapitre_enseignant(request):
+    return render(request,'enseignant/souschapitre.html')
+
+# ============================= Affichage chapitre dans Enseignant=================
+def chapitre_enseignant(request):
+    return render(request,'enseignant/chapitre.html')
+
+
+# =========================== Admin & Type de publications ============================
+def typePublication(request):
+    return render(request,'admin/typepublication.html')

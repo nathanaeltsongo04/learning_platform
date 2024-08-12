@@ -41,6 +41,7 @@ urlpatterns = [
     # path('profile/',views.profile,name='profile'),
 
     path('formation/',views.formation_admin,name='formation_admin'),
+    # path('formation/',views.formation_admin,name='formation_enseignant'),
     path('insertFormation/', views.insertFormation, name = 'insertFormation'),
     path('updateFormation/', views.updateFormation, name='updateFormation'),
 
@@ -90,4 +91,29 @@ urlpatterns = [
     path('tester_apprenant', views.tester_apprenant, name='tester_apprenant'),
 
     path('prendre_test/<int:formation_id>/<int:question_index>/', views.prendre_test, name='prendre_test'),
+
+
+
+# ===============================================================================
+# ============================== Partie Apprenant ================================
+    path('module_apprenant/',views.affichageModule,name='module_apprenant'),
+    path('formation_apprenants/',views.affichageFormationApprenant,name='formation_apprenants'),
+    path('evaluation_apprenant/',views.affichageEvaluation,name='evaluation_apprenant'),
+    path('publication_apprenant/',views.affichagePublication,name='publication_apprenant'),
+    
+    
+    path('sous_chapitre_apprenant/',views.sous_chapitre_apprenant,name='sous_chapitre_apprenant'),
+    path('chapitre_apprenant/',views.chapitre_apprenant,name='chapitre_apprenant'),
+    
+    
+    # ============================== Partie Enseignant ================================
+    path('liste_apprenant/',views.affichageApprenant,name='liste_apprenant'),
+    path('formation_enseignant/',views.affichageFormationEnseignant,name='formation_enseignant'),
+    
+    path('sous_chapitre_enseignant/',views.sous_chapitre_enseignant,name='sous_chapitre_enseignant'),
+    path('chapitre_enseignant/',views.chapitre_enseignant,name='chapitre_enseignant'),
+    
+    
+    # ============================== Partie Admin ================================
+    path('type_publication_admin/',views.typePublication,name='type_publication_admin'), 
 ]
