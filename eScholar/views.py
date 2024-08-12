@@ -1,7 +1,8 @@
 import os
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib import messages
 from .models import *
 from django.contrib.auth import authenticate, login, logout
@@ -67,7 +68,7 @@ def authentification(request):
             if user is not None:
                 login(request, user)  # Connexion de l'utilisateur
                 messages.success(request, f"Bienvenue, {user.username}!")
-                return redirect('home')  # Redirige vers la page d'accueil ou une autre page sécurisée
+                return redirect('rediriger_apprenant')  # Redirige vers la page d'accueil ou une autre page sécurisée
             else:
                 messages.warning(request, "Nom d'utilisateur ou mot de passe incorrect.")
                 return redirect('authentification')  # Redirige vers la page de connexion en cas d'échec
@@ -817,11 +818,18 @@ def insertModalitePaie(request):
     try:
       if request.method == "POST":
           tranche = request.POST.get("tranche")
-          montant_fixe = request.POST.get("montant_fixe")
           id_module = request.POST.get("module")
           
           module = get_object_or_404(Module, pk = id_module)
           
+          if tranche == "Une Tranche":
+            montant_fixe = module.prix
+          elif tranche == "Deux Tranches":
+            montant_fixe = module.prix/2
+          else:
+            montant_fixe = module.prix/3
+
+
           ModalitePaie.objects.create(
               tranche = tranche.capitalize(),
               montant_fixe = montant_fixe,
@@ -877,17 +885,17 @@ def insertInscription(request):
     try:
       if request.method == "POST":
           id_apprenant = request.POST.get("apprenant")
-          id_formation = request.POST.get("formation")
+          # id_formation = request.POST.get("formation")
           id_modalite = request.POST.get("modalite")
           date_inscription = request.POST.get("date_inscription")
           
           apprenant = get_object_or_404(Apprenant, pk = id_apprenant)
-          formation = get_object_or_404(Formation, pk = id_formation)
+          # formation = get_object_or_404(Formation, pk = id_formation)
           modalite = get_object_or_404(ModalitePaie, pk = id_modalite)
           
           Inscription.objects.create(
               apprenant = apprenant,
-              formation = formation,
+              # formation = formation,
               modalite = modalite,
               date_inscription = date_inscription
           )
@@ -991,6 +999,42 @@ def updateEvaluation(request):
 # PUBLICATION
 # =======================================================================================================
 
+def publication(request):
+    try:
+        posts = Publication.objects.all().order_by('-date_publication')
+        context = {'posts':posts}
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "publications.html", context)
+
+def comment_post(request, post_id):
+    try:
+        post = get_object_or_404(Publication, code=post_id)
+        if request.method == "POST" and request.user.is_authenticated:
+            content = request.POST.get('content')
+            Commentaire.objects.create(publication=post, user=request.user, content=content)
+    except Exception as e:
+              messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return HttpResponseRedirect(reverse('post_list'))
+
+def popular_posts(request):
+    try:
+        posts = Publication.objects.annotate(like_count=models.Count('likes')).order_by('-like_count')
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'publications_populaires.html', {'posts': posts})
+
+def like_post(request, post_id):
+    try:
+        post = get_object_or_404(Publication, code=post_id)
+        if request.user.is_authenticated:
+            like, created = Like.objects.get_or_create(publication=post, user=request.user)
+            if not created:
+                like.delete()  # Si l'utilisateur a déjà liké, on supprime le like
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return HttpResponseRedirect(reverse('post_list'))
+
 def publication_admin(request):
     try:
         publication = Publication.objects.all()
@@ -1008,19 +1052,21 @@ def insertPublication(request):
           date_publication = request.POST.get("date_publication")
           
           compte_utilisateur = get_object_or_404(CompteUtilisateur, pk = id_compte_utilisateur)
+          # compte_utilisateur = CompteUtilisateur.objects.filter()
           
           if Publication.objects.filter(titre = titre.capitalize(), description = description.capitalize(), compte_utilisateur = compte_utilisateur):
-              messages.warning("Ces informations existent déjà !")
-              return redirect('publication_admin')
+            messages.warning("Ces informations existent déjà !")
+            return redirect('publication_admin')
           else:
-              Publication.objects.create(
+
+            Publication.objects.create(
                   titre = titre.capitalize(),
                   description = description.capitalize(),
-                  compte_utilisateur = compte_utilisateur,
+                  user = compte_utilisateur,
                 date_publication = date_publication
-              )
-              messages.success(request, "Publication ajoutée avec succès !")
-              return redirect('publication_admin')
+            )
+            messages.success(request, "Publication ajoutée avec succès !")
+            return redirect('publication_admin')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
       return redirect('publication_admin')
@@ -1115,33 +1161,58 @@ def updatePaiement(request):
 
 def insertQuestionnaire(request):
     try:
-      if request.method == "POST":
-          id_module = request.POST.get("id_module")
-          question = request.POST.get("question")
-          reponse = request.POST.get("reponse")
-          
-          module = get_object_or_404(Module, pk = id_module)
-          
-          if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):
-              messages.warning(request, "Ces informations existent déjà !")
-          else:
-              Questionnaire.objects.create(
-                  module = module,
-                  question = question,
-                  reponse = reponse
-              )
-              messages.success(request, "Ajouté avec succès !")
+        modules = Module.objects.all()
+        questionnaire = Questionnaire.objects.all()
+        if request.method == "POST":
+            module_id = request.POST.getlist('module')
+            questions = request.POST.getlist('question')
+            responses = request.POST.getlist('reponse')
+              
+            if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):
+                  messages.warning(request, "Ces informations existent déjà !")
+            else:
+                  for i in range(len(questions)):
+                    Questionnaire.objects.create(
+                        module_id=module_id[i],
+                        question=questions[i],
+                        reponse=responses[i]
+                    )
+                  messages.success(request, "Ajouté avec succès !")
+                  return redirect('add_questionnaire')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return HttpResponse("Ajouté avec succès !")
+    
+    return render(request, 'admin/questionnaire.html', {'modules': modules, 'questionnaire':questionnaire})
 
-def updateQuestionnaire(request, code):
+def add_questionnaire(request):
     try:
-      questionnaire = get_object_or_404(Questionnaire, pk = code)
-      context = {'questionnaire' : questionnaire}
-      
+        if request.method == "POST":
+            formation_id = request.POST.getlist('formation')
+            questions = request.POST.getlist('question')
+            responses = request.POST.getlist('reponse')
+
+            for i in range(len(questions)):
+                Questionnaire.objects.create(
+                    formation_id=formation_id[i],
+                    question=questions[i].capitalize(),
+                    reponse=responses[i].capitalize()
+                )
+            
+            messages.success(request, "Question(s) Ajouté(s) avec succès !")
+            return redirect('add_questionnaire')
+        
+        # If GET request, render the form
+        formations = Formation.objects.all()
+        questionnaire = Questionnaire.objects.all()
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'admin/questionnaire.html', {'formations': formations, 'questionnaire':questionnaire})
+
+def updateQuestionnaire(request):
+    try:
       if request.method == "POST":
-          id_module = request.POST.get("id_module")
+          code = request.POST.get("code")
+          id_module = request.POST.get("module")
           question = request.POST.get("question")
           reponse = request.POST.get("reponse")
           
@@ -1150,15 +1221,17 @@ def updateQuestionnaire(request, code):
           if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):
               messages.warning("Ces informations existent déjà !")
           else:
-              Questionnaire.objects.create(
+              Questionnaire(
+                  code = code,
                   module = module,
-                  question = question.capitalize(),
-                  reponse = reponse.capitalize()
-              )
+                  question = question,
+                  reponse = reponse
+              ).save()
               messages.success(request, "Modifié avec succès !")
+              return redirect('add_questionnaire')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return HttpResponse("Modifié avec succès !")
+    return render(request, 'admin/questionnaire.html')
 
 # =======================================================================================================
 # TEST
@@ -1183,3 +1256,75 @@ def insertTest(request):
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return HttpResponse("Ajouté avec succès !")
+
+# =====================================================================================================================
+# TESTER SI APPRENANT A UN TEST A PASSER
+# =====================================================================================================================
+
+def rediriger_apprenant(request):
+    user = request.user  # L'utilisateur actuellement connecté
+
+    # Vérifiez si l'utilisateur est un apprenant
+    if user.apprenant:
+        apprenant = user.apprenant
+        
+        # Vérifiez si l'apprenant est inscrit
+        inscription = Inscription.objects.filter(apprenant=apprenant).last()
+        
+        if inscription:
+            # Vérifiez si la formation est nulle dans l'inscription
+            if inscription.formation is None:
+                messages.warning(request, "Vous devez répondre à ces questions !")
+                return redirect('tester_apprenant')
+            else:
+                # Si la formation n'est pas nulle, faire une autre action
+                return redirect('home')
+        else:
+            # Si l'apprenant n'est pas inscrit
+            return HttpResponse("Vous n'etes pas inscrit")
+    else:
+        # Si l'utilisateur n'est pas un apprenant
+        return HttpResponse("Vous n'etes pas un apprenant")
+
+def tester_apprenant(request):
+    try:
+      formation = Formation.objects.all()
+      context = {'formations':formation}
+    except:
+      print('An exception occurred')
+    return render(request,'apprenant/pretestis.html', context)
+
+def prendre_test(request, formation_id, question_index=0):
+    # Récupérer la formation spécifique
+    formation = get_object_or_404(Formation, code=formation_id)
+    
+    # Filtrer les questions par formation
+    questions = Questionnaire.objects.filter(formation=formation)
+    
+    if question_index >= len(questions):
+        # Si toutes les questions ont été répondues, rediriger vers une page de succès ou de résultats
+        return redirect('test_termine')
+
+    question_actuelle = questions[question_index]
+
+    if request.method == "POST":
+        # Enregistrer la réponse
+        texte_reponse = request.POST.get('reponse')
+        Test.objects.create(
+            apprenant=request.user.apprenant,  # Assurez-vous que l'utilisateur est lié à un apprenant
+            questionnaire=question_actuelle,
+            reponse=texte_reponse
+        )
+        # Passer à la question suivante
+        return redirect('prendre_test', formation_id=formation_id, question_index=question_index+1)
+
+    context = {
+        'formation': formation,
+        'question': question_actuelle,
+        'question_index': question_index,
+        'total_questions': len(questions)
+    }
+    return render(request, 'take_test.html', context)
+
+def test_termine(request):
+    return render(request, 'test_complete.html')
