@@ -1,0 +1,106 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/teacher_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Les Publications{% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Publication
+{% endblock %}
+
+{% block content %}
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.titre }}</h5>
+              <img src="" alt="" class="img-fluid">
+              <p>{{ post.description }}</p>
+              <h6>By {{ post.user.username }} on {{ post.date_publication }}</h6>
+              <div>
+                <p><a href="{% url 'like_post' post.code %}">Like</a> {{ post.total_likes }}</p>
+              </div>
+              <div>
+                <form method="post" action="{% url 'comment_post' post.code %}">
+                  {% csrf_token %}
+                  <textarea class="form-control" name="content" placeholder="Add a comment"></textarea>
+                  <button type="submit" class="btn btn-primary mt-2">Comment</button>
+                </form>
+              </div>
+              <!-- Liste des commentaires -->
+              <h5>Comments list:</h5>
+              {% for comment in post.comments.all %}
+                <div style="margin-left: 20px;">
+                  <p>{{ comment.content }} - 
+                    <strong>
+                      {% if comment.user.enseignant is None %}
+                        {{ comment.user.apprenant.nom }} {{ comment.user.apprenant.postnom }} {{ comment.user.apprenant.prenom }}
+                      {% else %}
+                        {{ comment.user.enseignant.nom }} {{ comment.user.enseignant.postnom }} {{ comment.user.enseignant.prenom }}
+                      {% endif %}
+                    </strong>
+                  </p>
+                  <p>Posted on {{ comment.created_at }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 and not forloop.last %}
+        </div><div class="row">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

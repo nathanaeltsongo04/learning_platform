@@ -132,14 +132,14 @@
                                 {% endfor %}
                                     
                             </select>
-                            <select name="formation" id="" class="form-select mb-3" required>
+                            {% comment %}<select name="formation" id="" class="form-select mb-3" required>
                                 <option value="">--Selectionner Formation--</option>
                                 
                                 {% for formation in formations %}
                                     <option value="{{formation.code}}">{{ formation.titre }}</option>
                                 {% endfor %}
                                     
-                            </select>
+                            </select>{% endcomment %}
 
                             <select name="modalite" id="" class="form-select mb-3" required>
                                 <option value="">--Selectionner Modalite Paiement--</option>

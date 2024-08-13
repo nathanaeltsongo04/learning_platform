@@ -1,0 +1,32 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <h4>{{ current_question.texte }}</h4>
+            <ul class="list-group">
+                {% comment %} {% for reponse in current_question.reponse_set.all %} {% endcomment %}
+                {% comment %} <li class="list-group-item">
+                    <input type="radio" name="reponse" value="{{ reponse.id }}" required>
+                    {{ reponse.texte }}
+                </li> {% endcomment %}
+
+                <li class="list-group-item">
+                    <input type="radio" name="reponse" value="R1" required>
+                    
+                </li>
+                {% comment %} {% endfor %} {% endcomment %}
+            </ul>
+            <button type="submit" class="btn btn-primary mt-3">Suivant</button>
+        </form>
+    </div>
+
+{% endblock %}

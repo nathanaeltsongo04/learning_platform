@@ -97,7 +97,10 @@
           <a href="{% url 'type_publication_admin' %}"><i class="bi bi-circle"></i><span>Type publication</span></a>
         </li>
         <li>
-          <a href="{% url 'publication_admin' %}"><i class="bi bi-circle"></i><span>Publication</span></a>
+          <a href="{% url 'publication_admin' %}"><i class="bi bi-circle"></i><span>Publier</span></a>
+        </li>
+        <li>
+          <a href="{% url 'allPublicationAdmin' %}"><i class="bi bi-circle"></i><span>Publication</span></a>
         </li>
       </ul>
     </li>
@@ -105,12 +108,12 @@
 
     <li class="nav-heading">Others</li>
 
-    <li class="nav-item">
+    {% comment %} <li class="nav-item">
       <a class="nav-link collapsed" href="">
         <i class="bi bi-list-task"></i>
         <span>Services</span>
       </a>
-    </li>
+    </li> {% endcomment %}
     <!-- End Services Page Nav -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="">
@@ -119,6 +122,13 @@
       </a>
     </li>
     <!-- End Utilisateurs Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'profile_admin' %}">
+        <i class="bi bi-person-circle"></i>
+        <span>Profile</span>
+      </a>
+    </li>
+    <!-- End Profile Page Nav -->
   </ul>
 </aside>
 <!-- End Sidebar -->

@@ -37,6 +37,7 @@ urlpatterns = [
     path('authentification/',views.authentification,name='authentification'),
     path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('logout/',views.logout_view,name='logout'),
+    path('rediriger_apprenant/',views.rediriger_apprenant,name='rediriger_apprenant'),
     # path('profile/',views.profile,name='profile'),
 
     path('formation/',views.formation_admin,name='formation_admin'),
@@ -74,9 +75,18 @@ urlpatterns = [
     path('updateRessource/', views.updateRessource, name='updateRessource'),
     path('downloadFile/<int:code>', views.download_file, name='downloadFile'),
 
+
     path('publication/',views.publication_admin,name='publication_admin'),
     path('insertPublication/',views.insertPublication,name='insertPublication'),
     path('updatePublication/',views.updatePublication,name='updatePublication'),
+    path('allPublicationAdmin/',views.allPublicationAdmin,name='allPublicationAdmin'),
+    
+    
+    path('publication_enseignant/',views.publication_enseignant,name='publication_enseignant'),
+    path('insertPublicationEnseignant/',views.insertPublicationEnseignant,name='insertPublicationEnseignant'),
+    path('updatePublicationEnseignant/',views.updatePublicationEnseignant,name='updatePublicationEnseignant'),
+    path('allPublicationEnseignant/',views.allPublicationEnseignant,name='allPublicationEnseignant'),
+
 
 
 
@@ -104,4 +114,28 @@ urlpatterns = [
     
     # ============================== Partie Admin ================================
     path('type_publication_admin/',views.typePublication,name='type_publication_admin'),
+
+    path('all_publication', views.publication, name='post_list'),
+    path('like/<int:post_id>/', views.like_post, name='like_post'),
+    path('comment/<int:post_id>/', views.comment_post, name='comment_post'),
+    path('popular/', views.popular_posts, name='popular_posts'),
+
+    path('add_questionnaire', views.add_questionnaire, name='add_questionnaire'),
+    path('updateQuestionnaire', views.updateQuestionnaire, name='updateQuestionnaire'),
+
+    path('tester_apprenant', views.tester_apprenant, name='tester_apprenant'),
+
+    path('prendre_test/<int:formation_id>/<int:question_index>/', views.prendre_test, name='prendre_test'),
+    
+    
+    path('test_app', views.test_app, name='test_app'),
+
+# Profile 
+    path('profile_admin', views.profile_admin, name='profile_admin'),
+    path('profile_enseignant', views.profile_enseignant, name='profile_enseignant'),
+    path('profile_apprenant', views.profile_apprenant, name='profile_apprenant'),
+    
+    
+    path('demo_test', views.demo_test, name='demo_test'),
+    
 ]
