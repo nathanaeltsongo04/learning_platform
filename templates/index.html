@@ -30,6 +30,7 @@
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
     <script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- =======================================================
       * Template Name: NiceAdmin
@@ -53,9 +54,8 @@
                 <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard_apprenant' %}">Apprenant</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard_enseignant' %}">Enseignant</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard_admin' %}">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'authentification' %}">Sign in</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'creation_compte_utilisateur' %}">Sign up</a></li>
             </ul>
         </div>
     </div>
@@ -383,7 +383,42 @@
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 2800
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 2800
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 2800
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
   <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>

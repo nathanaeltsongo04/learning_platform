@@ -76,6 +76,7 @@ Tableau de Bord
                 <th scope="col">Titre</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Niveau</th>
+                <th scope="col">Chapitre</th>
                 <th scope="col">Ressources</th>
                 <th scope="col">Action</th>
               </tr>
@@ -87,6 +88,7 @@ Tableau de Bord
                 <td>{{ module.titre }}</td>
                 <td>{{ module.prix }} $</td>
                 <td>{{ module.niveau.designation }}</td>
+                <td>{{ module.chapitre.titre }}</td>
                 <td>{{ module.ressource.titre }}</td>
                 <td>
                   <a class="text-info mx-auto md-2" data-bs-toggle="modal"
@@ -123,18 +125,24 @@ Tableau de Bord
               <input type="text" name="titre" class="form-control mb-3" id="titre" placeholder="Titre" required />
             </div>
             <div class="input-group has-validation">
-              {% comment %} <input type="text" name="description" class="form-control mb-3" id="description"
-                placeholder="Déscription" required /> {% endcomment %}
-              <textarea name="description" class="form-control mb-3" id=""></textarea>
+              <textarea name="description" class="form-control mb-3" id="" placeholder="Déscription"></textarea>
             </div>
             <div class="input-group has-validation">
               <input type="number" name="prix" class="form-control mb-3" id="prix" placeholder="Prix" required />
             </div>
             <div class="input-group has-validation">
-              <select name="niveau" class="form-select mb-3" id="">
-                <option value="">Select level</option>
+              <select name="niveau" class="form-select mb-3" id="" required>
+                <option value="">--Selectionner niveau--</option>
                 {% for n in niveaux %}
                 <option value="{{ n.code }}">{{ n.designation }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="input-group has-validation">
+              <select name="chapitre" class="form-select mb-3" id="" required>
+                <option value="">--Selectionner chapitre--</option>
+                {% for chapitre in chapitres %}
+                <option value="{{ chapitre.code }}">{{ chapitre.titre }}</option>
                 {% endfor %}
               </select>
             </div>

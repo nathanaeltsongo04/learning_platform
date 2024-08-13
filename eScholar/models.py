@@ -66,6 +66,7 @@ class Ressource(models.Model):
 
 class Sous_chapitre(models.Model):
     code=models.AutoField(primary_key=True)
+    titre = models.CharField(max_length=255)
     contenu=models.TextField()
 
     class Meta:
@@ -74,11 +75,17 @@ class Sous_chapitre(models.Model):
 class Chapitre(models.Model):
     code=models.AutoField(primary_key=True)
     titre = models.CharField(max_length=255)
-    sous_chapitre=models.ForeignKey(Sous_chapitre, on_delete=models.CASCADE)
-    description=models.TextField()
 
     class Meta:
         db_table='Chapitre'
+
+class ContenuChapitre(models.Model):
+    code = models.AutoField(primary_key=True)
+    chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE)
+    sous_chapitre=models.ForeignKey(Sous_chapitre, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table='ContenuChapitre'
 
 class Module(models.Model):
     code=models.AutoField(primary_key=True)
@@ -185,19 +192,29 @@ class Paiement(models.Model):
 
 class Questionnaire(models.Model):
     code=models.AutoField(primary_key=True)
-    formation=models.ForeignKey(Formation, on_delete=models.CASCADE)
+    module=models.ForeignKey(Module, on_delete=models.CASCADE)
     question=models.TextField()
     reponse=models.TextField()
+    maxima=models.IntegerField()
     
     class Meta:
         db_table='Questionnaire'
-            
+
+class Reponses_alternatives(models.Model):
+    code = models.AutoField(primary_key=True)
+    questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE)
+    reponse_alternative = models.CharField(max_length=255)
+
+    class Meta:
+        db_table='Reponses_alternatives'
+
+
 class Test(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
     questionnaire=models.ForeignKey(Questionnaire,on_delete=models.CASCADE)
+    reponse_alternative = models.ForeignKey(Reponses_alternatives, on_delete=models.CASCADE)
     reponse=models.TextField()
     
     class Meta:
         db_table='Test'
-

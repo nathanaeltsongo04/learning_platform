@@ -37,7 +37,7 @@ urlpatterns = [
     path('authentification/',views.authentification,name='authentification'),
     path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('logout/',views.logout_view,name='logout'),
-    path('rediriger_apprenant/',views.rediriger_apprenant,name='rediriger_apprenant'),
+    path('rediriger_apprenant/',views.rediriger_utilisateur,name='rediriger_apprenant'),
     # path('profile/',views.profile,name='profile'),
 
     path('formation/',views.formation_admin,name='formation_admin'),
@@ -85,6 +85,7 @@ urlpatterns = [
     path('comment/<int:post_id>/', views.comment_post, name='comment_post'),
     path('popular/', views.popular_posts, name='popular_posts'),
 
+    path('questionnaire', views.questionnaire, name='questionnaire'),
     path('add_questionnaire', views.add_questionnaire, name='add_questionnaire'),
     path('updateQuestionnaire', views.updateQuestionnaire, name='updateQuestionnaire'),
 
@@ -111,7 +112,15 @@ urlpatterns = [
     path('formation_enseignant/',views.affichageFormationEnseignant,name='formation_enseignant'),
     
     path('sous_chapitre_enseignant/',views.sous_chapitre_enseignant,name='sous_chapitre_enseignant'),
+    path('insertSousChapitre/',views.insertSousChapitre,name='insertSousChapitre'),
+    path('updateSousChapitre/',views.updateSousChapitre,name='updateSousChapitre'),
+
     path('chapitre_enseignant/',views.chapitre_enseignant,name='chapitre_enseignant'),
+    path('insertChapitre/',views.insertChapitre,name='insertChapitre'),
+    path('updateChapitre/',views.updateChapitre,name='updateChapitre'),
+    
+    path('insertContenuChapitre/',views.insertContenuChapitre,name='insertContenuChapitre'),
+
     
     
     # ============================== Partie Admin ================================

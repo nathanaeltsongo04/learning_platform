@@ -75,6 +75,7 @@
                                 <th scope="col">Module</th>
                                 <th scope="col">Questions</th>
                                 <th scope="col">Réponses</th>
+                                <th scope="col">Max</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -82,9 +83,10 @@
                             {% for q in questionnaire %}
                             <tr>
                                 <th scope="row">{{ q.code }}</th>
-                                <td>{{ q.formation.module.titre }}</td>
+                                <td>{{ q.module.titre }}</td>
                                 <td>{{ q.question }}</td>
                                 <td>{{ q.reponse }}</td>
+                                <td>{{ q.maxima }}</td>
                                 <td>
                                     <a class="text-info mx-auto md-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1-{{forloop.counter}}">
@@ -127,14 +129,15 @@
                         <div class="input-group has-validation">
                             <div id="questionnaire-forms">
                                 <div class="questionnaire-form">
-                                    <select name="formation" class="form-select mb-3" required>
+                                    <select name="module" class="form-select mb-3" required>
                                         <option>--Selectionner Module--</option>
-                                        {% for formation in formations %}
-                                        <option value="{{ formation.code }}">{{ formation.module.titre }}</option>
+                                        {% for module in modules %}
+                                        <option value="{{ module.code }}">{{ module.titre }}</option>
                                         {% endfor %}
                                     </select>
                                     <textarea name="question" class="form-control mb-3" placeholder="Entrez la Question ici"></textarea>
                                     <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici"></textarea>
+                                    <input type="number" name="maxima" class="form-control mb-3" value="1">
                                 </div>
                             </div>
                         </div>
@@ -158,12 +161,13 @@
                         <hr>
             <select name="module" class="form-select mb-3" required>
                                         <option>--Selectionner Module--</option>
-                                        {% for formation in formations %}
-                                        <option value="{{ formation.code }}">{{ formation.titre }}</option>
+                                        {% for module in modules %}
+                                        <option value="{{ module.code }}">{{ module.titre }}</option>
                                         {% endfor %}
                                     </select>
                                     <textarea name="question" class="form-control mb-3" placeholder="Entrez la Question ici"></textarea>
                                     <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici"></textarea>
+                                    <input type="number" name="maxima" class="form-control mb-3" value="1">
         `;
                         formContainer.appendChild(newForm);
                     }
@@ -194,8 +198,8 @@
                         <div class="input-group has-validation">
                             <div id="questionnaire-forms">
                                 <div class="questionnaire-form">
-                                    <select name="formation" class="form-select mb-3" required>
-                                <option value="{{ q.formation.code }}" selected>{{ q.formation.titre }}</option>
+                                    <select name="module" class="form-select mb-3" required>
+                                <option value="{{ q.module.code }}" selected>{{ q.module.titre }}</option>
                                         <option disabled>--Selectionner Module--</option>
                                         {% for formation in formations %}
                                         <option value="{{ formation.code }}">{{ formation.titre }}</option>
@@ -203,6 +207,7 @@
                                     </select>
                                     <textarea name="question" class="form-control mb-3" placeholder="Entrez la Question ici">{{ q.question }}</textarea>
                                     <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici">{{ q.reponse }}</textarea>
+                                    <input type="number" name="maxima" class="form-control mb-3" value="{{ q.maxima }}">
                                 </div>
                             </div>
                         </div>

@@ -75,18 +75,18 @@ Les sous chapitres
                 </tr>
               </thead>
               <tbody>
-                  {% for souschapitre in souschapitres %}
+                  {% for sous_chapitre in sous_chapitres %}
                     <tr>
-                    <th scope="row">{{ souschapitre.code }}</th>
-                        <td>{{ souschapitre.titre }}</td>
-                        <td>{{ souschapitre.contenu }}</td>
+                    <th scope="row">{{ sous_chapitre.code }}</th>
+                        <td>{{ sous_chapitre.titre }}</td>
+                        <td>{{ sous_chapitre.contenu }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
                                 </span>
                             </a>
-                            <a class="text-info mx-auto pd-2" href="{{ type.code }}">
+                            <a class="text-info mx-auto pd-2" href="{{ sous_chapitre.code }}">
                                 <span class="badge bg-danger ">
                                     <i class="bi bi-trash fa-lg "></i>
                                 </span>
@@ -114,7 +114,7 @@ Les sous chapitres
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'insertTypeRessource' %}">
+                <form method="POST" action="{% url 'insertSousChapitre' %}">
                     {% csrf_token %}
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
@@ -123,7 +123,7 @@ Les sous chapitres
                     </div>
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="contenu" class="form-control" id="contenu" placeholder="Contenu" required>
+                            <textarea name="contenu" class="form-control" id="contenu" placeholder="Contenu" required></textarea>
                         </div>
                     </div>
 
@@ -140,7 +140,7 @@ Les sous chapitres
 </div>
 
 <!-- Modal Modification type ressource-->
- {% for type in  types %}
+ {% for sous_chapitre in  sous_chapitres %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
@@ -151,15 +151,15 @@ Les sous chapitres
             <div class="modal-body ">
                 <form method="POST" action="{% url 'updateSousChapitre' %}">
                     {% csrf_token %}
-                    <input type='hidden' value="{{type.code}}" name='code'>
+                    <input type='hidden' value="{{sous_chapitre.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="titre" class="form-control" id="titre" value="{{souschapitre.titre}}" placeholder="Titre" required>
+                            <input type="text" name="titre" class="form-control" id="titre" value="{{sous_chapitre.titre}}" placeholder="Titre" required>
                         </div>
                     </div>
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="contenu" class="form-control" id="titre" value="{{souschapitre.contenu}}" placeholder="Contenu" required>
+                            <textarea name="contenu" class="form-control" id="contenu" placeholder="Contenu" required>{{sous_chapitre.contenu}}</textarea>
                         </div>
                     </div>
 
