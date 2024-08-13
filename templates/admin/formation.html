@@ -18,20 +18,42 @@ Tableau de Bord
 
 {% block content %}
 
-{% for msg in messages %}
-{% if msg %}
 <script>
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2800
-    }).then(function() {
-    });
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
 </script>
-{% endif %}
-{% endfor %}
 
 
 <section class="section">
@@ -117,8 +139,21 @@ Tableau de Bord
                                 <textarea name="description" class="form-control mb-3" id=""></textarea>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="time" name="duree" class="form-control mb-3" id="durée" placeholder="Duree"
-                                required>
+                            <select name="duree" class="form-select mb-3" id="" required>
+                                <option value="">--selectionner Durée--</option>
+                                <option value="1 Mois">1 Mois</option>
+                                <option value="2 Mois">2 Mois</option>
+                                <option value="3 Mois">3 Mois</option>
+                                <option value="4 Mois">4 Mois</option>
+                                <option value="5 Mois">5 Mois</option>
+                                <option value="6 Mois">6 Mois</option>
+                                <option value="7 Mois">7 Mois</option>
+                                <option value="8 Mois">8 Mois</option>
+                                <option value="9 Mois">9 Mois</option>
+                                <option value="10 Mois">10 Mois</option>
+                                <option value="11 Mois">11 Mois</option>
+                                <option value="12 Mois">12 Mois</option>
+                            </select>
                         </div>
                         <div class="input-group has-validation">
                             <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
@@ -194,8 +229,22 @@ Tableau de Bord
                         <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
                     </div>
                     <div class="input-group has-validation">
-                        <input type="time" name="duree" class="form-control mb-3" value="{{formation.duree}}" id="durée" placeholder="Duree"
-                            required>
+                        <select name="duree" class="form-select mb-3" id="" required>
+                                <option value="{{formation.duree}}" selected>{{formation.duree}}</option>
+                                <option value="" disabled>--selectionner Durée--</option>
+                                <option value="1 Mois">1 Mois</option>
+                                <option value="2 Mois">2 Mois</option>
+                                <option value="3 Mois">3 Mois</option>
+                                <option value="4 Mois">4 Mois</option>
+                                <option value="5 Mois">5 Mois</option>
+                                <option value="6 Mois">6 Mois</option>
+                                <option value="7 Mois">7 Mois</option>
+                                <option value="8 Mois">8 Mois</option>
+                                <option value="9 Mois">9 Mois</option>
+                                <option value="10 Mois">10 Mois</option>
+                                <option value="11 Mois">11 Mois</option>
+                                <option value="12 Mois">12 Mois</option>
+                            </select>
                     </div>
                     <div class="input-group has-validation">
                         <input type="date" name="date_debut" class="form-control mb-3" value="{{formation.date_debut}}" id="date_début"

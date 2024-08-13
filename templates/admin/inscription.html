@@ -21,14 +21,36 @@
 <script>
     {% if messages %}
     {% for msg in messages %}
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2800
-    }).then(function() {
-    });
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
     {% endfor %}
     {% endif %}
 </script>
@@ -118,7 +140,8 @@
                                 {% endfor %}
                                     
                             </select>
-                            <select name="madalite" id="" class="form-select mb-3" required>
+
+                            <select name="modalite" id="" class="form-select mb-3" required>
                                 <option value="">--Selectionner Modalite Paiement--</option>
                                 
                                 {% for modalite in modalites %}
@@ -142,7 +165,7 @@
 </div>
 
 <!-- Modal Modification Domaine-->
- {% for enseignant in  enseignants %}
+ {% for inscription in  inscriptions %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
@@ -155,15 +178,17 @@
                     {% csrf_token %}
                     <input type="hidden" value="{{inscription.code}}" name="code">
                     <select name="apprenant" id="" class="form-select mb-3" required>
+                        
+                        <option value="{{inscription.apprenant.matricule}}" selected>{{ inscription.apprenant.nom }} {{ inscription.apprenant.postnom }} {{ inscription.apprenant.prenom }}</option>
                         <option value="" disabled>--Selectionner Apprenant--</option>
-                        <option value="{{inscription.apprenant}}" selected>{{ inscription.apprenant.nom }} {{ inscription.apprenant.postnom }} {{ inscription.apprenant.prenom }}</option>
                         
                         {% for apprenant in apprenants %}
-                        <option value="{{apprenant.matricule}}">{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</option>
+                            <option value="{{apprenant.matricule}}">{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</option>
                         {% endfor %}
                             
                     </select>
                     <select name="formation" id="" class="form-select mb-3" required>
+                        <option value="{{inscription.formation.code}}" selected>{{inscription.formation.titre}}</option>
                         <option value="" disabled>--Selectionner Formation--</option>
                         
                         {% for formation in formations %}
@@ -171,20 +196,21 @@
                         {% endfor %}
                             
                     </select>
-                    <select name="madalite" id="" class="form-select mb-3" required>
-                        <option value="" disabled>--Selectionner Apprenant--</option>
-                        
-                        {% for modalite in modalites %}
-                            <option value="{{modalite.code}}">{{ modalite.tranche }}</option>
-                        {% endfor %}
-                            
-                    </select>
+
+                    <select name="modalite" id="" class="form-select mb-3" required>
+                                <option value="{{inscription.modalite.code}}" selected>{{inscription.modalite.tranche}}</option>
+                                <option value="" disabled>--Selectionner Modalite Paiement--</option>
+                                
+                                {% for modalite in modalites %}
+                                    <option value="{{modalite.code}}">{{ modalite.tranche }}</option>
+                                {% endfor %}
+                                    
+                            </select>
                     <input type="date" name="date_inscription" class="form-control mb-3" id="" placeholder="Adresse" required>
-                </div>
                 </div>
 
                     <div class="col-md-12 text-center">
-                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                        <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>
                     </div>
                 </form>
             </div>
