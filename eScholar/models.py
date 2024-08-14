@@ -47,7 +47,6 @@ class Enseignant(models.Model):
     class Meta:
         db_table='Enseignant'
         
-    
 class TypeRessource(models.Model):
     code=models.AutoField(primary_key=True)
     designation=models.CharField(max_length=25)
@@ -65,17 +64,41 @@ class Ressource(models.Model):
     class Meta:
         db_table='Ressource'
 
+class Sous_chapitre(models.Model):
+    code=models.AutoField(primary_key=True)
+    titre = models.CharField(max_length=255)
+    contenu=models.TextField()
+
+    class Meta:
+        db_table='Sous_chapitre'
+
+class Chapitre(models.Model):
+    code=models.AutoField(primary_key=True)
+    titre = models.CharField(max_length=255)
+
+    class Meta:
+        db_table='Chapitre'
+
+class ContenuChapitre(models.Model):
+    code = models.AutoField(primary_key=True)
+    chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE)
+    sous_chapitre=models.ForeignKey(Sous_chapitre, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table='ContenuChapitre'
+
 class Module(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=25)
     description=models.TextField()
     prix=models.DecimalField(max_digits=10, decimal_places=2)
     niveau=models.ForeignKey(Niveau,on_delete=models.CASCADE)
-    ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE)
+    chapitre=models.ForeignKey(Chapitre, on_delete=models.CASCADE)
+    ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE, null=True)
     
     class Meta:
         db_table='Module'
-        
+
 class Formation(models.Model):
     code=models.AutoField(primary_key=True)
     titre=models.CharField(max_length=50)
@@ -102,7 +125,7 @@ class ModalitePaie(models.Model):
 class Inscription(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)
+    formation=models.ForeignKey(Formation,on_delete=models.CASCADE, null=True) 
     modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE)
     date_inscription=models.DateTimeField()
     
@@ -111,6 +134,7 @@ class Inscription(models.Model):
         
 class Evaluation(models.Model):
     code=models.AutoField(primary_key=True)
+    apprenant=models.ForeignKey(Apprenant, on_delete=models.CASCADE, null=True)
     formation=models.ForeignKey(Formation,on_delete=models.CASCADE)
     maximum=models.DecimalField(max_digits=10,decimal_places=1)
     cote=models.DecimalField(max_digits=10,decimal_places=1)
@@ -119,20 +143,42 @@ class Evaluation(models.Model):
     class Meta:
         db_table='Evaluation'
         
-
 class CompteUtilisateur(AbstractUser):
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)
     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE, null = True)
     
 class Publication(models.Model):
     code=models.AutoField(primary_key=True)
-    titre=models.CharField(max_length=50)
+    titre=models.CharField(max_length=255)
     description=models.TextField()
-    compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
-    date_publication=models.DateTimeField()
+    user=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)
+    image=models.ImageField(upload_to='publication/', blank=True)
+    date_publication=models.DateTimeField(auto_now_add=True)
     
+    def total_likes(self):
+        return self.likes.count()
+
     class Meta:
         db_table='Publication'
+
+class Like(models.Model):
+    id = models.AutoField(primary_key=True)
+    publication = models.ForeignKey(Publication, related_name='likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Like'
+
+class Commentaire(models.Model):
+    id = models.AutoField(primary_key=True)
+    publication = models.ForeignKey(Publication, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Commentaire'
         
 class Paiement(models.Model):
     code=models.AutoField(primary_key=True)
@@ -149,14 +195,25 @@ class Questionnaire(models.Model):
     module=models.ForeignKey(Module, on_delete=models.CASCADE)
     question=models.TextField()
     reponse=models.TextField()
+    maxima=models.IntegerField()
     
     class Meta:
         db_table='Questionnaire'
-            
+
+class Reponses_alternatives(models.Model):
+    code = models.AutoField(primary_key=True)
+    questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE)
+    reponse_alternative = models.CharField(max_length=255)
+
+    class Meta:
+        db_table='Reponses_alternatives'
+
+
 class Test(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
     questionnaire=models.ForeignKey(Questionnaire,on_delete=models.CASCADE)
+    reponse_alternative = models.ForeignKey(Reponses_alternatives, on_delete=models.CASCADE)
     reponse=models.TextField()
     
     class Meta:

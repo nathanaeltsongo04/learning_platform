@@ -6,7 +6,7 @@
     {% include 'partials/sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %} Les Apprenants{% endblock %}
+{% block Dashboard %} Tableau de bord{% endblock %}
 
 {% block ContentTitle %}
     Administrateur
@@ -29,7 +29,7 @@
             icon: 'success',
             title: messageText,
             showConfirmButton: false,
-            timer: 2800
+            timer: 1000
         }).then(function() {});
     }
     else if (messageType === "warning"){
@@ -38,7 +38,7 @@
             icon: 'warning',
             title: messageText,
             showConfirmButton: false,
-            timer: 2800
+            timer: 1000
         }).then(function() {});
     }
     else {
@@ -47,7 +47,7 @@
             icon: 'error',
             title: messageText,
             showConfirmButton: false,
-            timer: 5000
+            timer: 2800
         }).then(function() {});
     }
     
@@ -55,5 +55,111 @@
     {% endif %}
 </script>
 
+<div class="col-lg-12">
+    <div class="row">
+      <!-- Sales Card -->
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card sales-card">
+
+          <div class="card-body">
+            <h5 class="card-title">Nombre d'apprenants</h5>
+
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="ri-user-line"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ total_apprenants }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Sales Card -->
+
+      <!-- Publication Card -->
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card revenue-card">
+          <div class="card-body">
+            <h5 class="card-title">Nombre d'enseignants</h5>
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="ri-user-voice-line"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ total_enseignants }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Revenue Card -->
+      <div class="col-xxl-4 col-md-4">
+        <div class="card info-card revenue-card">
+          <div class="card-body">
+            <h5 class="card-title">Nombre de formations</h5>
+            <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <i class="ri-todo-line"></i>
+              </div>
+              <div class="ps-3">
+                <h6>{{ total_formations }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Revenue Card -->
+
+{% comment %}================== Tableau ici=============== {% endcomment %}
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Apprenants</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Noms</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Etat civil</th>
+                  <th scope="col">Adresse</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Profession</th>
+                  <th scope="col">Photo</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for apprenant in apprenants %}
+                    <tr>
+                    <th scope="row">{{ apprenant.matricule }}</th>
+                        <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
+                        <td>{{ apprenant.genre }}</td>
+                        <td>{{ apprenant.etatcivil }}</td>
+                        <td>{{ apprenant.addresse }}</td>
+                        <td>{{ apprenant.contact }}</td>
+                        <td>{{ apprenant.profession }}</td>
+                        
+                        {% if apprenant.photo %}
+                            <td><img src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" class="rounded-circle" style="width: 45px;"></td>
+                        {% else %}
+                            <td><i class="bi-x-circle text-center"></i></td>
+                        {% endif %}
+                            
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 {% endblock %}

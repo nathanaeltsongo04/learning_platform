@@ -65,9 +65,11 @@ urlpatterns = [
     path('authentification/',views.authentification,name='authentification'),
     path('creer_compte/',views.creer_compte,name='creation_compte_utilisateur'),
     path('logout/',views.logout_view,name='logout'),
+    path('rediriger_apprenant/',views.rediriger_utilisateur,name='rediriger_apprenant'),
     # path('profile/',views.profile,name='profile'),
 
     path('formation/',views.formation_admin,name='formation_admin'),
+    # path('formation/',views.formation_admin,name='formation_enseignant'),
     path('insertFormation/', views.insertFormation, name = 'insertFormation'),
 >>>>>>> jean-louis
     path('updateFormation/', views.updateFormation, name='updateFormation'),
@@ -111,9 +113,58 @@ urlpatterns = [
     path('updateRessource/', views.updateRessource, name='updateRessource'),
     path('downloadFile/<int:code>', views.download_file, name='downloadFile'),
 
+
     path('publication/',views.publication_admin,name='publication_admin'),
     path('insertPublication/',views.insertPublication,name='insertPublication'),
     path('updatePublication/',views.updatePublication,name='updatePublication'),
 
+<<<<<<< HEAD
 >>>>>>> jean-louis
+=======
+    path('all_publication', views.publication, name='post_list'),
+    path('like/<int:post_id>/', views.like_post, name='like_post'),
+    path('comment/<int:post_id>/', views.comment_post, name='comment_post'),
+    path('popular/', views.popular_posts, name='popular_posts'),
+
+    path('questionnaire', views.questionnaire, name='questionnaire'),
+    path('add_questionnaire', views.add_questionnaire, name='add_questionnaire'),
+    path('updateQuestionnaire', views.updateQuestionnaire, name='updateQuestionnaire'),
+
+    path('tester_apprenant', views.tester_apprenant, name='tester_apprenant'),
+
+    path('prendre_test/<int:formation_id>/<int:question_index>/', views.prendre_test, name='prendre_test'),
+
+
+
+# ===============================================================================
+# ============================== Partie Apprenant ================================
+    path('module_apprenant/',views.affichageModule,name='module_apprenant'),
+    path('formation_apprenants/',views.affichageFormationApprenant,name='formation_apprenants'),
+    path('evaluation_apprenant/',views.affichageEvaluation,name='evaluation_apprenant'),
+    path('publication_apprenant/',views.affichagePublication,name='publication_apprenant'),
+    
+    
+    path('sous_chapitre_apprenant/',views.sous_chapitre_apprenant,name='sous_chapitre_apprenant'),
+    path('chapitre_apprenant/',views.chapitre_apprenant,name='chapitre_apprenant'),
+    
+    
+    # ============================== Partie Enseignant ================================
+    path('liste_apprenant/',views.affichageApprenant,name='liste_apprenant'),
+    path('formation_enseignant/',views.affichageFormationEnseignant,name='formation_enseignant'),
+    
+    path('sous_chapitre_enseignant/',views.sous_chapitre_enseignant,name='sous_chapitre_enseignant'),
+    path('insertSousChapitre/',views.insertSousChapitre,name='insertSousChapitre'),
+    path('updateSousChapitre/',views.updateSousChapitre,name='updateSousChapitre'),
+
+    path('chapitre_enseignant/',views.chapitre_enseignant,name='chapitre_enseignant'),
+    path('insertChapitre/',views.insertChapitre,name='insertChapitre'),
+    path('updateChapitre/',views.updateChapitre,name='updateChapitre'),
+    
+    path('insertContenuChapitre/',views.insertContenuChapitre,name='insertContenuChapitre'),
+
+    
+    
+    # ============================== Partie Admin ================================
+    path('type_publication_admin/',views.typePublication,name='type_publication_admin'), 
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
 ]

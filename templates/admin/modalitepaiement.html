@@ -128,6 +128,7 @@
 =======
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
+<<<<<<< HEAD
                             <select name="tranche" class="form-select mb-3" id="" required>
                                 <option value="">--Sélectionner une tranche--</option>
 >>>>>>> jean-louis
@@ -136,6 +137,29 @@
                                 <option value="Par Trimestre">Par Trimestre</option>
                             </select>
                         </div> 
+=======
+                            <select name="module" class="form-select mb-3" id="">
+                                <option value="">--select Module--</option>
+
+                                {% for m in modules %}
+                                <option value="{{ m.code }}">{{ m.titre }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="">--Sélectionner une tranche--</option>
+                                <option value="Une Tranche">Une Tranche</option>
+                                <option value="Deux Tranches">Deux Tranches</option>
+                                <option value="Trois Tranches">Trois Tranches</option>
+                            </select>
+                        </div>
+                        <!-- <div class="input-group has-validation">
+                            <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                        </div> -->
+                        
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-4 ">

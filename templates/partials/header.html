@@ -10,19 +10,23 @@
 
   <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
+        {% if user.enseignant %}
           <li class="nav-item dropdown pe-3">
 
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                {% if user.enseignant.photo %}
+                  <img src="{{ user.enseignant.photo.url }}" alt="Profile" class="rounded-circle">
+                {% else %}
                   <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+                {% endif %}
                   <span
-                      class="d-none d-md-block dropdown-toggle ps-2">Nathan</span>
+                      class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
               </a><!-- End Profile Iamge Icon -->
 
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                   <li class="dropdown-header">
-                      <h6>NATHAN</h6>
-                      <span>Web Designer</span>
+                      <h6>{{ user.enseignant.nom }} {{ user.enseignant.postnom }} {{ user.enseignant.prenom }}</h6>
+                      <span>{{ user.enseignant.profession }}</span>
                   </li>
                   <li>
                       <hr class="dropdown-divider">
@@ -47,7 +51,85 @@
 
               </ul><!-- End Profile Dropdown Items -->
           </li><!-- End Profile Nav -->
+        {% elif user.apprenant %}
+          <li class="nav-item dropdown pe-3">
 
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                {% if user.enseignant.photo %}
+                  <img src="{{ user.enseignant.photo.url }}" alt="Profile" class="rounded-circle">
+                {% else %}
+                  <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+                {% endif %}
+                  <span
+                      class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+              </a><!-- End Profile Iamge Icon -->
+
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                  <li class="dropdown-header">
+                      <h6>{{ user.apprenant.nom }} {{ user.apprenant.postnom }} {{ user.apprenant.prenom }}</h6>
+                      <span>{{ user.apprenant.profession }}</span>
+                  </li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                      <a class="dropdown-item d-flex align-items-center" href="">
+                          <i class="bi bi-person"></i>
+                          <span>Apprenant</span>
+                      </a>
+                  </li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                      <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span>Se Deconnecter</span>
+                      </a>
+                  </li>
+
+              </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
+        {% else %}
+          <li class="nav-item dropdown pe-3">
+
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                  <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+                  <span
+                      class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+              </a><!-- End Profile Iamge Icon -->
+
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                  <li class="dropdown-header">
+                      <h6>{{ user.username }}</h6>
+                      <span>Admin</span>
+                  </li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                      <a class="dropdown-item d-flex align-items-center" href="">
+                          <i class="bi bi-person"></i>
+                          <span>Mon Profile</span>
+                      </a>
+                  </li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                      <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span>Se Deconnecter</span>
+                      </a>
+                  </li>
+
+              </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
+        {% endif %}
       </ul>
   </nav><!-- End Icons Navigation -->
 

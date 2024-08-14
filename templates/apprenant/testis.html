@@ -1,0 +1,98 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Les Domaines{% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<div class="card-body">
+                    <h5 class="card-title">Questions</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Module</th>
+                                <th scope="col">Questions</th>
+                                <th scope="col">Réponses</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for formation in formations %}
+                            <tr>
+                                <th scope="row">{{ formation.code }}</th>
+                                <td>{{ formation.titre }}</td>
+                                <td>{{ formation.duree }}</td>
+                                <td>{{ formation.date_debut }}</td>
+                                <td>{{ formation.date_fin }}</td>
+                                <td>{{ formation.enseignant.nom }} {{formation.enseignant.postnom}}
+                                    {{formation.enseignant.prenom}}</td>
+                                <td>{{ formation.module.titre }}</td>
+                                <td>
+                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1-{{forloop.counter}}">
+                                        <span class="badge bg-success ">
+                                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip"
+                                                data-placement="top" title="Modifier cet élément"></i>
+                                        </span></a>
+                                  <a class="text-info mx-auto pd-2" href="{% url 'prendre_test' formation.code 0 %}">Questions</a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+
+{% endblock %}

@@ -92,7 +92,11 @@
                         <td>{{ enseignant.profession }}</td>
                         
                         {% if enseignant.photo %}
+<<<<<<< HEAD
                             <td><img class="" src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" style="width:60px; height:60px object-fit:cover;"></td>
+=======
+                            <td><img src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" class="rounded-circle" style="width: 45px;"></td>
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
                         {% else %}
                             <td><i class="bi-x-circle text-center"></i></td>
                         {% endif %}

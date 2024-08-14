@@ -81,7 +81,11 @@
                     <tr>
                     <th scope="row">{{ publication.code }}</th>
                         <td>{{ publication.titre }}</td>
-                        <td>{{ publication.compte_utilisateur.username}}</td>
+                        {% if user.enseignant == NULL %}
+                        <td>{{ publication.user.apprenant.nom }} {{ publication.user.apprenant.postnom }} {{ publication.user.apprenant.prenom }}</td>
+                        {% else %}
+                        <td>{{ publication.user.enseignant.nom }} {{ publication.user.enseignant.postnom }} {{ publication.user.enseignant.prenom }}</td>
+                        {% endif %}
                         <td>{{ publication.date_publication }}</td>
                             
                         
