@@ -80,25 +80,21 @@ def correction_enseignant(request):
     return render(request, 'enseignant/correction.html')
 
 def dashboard_enseignant(request):
-<<<<<<< HEAD
-    return render(request, 'enseignant/dashboard.html')
-=======
     try:
         ressources = Ressource.objects.all()
         total_ressources = ressources.count()
         total_publications = Publication.objects.all().count()
-        total_modules=Module.objects.all().count()
+        total_modules = Module.objects.all().count()
         context = {
             'ressources': ressources, 
-            'total_ressources':total_ressources,
-            'total_publications':total_publications,
-            'total_modules':total_modules
-            }
+            'total_ressources': total_ressources,
+            'total_publications': total_publications,
+            'total_modules': total_modules
+        }
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request,'enseignant/dashboard.html', context)
-
->>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
+        context = {}
+    return render(request, 'enseignant/dashboard.html', context)
 
 def publication_enseignant(request):
     return render(request, 'enseignant/publication.html')
@@ -185,25 +181,21 @@ def logout_view(request):
     return redirect('home')
 
 def dashboard_admin(request):
-<<<<<<< HEAD
-    return render(request, 'admin/dashboard.html')
-=======
     try:
         apprenants = Apprenant.objects.all()
         total_apprenants = apprenants.count()
         total_enseignants = Enseignant.objects.all().count()
-        total_formations=Formation.objects.all().count()
+        total_formations = Formation.objects.all().count()
         context = {
             'apprenants': apprenants, 
-            'total_apprenants':total_apprenants,
-            'total_enseignants':total_enseignants,
-            'total_formations':total_formations
-            }
+            'total_apprenants': total_apprenants,
+            'total_enseignants': total_enseignants,
+            'total_formations': total_formations
+        }
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request,'admin/dashboard.html', context)
->>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
-
+        context = {}
+    return render(request, 'admin/dashboard.html', context)
 def domaine_admin(request):
     try:
         domaine = Domaine.objects.all()
