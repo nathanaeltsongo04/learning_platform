@@ -1,4 +1,5 @@
 import os
+import requests
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import Http404, HttpResponse, JsonResponse, HttpResponseRedirect
@@ -8,6 +9,7 @@ from django.shortcuts import render
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 import random
+
 # Create your views here.
 
 def index(request):
@@ -15,6 +17,7 @@ def index(request):
 
 def video_conference(request):
     return render(request, 'video_conference.html')
+
 
 def authentification(request):
     return render(request, 'authentification.html')
