@@ -10,10 +10,13 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 import random
 
+
+
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html')
+
 
 def video_conference(request):
     return render(request, 'video_conference.html')
