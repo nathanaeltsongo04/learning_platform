@@ -1,0 +1,290 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Les Apprenants{% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">Apprenants</h5>
+            <!-- Table with stripped rows -->
+<<<<<<< HEAD
+            <div class="table-responsive">
+                <table class="table datatable table-responsive ">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Noms</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Etat civil</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Profession</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for apprenant in apprenants %}
+                          <tr>
+                          <th scope="row">{{ apprenant.matricule }}</th>
+                              <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
+                              <td>{{ apprenant.genre }}</td>
+                              <td>{{ apprenant.etatcivil }}</td>
+                              <td>{{ apprenant.addresse }}</td>
+                              <td>{{ apprenant.contact }}</td>
+                              <td>{{ apprenant.profession }}</td>
+                              
+                              {% if apprenant.photo %}
+
+                                  <td><img class="" src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" style="width:60px; height:60px object-fit:cover;"></td>
+                              {% else %}
+                                  <td><i class="bi-x-circle text-center"></i></td>
+                              {% endif %}
+                                  
+                              
+                              <td>
+                                  <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                      <span class="badge bg-success " >
+                                          <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                      </span>
+                                  </a>
+                                  <a class="text-info mx-auto pd-2" href="">
+                                      <span class="badge bg-danger ">
+                                          <i class="bi bi-trash fa-lg "></i>
+                                      </span>
+                                  </a>
+                              </td>
+                          </tr>
+                          {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            
+       
+=======
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Noms</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Etat civil</th>
+                  <th scope="col">Adresse</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Profession</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for apprenant in apprenants %}
+                    <tr>
+                    <th scope="row">{{ apprenant.matricule }}</th>
+                        <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
+                        <td>{{ apprenant.genre }}</td>
+                        <td>{{ apprenant.etatcivil }}</td>
+                        <td>{{ apprenant.addresse }}</td>
+                        <td>{{ apprenant.contact }}</td>
+                        <td>{{ apprenant.profession }}</td>
+                        
+                        {% if apprenant.photo %}
+                            <td><img src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" class="rounded-circle" style="width: 45px;"></td>
+                        {% else %}
+                            <td><i class="bi-x-circle text-center"></i></td>
+                        {% endif %}
+                            
+                        
+                        <td>
+                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                <span class="badge bg-success " >
+                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
+                            <a class="text-info mx-auto pd-2" href="">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-trash fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvel Apprenant</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insert_apprenant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4 ">
+                                <input type="text" name="nom" class="form-control mb-3" id="" placeholder="Nom" required>
+                                <input type="text" name="postnom" class="form-control mb-3" id="" placeholder="Post-Nom" required>
+                                <input type="text" name="prenom" class="form-control mb-3" id="" placeholder="Prenom" required>
+                                <input type="text" name="addresse" class="form-control mb-3" id="" placeholder="Adresse" required>
+                            </div>
+                            <div class="col-md-6 mb-4 ">                                    
+                                <select name="genre" id="" class="form-select mb-3" required>
+                                    <option value="Masculin">Masculin</option>
+                                    <option value="Féminin">Féminin</option>
+                                </select>
+                                <select name="etatcivil" id="" class="form-select mb-3" required>
+                                    <option value="Marié(e)">Marié(e)</option>
+                                    <option value="Célibataire">Célibataire</option>
+                                    <option value="Divorcé(e)">Divorcé(e)</option>
+                                </select>
+                                <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
+                                <input type="text" name="contact" class="form-control mb-3" id="" value="+243" required>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4 ">                           
+                                                        
+                            <input type="file" name="photo" class="form-control mb-3" id="">
+                            </div>
+                        </div>                       
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modification Domaine-->
+ {% for apprenant in  apprenants %}
+<div class="modal fade " id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Apprenant</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'update_apprenant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{apprenant.matricule}}" name='matricule'>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <input type="text" name="nom" class="form-control mb-3" id="" value="{{apprenant.nom}}" placeholder="Nom" required>
+                            <input type="text" name="postnom" class="form-control mb-3" id="" value="{{apprenant.postnom}}" placeholder="Post-Nom" required>
+                            <input type="text" name="prenom" class="form-control mb-3" id="" value="{{apprenant.prenom}}" placeholder="Prenom" required>
+                            <input type="text" name="addresse" class="form-control mb-3" id="" value="{{apprenant.addresse}}" placeholder="Adresse" required>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                            <select name="genre" id="" class="form-select mb-3" required>
+                                <option value="{{apprenant.genre}}" selected>{{ apprenant.genre }}</option>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Féminin">Féminin</option>
+                            </select>
+                            <select name="etatcivil" id="" class="form-select mb-3" required>
+                                <option value="{{apprenant.etatcivil}}" selected>{{ apprenant.etatcivil }}</option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                            </select>
+                            <input type="text" name="contact" class="form-control mb-3" id="" value="{{apprenant.contact}}" required>
+                            <input type="text" name="profession" class="form-control mb-3" id="" value="{{apprenant.profession}}" placeholder="Profession" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">                                        
+                            <input type="file" name="photo" class="form-control mb-3" id="">
+                        </div>
+                    </div>                    
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

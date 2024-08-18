@@ -5,10 +5,11 @@
 {% block sidebar%}
     {% include 'partials/sidebar.html' %}
 {% endblock %}
-{% block Dashboard %} Ressources{% endblock %}
+
+{% block Dashboard %} Les Enseignants{% endblock %}
 
 {% block ContentTitle %}
-    Apprenant
+    Administrateur
 {% endblock %}
 
 {% block ContentSubTitle %}
@@ -16,5 +17,221 @@
 {% endblock %}
 
 {% block content %}
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">Enseignants</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Noms</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Etat civil</th>
+                  <th scope="col">Adresse</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Profession</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for enseignant in enseignants %}
+                    <tr>
+                    <th scope="row">{{ enseignant.matricule }}</th>
+                        <td>{{ enseignant.nom }} {{ enseignant.postnom }} {{ enseignant.prenom }}</td>
+                        <td>{{ enseignant.genre }}</td>
+                        <td>{{ enseignant.etatcivil }}</td>
+                        <td>{{ enseignant.addresse }}</td>
+                        <td>{{ enseignant.contact }}</td>
+                        <td>{{ enseignant.profession }}</td>
+                        
+                        {% if enseignant.photo %}
+<<<<<<< HEAD
+                            <td><img class="" src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" style="width:60px; height:60px object-fit:cover;"></td>
+=======
+                            <td><img src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" class="rounded-circle" style="width: 45px;"></td>
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
+                        {% else %}
+                            <td><i class="bi-x-circle text-center"></i></td>
+                        {% endif %}
+                            
+                        
+                        <td>
+                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                <span class="badge bg-success " >
+                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
+                            <a class="text-info mx-auto pd-2" href="">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-trash fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvel Enseignants</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insert_enseignant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <input type="text" name="nom" class="form-control mb-3" id="" placeholder="Nom" required>
+                            <input type="text" name="postnom" class="form-control mb-3" id="" placeholder="Post-Nom" required>
+                            <input type="text" name="prenom" class="form-control mb-3" id="" placeholder="Prenom" required>
+                            <input type="text" name="addresse" class="form-control mb-3" id="" placeholder="Adresse" required>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                            <select name="genre" id="" class="form-select mb-3" required>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Féminin">Féminin</option>
+                            </select>
+                            <select name="etatcivil" id="" class="form-select mb-3" required>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                            </select>
+                            <input type="text" name="contact" class="form-control mb-3" id="" value="+243" required>
+                            <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-4 ">                              
+                            <input type="file" name="photo" class="form-control mb-3" id="">
+                        </div>
+                    </div>                        
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modification Domaine-->
+ {% for enseignant in  enseignants %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Enseignant</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'update_enseignant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{enseignant.matricule}}" name='matricule'>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <input type="text" name="nom" class="form-control mb-3" id="" value="{{enseignant.nom}}" placeholder="Nom" required>
+                            <input type="text" name="postnom" class="form-control mb-3" id="" value="{{enseignant.postnom}}" placeholder="Post-Nom" required>
+                            <input type="text" name="prenom" class="form-control mb-3" id="" value="{{enseignant.prenom}}" placeholder="Prenom" required>
+                            <input type="text" name="addresse" class="form-control mb-3" id="" value="{{enseignant.addresse}}" placeholder="Adresse" required>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                            <select name="genre" id="" class="form-select mb-3" required>
+                                <option value="{{enseignant.genre}}" selected>{{ enseignant.genre }}</option>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Féminin">Féminin</option>
+                            </select>
+                            <select name="etatcivil" id="" class="form-select mb-3" required>
+                                <option value="{{enseignant.etatcivil}}" selected>{{ enseignant.etatcivil }}</option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                            </select>
+                            
+                            <input type="text" name="contact" class="form-control mb-3" id="" value="{{enseignant.contact}}" required>
+                            <input type="text" name="profession" class="form-control mb-3" id="" value="{{enseignant.profession}}" placeholder="Profession" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <input type="file" name="photo" class="form-control mb-3" id="">
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

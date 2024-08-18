@@ -17,20 +17,42 @@
 {% endblock %}
 
 {% block content %}
-{% for msg in messages %}
-{% if msg %}
 <script>
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2800
-    }).then(function() {
-    });
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
 </script>
-{% endif %}
-{% endfor %}
 
 <section class="section">
     <div class="row">
@@ -59,7 +81,7 @@
                     <th scope="row">{{ modalitepaie.code }}</th>
                         <td>{{ modalitepaie.tranche }}</td>
                         <td>{{ modalitepaie.montant_fixe }}</td>
-                        <td>{{ modalitepaie.module_id.titre }}</td>
+                        <td>{{ modalitepaie.module.titre }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
@@ -94,17 +116,29 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "insertModalitePaie" %}">
+                <form method="POST" action="{% url 'insertModalitePaie' %}">
                     {% csrf_token %}
+<<<<<<< HEAD
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <input type="text" name="tranche" class="form-control mb-3" id="tranche" placeholder="Tranche" required>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <select name="module" class="form-select mb-3" id="">
+=======
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="tranche" class="form-control" id="tranche" placeholder="Tranche" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="text" name="montant_fixe" class="form-control" id="montant_fixe" placeholder="Montant_fixe" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="module_id" id="">
+<<<<<<< HEAD
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="">--Sélectionner une tranche--</option>
+>>>>>>> jean-louis
+                                <option value="Par semaine">Par semaine</option>
+                                <option value="Par Mois">Par Mois</option>
+                                <option value="Par Trimestre">Par Trimestre</option>
+                            </select>
+                        </div> 
+=======
+                            <select name="module" class="form-select mb-3" id="">
                                 <option value="">--select Module--</option>
 
                                 {% for m in modules %}
@@ -113,8 +147,42 @@
 
                             </select>
                         </div>
+                        <div class="input-group has-validation">
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="">--Sélectionner une tranche--</option>
+                                <option value="Une Tranche">Une Tranche</option>
+                                <option value="Deux Tranches">Deux Tranches</option>
+                                <option value="Trois Tranches">Trois Tranches</option>
+                            </select>
+                        </div>
+                        <!-- <div class="input-group has-validation">
+                            <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                        </div> -->
+                        
+>>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12 mb-4 ">
+                            <div class="input-group has-validation">
+                                                       
+                                
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-3" id="">
+                                    <option value="">--select Module--</option>
+    
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
+                    
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
                     </div>
@@ -137,19 +205,26 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url "updateModalitepaie" %}">
+                <form method="POST" action="{% url 'updateModulePaie' %}">
                     {% csrf_token %}
                     <input type='hidden' value="{{modalitepaie.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="tranche" class="form-control" id="tranche" value="{{modalitepaie.tranche}}" placeholder="Tranche" required>
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="{{modalitepaie.tranche}}" selected>{{modalitepaie.tranche}}</option>
+                                <option value="" disabled>--Sélectionner une tranche--</option>
+                                <option value="Par semaine">Par semaine</option>
+                                <option value="Par Mois">Par Mois</option>
+                                <option value="Par Trimestre">Par Trimestre</option>
+                            </select>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="text" name="montant_fixe" class="form-control" id="montant_fixe" value="{{modalitepaie.montant_fixe}}" placeholder="Montant_fixe" required>
+                            <input type="text" name="montant_fixe" class="form-control mb-3" id="montant_fixe" value="{{modalitepaie.montant_fixe}}" placeholder="Montant_fixe" required>
                         </div>
                         <div class="input-group has-validation">
-                            <select value="{{ modalitepaie.module_id.titre }}" name="module"  class="form-select mb-3" id="">
-                                <option value="">--select Module--</option>
+                            <select name="module"  class="form-select mb-3" id="">
+                                <option value="{{ modalitepaie.module.code }}" selected>{{ modalitepaie.module.titre }}</option>
+                                <option value="" disables>--select Module--</option>
 
                                 {% for m in modules %}
                                 <option value="{{ m.code }}">{{ m.titre }} </option>

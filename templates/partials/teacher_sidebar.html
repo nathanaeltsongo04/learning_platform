@@ -1,64 +1,100 @@
 <!-- ======= Sidebar ======= -->
 
-<aside id="sidebar" class="sidebar ">
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard_enseignant' %}">
+        <i class="bi bi-grid"></i>
+        <span>Tableau de Bord</span>
+      </a>
+    </li>
+    <!-- End Tableau de Bord Nav -->
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-heading">Main</li>
 
-        <li class="nav-item">
-            <a class="nav-link " href="{% url 'dashboard_enseignant' %}">
-                <i class="bi bi-grid"></i>
-                <span>Tableau de Bord</span>
-            </a>
-        </li><!-- End Tableau de Bord Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'formation_enseignant' %}">
+        <i class="bi bi-journals"></i>
+        <span>Mes Formations</span>
+      </a>
+    </li>
+    <!-- end mes formations nav -->
 
-        <li class="nav-heading">Main</li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'formation_enseignant' %}">
-                <i class="bi bi-journals"></i>
-                <span>Formations</span>
-            </a>
-        </li><!-- end mes formations nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-bar-chart"></i><span>Evaluations</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="{% url 'cote_enseignant' %}">
-                  <i class="bi bi-circle"></i><span>Cotes</span>
-                </a>
-              </li>
-              <li>
-                <a href="{% url 'correction_enseignant' %}">
-                  <i class="bi bi-circle"></i><span>Corrections</span>
-                </a>
-              </li>
-              <li>
-                <a href="{% url 'interrogation_enseignant' %}">
-                  <i class="bi bi-circle"></i><span>Intérrogations</span>
-                </a>
-              </li>
-            </ul>
-          </li><!-- End Charts Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'module_enseignant' %}">
-                <i class="bi bi-hand-index-fill"></i>
-                <span>Modules</span>
-            </a>
-        </li><!-- end ressources nav-->
-
-        <li class="nav-heading">Others</li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-                <i class="bi bi-person-circle"></i>
-                <span>Profile</span>
-            </a>
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav2" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Modules</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <ul id="forms-nav2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url 'module_enseignant' %}"><i class="bi bi-circle"></i><span>Module</span></a>
         </li>
-         <!--end horaire-->
-        
-       
-    </ul>
+        <li>
+          <a href="{% url 'chapitre_enseignant' %}"><i class="bi bi-circle"></i><span>Chapitre</span></a>
+        </li>
+        <li>
+          <a href="{% url 'sous_chapitre_enseignant' %}"><i class="bi bi-circle"></i><span>Sous Chapitre</span></a>
+        </li>
+      </ul>
+    </li>
+    <!-- end  Modules nav -->
 
-</aside><!-- End Sidebar-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Ressources</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url 'typeressource' %}"><i class="bi bi-circle"></i><span>Type ressources</span></a>
+        </li>
+        <li>
+          <a href="{% url 'ressource_admin' %}"><i class="bi bi-circle"></i><span>Ressources</span></a>
+        </li>
+      </ul>
+    </li>
+    <!-- End Ressources Nav -->
 
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"><i class="bi bi-bar-chart"></i><span>Evaluations</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url 'evaluation' %}"><i class="bi bi-circle"></i><span>Evaluation</span></a>
+        </li>
+        <li>
+          <a href=""><i class="bi bi-circle"></i><span>Cotes</span></a>
+        </li>
+        <li>
+          <a href=""><i class="bi bi-circle"></i><span>Corrections</span></a>
+        </li>
+
+      </ul>
+    </li>
+    <!-- End Evaluation Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'liste_apprenant' %}">
+        <i class="bi bi-journals"></i>
+        <span>Mes Apprenants</span>
+      </a>
+    </li>
+    <!-- end mes Modules nav -->
+
+    {% comment %} <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav3" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Publications</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <ul id="forms-nav3" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href=""><i class="bi bi-circle"></i><span>Type publication</span></a>
+        </li>
+        <li>
+          <a href="{% url 'publication_admin' %}"><i class="bi bi-circle"></i><span>Publication</span></a>
+        </li>
+      </ul>
+    </li> {% endcomment %}
+<!-- End Publication Page Nav -->
+
+    <li class="nav-heading">Autres</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-person-circle"></i>
+        <span>Profile</span>
+      </a>
+    </li>
+    <!-- end horaire -->
+  </ul>
+</aside>
+<!-- End Sidebar -->

@@ -1,0 +1,109 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/teacher_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Les Apprenants{% endblock %}
+
+{% block ContentTitle %}
+    Enseignant
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Apprenants
+{% endblock %}
+
+{% block content %}
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Apprenants</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Noms</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Etat civil</th>
+                  <th scope="col">Adresse</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Profession</th>
+                  <th scope="col">Photo</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for apprenant in apprenants %}
+                    <tr>
+                    <th scope="row">{{ apprenant.matricule }}</th>
+                        <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
+                        <td>{{ apprenant.genre }}</td>
+                        <td>{{ apprenant.etatcivil }}</td>
+                        <td>{{ apprenant.addresse }}</td>
+                        <td>{{ apprenant.contact }}</td>
+                        <td>{{ apprenant.profession }}</td>
+                        
+                        {% if apprenant.photo %}
+                            <td><img src="{{ apprenant.photo.url }}" alt="Photo_Apprennant"></td>
+                        {% else %}
+                            <td><i class="bi-x-circle text-center"></i></td>
+                        {% endif %}
+                            
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

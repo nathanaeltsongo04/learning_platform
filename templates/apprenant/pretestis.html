@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'tester_apprenant' %}">
+    {% csrf_token %}
+    
+    <h3>Sélectionnez une formation</h3>
+    {% for formation in formations %}
+    <div>
+        <input type="radio" name="formation" value="{{ formation.code }}" id="formation_{{ formation.code }}">
+        <label for="formation_{{ formation.code }}">{{ formation.titre }}</label> <!-- Ajustez le champ à afficher -->
+    </div>
+    {% endfor %}
+    
+    <button type="submit">Soumettre</button>
+</form>
+
+</body>
+</html>

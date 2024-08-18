@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- take_test.html -->
+<form method="post">
+    {% csrf_token %}
+    <h3>Question {{ question_index }} sur {{ total_questions }}</h3>
+    <p>{{ question.question }}</p>
+
+    {% for alternative in reponses_alternatives %}
+        <input type="radio" id="alternative_{{ alternative.code }}" name="reponses" value="{{ alternative.code }}">
+        <label for="alternative_{{ alternative.code }}">{{ alternative.reponse_alternative }}</label>
+        <label>{{ reponse_correcte.reponse }}</label>
+        <br>
+    {% endfor %}
+
+    <button type="submit">Soumettre la Réponse</button>
+</form>
+
+
+
+</body>
+</html>

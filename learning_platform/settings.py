@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -71,6 +71,9 @@ WSGI_APPLICATION = 'learning_platform.wsgi.application'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+#API
+DAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362d'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -106,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
@@ -120,8 +123,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'images'
+AUTH_USER_MODEL = 'eScholar.CompteUtilisateur'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

@@ -1,0 +1,83 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/learner_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Mes Evaluations{% endblock %}
+
+{% block ContentTitle %}
+    Apprenant
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Evaluation
+{% endblock %}
+
+{% block content %}
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: msg,
+        showConfirmButton: false,
+        timer: 2800
+    }).then(function() {
+    });
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Evaluations</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Formation</th>
+                  <th scope="col">Maximum</th>
+                  <th scope="col">Cote</th>
+                  <th scope="col">Date Evaluation</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for evaluation in evaluations %}
+                    <tr>
+                    <th scope="row">{{ evaluation.code }}</th>
+                        <td>{{ evaluation.formation.titre }}</td>
+                        <td>{{ evaluation.maximum }}</td>
+                        <td>{{ evaluation.cote }}</td>
+                        <td>{{ evaluation.date_evaluation }}</td>
+                        <td>
+                            <a class="text-info mx-auto pd-2" href="{{ domaine.code }}">
+                                <span class="badge bg-danger ">
+                                    <i class="bi bi-pencil-square fa-lg "></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}
