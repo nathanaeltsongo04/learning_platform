@@ -1,0 +1,86 @@
+{% extends 'base/auth_signup_layout.html' %}
+
+{% load static %}
+
+
+{% block title %}eScholar{% endblock %}
+
+{% block content%}
+
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-white ">
+    <div class="container px-5">
+      <a class="navbar-brand fw-bold" href="" style="fontsize: 50px"
+        >eScholar</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" aria-current="page" href="{% url 'home' %}"
+              >Acceuil</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'authentification' %}"
+              >Se Connecter</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Liste de formation section-->
+  <section class="py-5 mt-0 border-bottom-0 bg-white" id="about">
+    <div class="container px-0 my-0">
+      <div class="text-center mb-2">
+        <div class="row text-center">
+            <div class="col-lg-4">
+                <h4 class="text-center fw-bolder text-dark mb-5 ">Nos Formations</h4>
+            </div>
+            <div class="col-lg-8">
+                <div class="text-center">
+                    <div class="search-bar ">
+                        <form class="search-form d-flex align-items-center" method="POST" action="#">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </div><!-- End Search Bar -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card mb-3 mt-4 border-o" style="max-width: 100%">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% static 'assets/img/courses.jpg' %}" class="img-fluid rounded-start" style="height: 22.2vh" alt="..." />
+              </div>
+              <div class="col-md-8">
+                  <div class="card-body">
+                    <h6 class="card-text text-start fw-bold mt-2 text-primary">Nom de la formation</h6>
+                    <p class="card-text text-start lh-5  mb-3 fw-normal">
+                       breve description
+                    </p>
+                    
+                  </div>
+                </div>                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock%}
