@@ -17,6 +17,9 @@ import random
 def index(request):
     return render(request, 'index.html')
 
+def Liste_formation(request):
+    return render(request, 'formation.html')
+
 
 def video_conference(request):
     return render(request, 'video_conference.html')

@@ -94,4 +94,5 @@ urlpatterns = [
     path('insertContenuChapitre/', views.insertContenuChapitre, name='insertContenuChapitre'),
     
     path('type_publication_admin/', views.typePublication, name='type_publication_admin'),
+    path('liste_formation/',views.Liste_formation, name="liste_formation"),
 ]
