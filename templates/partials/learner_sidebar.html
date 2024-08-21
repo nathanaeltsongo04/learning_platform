@@ -14,27 +14,25 @@
         <li class="nav-heading">Main</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'formation_apprenants' %}">
-                <i class="bi bi-journals"></i>
-                <span>Mes Formations</span>
-            </a>
-        </li><!-- end mes formations nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav2" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Modules</span><i class="bi bi-chevron-down ms-auto"></i></a>
-            <ul id="forms-nav2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="{% url 'module_apprenant' %}"><i class="bi bi-circle"></i><span>Module</span></a>
-              </li>
-              <li>
-                <a href=""><i class="bi bi-circle"></i><span>Chapitre</span></a>
-              </li>
-              <li>
-                <a href=""><i class="bi bi-circle"></i><span>Sous Chapitre</span></a>
-              </li>
+            <a class="nav-link collapsed" data-bs-target="#forms-nav3" data-bs-toggle="collapse" href="#"><i
+                class="bi bi-journal-text"></i><span>Mes Formations</span><i class="bi bi-chevron-down ms-auto"></i></a>
+            <ul id="forms-nav3" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+              {% for formation in formations %}
+                <li>
+                    <a href="{% url 'contenu_formation' formation.formation.code %}"><i class="bi bi-circle"></i><span>{{ formation.formation.module.titre }}</span></a>
+                </li>
+              {% endfor %}
+              
+                
             </ul>
           </li>
-        <!-- end mes modules nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'module_apprenant' %}">
+                <i class="bi bi-journals"></i>
+                <span>Module</span>
+            </a>
+        </li><!-- end mes formations nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{% url 'ressource_apprenant' %}">
@@ -50,15 +48,6 @@
             </a>
         </li><!-- end mes evaluations nav -->
 
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'publication_apprenant' %}">
-                <i class="bi bi-journals"></i>
-                <span>Publications</span>
-            </a>
-        </li><!-- end publications nav -->
-
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="{% url 'chat_apprenant' %}">
                 <i class="bi bi-chat-dots"></i>
@@ -66,24 +55,6 @@
             </a>
         </li>
         <!--end chat-->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'horaire_apprenant' %}">
-                <i class="bi bi-calendar-week"></i>
-                <span>Horaire</span>
-            </a>
-        </li>
-         <!--end horaire-->
-        <li class="nav-heading">Others</li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-                <i class="bi bi-person-circle"></i>
-                <span>Profile</span>
-            </a>
-        </li>
-         <!--end horaire-->
-        
-       
     </ul>
 
 </aside><!-- End Sidebar-->

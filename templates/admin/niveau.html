@@ -6,7 +6,7 @@
     {% include 'partials/sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %} Les niveaux{% endblock %}
+{% block Dashboard %} Modalites de payement{% endblock %}
 
 {% block ContentTitle %}
     Administrateur
@@ -37,7 +37,7 @@
             icon: 'warning',
             title: messageText,
             showConfirmButton: false,
-            timer: 1400
+            timer: 1000
         }).then(function() {});
     }
     else {
@@ -63,30 +63,29 @@
                 <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
             </div>
           <div class="card-body">
-            <h5 class="card-title">Niveaux</h5>
+            <h5 class="card-title">Modalite de payement</h5>
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Désignation</th>
+                  <th scope="col">Tranche</th>
+                  <th scope="col">Montant_fixe</th>
+                  <th scope="col">Module</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                  {% for niveau in niveaux %}
+                  {% for modalitepaie in modalitepaies %}
                     <tr>
-                    <th scope="row">{{ niveau.code }}</th>
-                        <td>{{ niveau.designation }}</td>
+                    <th scope="row">{{ modalitepaie.code }}</th>
+                        <td>{{ modalitepaie.tranche }}</td>
+                        <td>{{ modalitepaie.montant_fixe }}</td>
+                        <td>{{ modalitepaie.module.titre }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
-                                </span>
-                            </a>
-                            <a class="text-info mx-auto pd-2" href="{{ niveau.code }}">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-trash fa-lg "></i>
                                 </span>
                             </a>
                         </td>
@@ -108,18 +107,46 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouveau niveau</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modalite Paiement</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'insertNiveau' %}">
+                <form method="POST" action="{% url 'insertModalitePaie' %}">
                     {% csrf_token %}
+                    <div class="row">
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="designation" class="form-control" id="yourPassword" placeholder="Désignation" required>
+                        <div class="input-group has-validation">
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="">--Sélectionner une tranche--</option>
+                                <option value="Une Tranche">Une Tranche</option>
+                                <option value="Deux Tranches">Deux Tranches</option>
+                                <option value="Trois Tranches">Trois Tranches</option>
+                            </select>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12 mb-4 ">
+                            <div class="input-group has-validation">
+                                                       
+                                
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
+                            </div>
+                            <div class="input-group has-validation">
+                                <select name="module" class="form-select mb-3" id="">
+                                    <option value="">--select Module--</option>
+    
+                                    {% for m in modules %}
+                                    <option value="{{ m.code }}">{{ m.titre }} </option>
+                                    {% endfor %}
+    
+                                </select>
+                            </div>
+                        </div>
+                    </div> 
+                    
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
                     </div>
@@ -132,23 +159,43 @@
     </div>
 </div>
 
-<!-- Modal Modification niveau-->
- {% for niveau in  niveaux %}
+<!-- Modal Modification Modalitepaie-->
+ {% for modalitepaie in  modalitepaies %}
 <div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  niveau</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Modalitepaie</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'updateNiveau' %}">
+                <form method="POST" action="{% url 'updateModalitePaie' %}">
                     {% csrf_token %}
-                    <input type='hidden' value="{{niveau.code}}" name='code'>
+                    <input type='hidden' value="{{modalitepaie.code}}" name='code'>
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
-                            <input type="text" name="designation" class="form-control" id="yourPassword" value="{{niveau.designation}}" placeholder="Désignation" required>
+                            <select name="tranche" class="form-select mb-3" id="" required>
+                                <option value="{{modalitepaie.tranche}}" selected>{{modalitepaie.tranche}}</option>
+                                <option value="" disabled>--Sélectionner une tranche--</option>
+                                <option value="Une Tranche">Une Tranche</option>
+                                <option value="Deux Tranches">Deux Tranches</option>
+                                <option value="Trois Tranches">Trois Tranches</option>
+                            </select>
                         </div>
+                        <div class="input-group has-validation">
+                            <input type="text" name="montant_fixe" class="form-control mb-3" id="montant_fixe" value="{{modalitepaie.montant_fixe}}" placeholder="Montant_fixe" required>
+                        </div>
+                        <div class="input-group has-validation">
+                            <select name="module"  class="form-select mb-3" id="">
+                                <option value="{{ modalitepaie.module.code }}" selected>{{ modalitepaie.module.titre }}</option>
+                                <option value="" disables>--select Module--</option>
+
+                                {% for m in modules %}
+                                <option value="{{ m.code }}">{{ m.titre }} </option>
+                                {% endfor %}
+
+                            </select>
+                        </div>    
                     </div>
 
                     <div class="col-md-12 text-center">

@@ -6,7 +6,7 @@
 {% include 'partials/learner_sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %}Mes Formations{% endblock %}
+{% block Dashboard %}{{ contenus.module.titre }}{% endblock %}
 
 {% block ContentTitle %}
 Apprenant
@@ -60,41 +60,14 @@ Formation
     <div class="row">
         <div class="col-lg-12">
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Formations</h5>
-                    <!-- Table with stripped rows -->
-                    <table class="table datatable">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Titre</th>
-                                <th scope="col">Duree</th>
-                                <th scope="col">Date_debut</th>
-                                <th scope="col">Date_fin</th>
-                                <th scope="col">Enseignant</th>
-                                <th scope="col">Module</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for formation in formations %}
-                            <tr>
-                                <th scope="row">{{ formation.code }}</th>
-                                <td>{{ formation.titre }}</td>
-                                <td>{{ formation.duree }}</td>
-                                <td>{{ formation.date_debut }}</td>
-                                <td>{{ formation.date_fin }}</td>
-                                <td>{{ formation.enseignant.nom }} {{formation.enseignant.postnom}}
-                                    {{formation.enseignant.prenom}}</td>
-                                <td>{{ formation.module.titre }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <!-- End Table with stripped rows -->
-
-                </div>
-            </div>
+            <h4><strong>{{ contenus.module.chapitre.titre }}</strong></h4>
+            
+            {% for contenu_chapitre in contenu_chapitres %}
+            <h5><br><strong>{{ contenu_chapitre.sous_chapitre.titre }}</strong></h5>
+            <p>{{ contenu_chapitre.sous_chapitre.contenu }}</p>
+                
+            {% endfor %}
+                
 
         </div>
     </div>

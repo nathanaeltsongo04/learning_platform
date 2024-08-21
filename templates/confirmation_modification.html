@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation de Modification</title>
+    <script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            title: "{{ message }}",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, confirmer',
+            cancelButtonText: 'Annuler'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Rediriger vers la vue de confirmation côté serveur
+                window.location.href = "{% url 'confirmer_modification' formation.code niveau %}";
+            } else {
+                // Rediriger vers une autre page si l'utilisateur annule
+                window.location.href = "{% url 'tester_apprenant' %}";
+            }
+        });
+    </script>
+</body>
+</html>

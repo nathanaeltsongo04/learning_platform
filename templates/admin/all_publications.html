@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block sidebar %}
-  {% include 'partials/learner_sidebar.html' %}
+  {% include 'partials/sidebar.html' %}
 {% endblock %}
 {% block Dashboard %}
   Publications
 {% endblock %}
 
 {% block ContentTitle %}
-  Apprenant
+  Administrateur
 {% endblock %}
 
 {% block ContentSubTitle %}
@@ -31,7 +31,7 @@
             icon: 'success',
             title: messageText,
             showConfirmButton: false,
-            timer: 1000
+            timer: 3000
         }).then(function() {});
     }
     else if (messageType === "warning"){
@@ -69,15 +69,48 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ post.titre }}</h5>
-              <img src="{{ post.image.url }}" style="object-fit: cover; width:400px;" alt="" class="img-fluid">
+              
+              {% if post.image %}
+              <img src="{{ post.image.url }}" style="object-fit: cover; width:400px;" alt="" class="img-fluid">                
+              {% endif %}
+                
               <p>{{ post.description }}</p>
               
               {% if post.user.enseignant %}
               <h6>By <strong>{{ post.user.enseignant.nom }} {{ post.user.enseignant.postnom }} {{ post.user.enseignant.prenom }}</strong> on {{ post.date_publication }}</h6>
                 
               {% endif %}
+                
+              {% comment %}
+                <div>
+                  <p><a href="{% url 'like_post' post.code %}">Like</a> {{ post.total_likes }}</p>
+                </div>
+                <div>
+                  <form method="post" action="{% url 'comment_post' post.code %}">
+                    {% csrf_token %}
+                    <textarea class="form-control" name="content" placeholder="Add a comment"></textarea>
+                    <button type="submit" class="btn btn-primary mt-2">Comment</button>
+                  </form>
+                </div>
+                <!-- Liste des commentaires -->
+                <h5>Comments list:</h5>
+                {% for comment in post.comments.all %}
+                  <div style="margin-left: 20px;">
+                    <p>{{ comment.content }} - 
+                      <strong>
+                        {% if comment.user.enseignant is None %}
+                          {{ comment.user.apprenant.nom }} {{ comment.user.apprenant.postnom }} {{ comment.user.apprenant.prenom }}
+                        {% else %}
+                          {{ comment.user.enseignant.nom }} {{ comment.user.enseignant.postnom }} {{ comment.user.enseignant.prenom }}
+                        {% endif %}
+                      </strong>
+                    </p>
+                    <p>Posted on {{ comment.created_at }}</p>
+                  </div>
+                  {% endfor %}
+                  {% endcomment %}
+              </div>
             </div>
-          </div>
         </div>
         {% if forloop.counter|divisibleby:2 and not forloop.last %}
         </div><div class="row">

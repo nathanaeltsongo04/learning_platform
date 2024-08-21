@@ -1,28 +1,211 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>e-Scholar</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/armoirie.png' %}" rel="icon">
+    <link href="{% static 'assets/img/armoirie.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
+
 <body>
-    <!-- take_test.html -->
-<form method="post">
-    {% csrf_token %}
-    <h3>Question {{ question_index }} sur {{ total_questions }}</h3>
-    <p>{{ question.question }}</p>
+    <!-- ======= Header ======= -->
+ <header id="header" class="header fixed-top d-flex align-items-center ">
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/armoirie.png" alt="">
+            <span class="d-none d-lg-block">eScholar</span>
+        </a>
+    </div><!-- End Logo -->
+  
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+  
+          <li class="nav-item dropdown pe-3">
 
-    {% for alternative in reponses_alternatives %}
-        <input type="radio" id="alternative_{{ alternative.code }}" name="reponses" value="{{ alternative.code }}">
-        <label for="alternative_{{ alternative.code }}">{{ alternative.reponse_alternative }}</label>
-        <label>{{ reponse_correcte.reponse }}</label>
-        <br>
-    {% endfor %}
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              {% if user.apprenant.photo %}
+                <img src="{{ user.apprenant.photo.url }}" alt="Profile" class="rounded-circle">
+              {% else %}
+                <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+              {% endif %}
+                <span
+                    class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+            </a><!-- End Profile Iamge Icon -->
 
-    <button type="submit">Soumettre la Réponse</button>
-</form>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                    <h6>{{ user.apprenant.nom }} {{ user.apprenant.postnom }} {{ user.apprenant.prenom }}</h6>
+                    <span>{{ user.apprenant.profession }}</span>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="">
+                        <i class="bi bi-person"></i>
+                        <span>Apprenant</span>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Se Deconnecter</span>
+                    </a>
+                </li>
+
+            </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+  
+        </ul>
+    </nav><!-- End Icons Navigation -->
+  
+  </header><!-- End Header -->
+
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Evaluation</h1>
+        </div><!-- End Page Title -->
+        <section class="section dashboard">
+            <div class="row">
+                <section class="section">
+                    <div class="row">
+                      <div class="col-lg-9">
+                
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"></h5>
+                
+                            <!-- General Form Elements -->
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <h5>Question {{ question_index }} sur {{ total_questions }}</h5>
+                                <h3><strong>{{ question.question }}</strong></h3>
+                              <fieldset class="row mb-3">
+                                <div class="col-sm-10">
+                                  {% for alternative in reponses_alternatives %}
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reponse" id="alternative_{{ alternative.code }}" value="{{ alternative.code }}">
+                                    <label class="form-check-label" for="alternative_{{ alternative.code }}">
+                                      {{ alternative.reponse_alternative }}
+                                    </label>
+                                  </div>
+                                  {% endfor %}
+                                  {% comment %}
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="reponse_correcte" id="alternative_{{ question.code }}" value="{{ question.code }}">
+                                      <label class="form-check-label" for="alternative_{{ question.code }}">
+                                        {{ question.reponse }}
+                                      </label>
+                                    </div>
+                                  {% endcomment %}
+                                  
+                                </div>
+                              </fieldset>
+                                              
+                              <div class="row mb-3 text-center">
+                                <div class="col-sm-10">
+                                  <button type="submit" class="btn btn-primary">Soumettre la Réponse</button>
+                                </div>
+                              </div>
+                
+                            </form><!-- End General Form Elements -->
+                
+                          </div>
+                        </div>
+                
+                      </div>
+                
+                    </div>
+                  </section>
+                </div>
+        </section>
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    {% include 'partials/footer.html'%} 
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script>
+      {% if messages %}
+      {% for msg in messages %}
+      var messageType = "{{ msg.tags }}";
+      var messageText = "{{ msg|escapejs }}";
+      if (messageType === "success"){
+              Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: messageText,
+              showConfirmButton: false,
+              timer: 1000
+          }).then(function() {});
+      }
+      else if (messageType === "warning"){
+              Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: messageText,
+              showConfirmButton: false,
+              timer: 3000
+          }).then(function() {});
+      }
+      else {
+              Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: messageText,
+              showConfirmButton: false,
+              timer: 5000
+          }).then(function() {});
+      }
+      
+      {% endfor %}
+      {% endif %}
+  </script>
+    <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+    <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+    <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
+
 </html>
+
+

@@ -1,0 +1,198 @@
+
+
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+    {% include 'partials/teacher_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Réponses Alternatives {% endblock %}
+
+{% block ContentTitle %}
+    Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="filter">
+                    <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                            class="bi bi-plus-circle-fill h4"></i></a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Questions | Réponses</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Question</th>
+                                <th scope="col">Réponse Alternative</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reponse in reponses %}
+                            <tr>
+                                <th scope="row">{{ reponse.code }}</th>
+                                <td>{{ reponse.questionnaire.question }}</td>
+                                <td>{{ reponse.reponse_alternative }}</td>
+                                <td>
+                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1-{{forloop.counter}}">
+                                        <span class="badge bg-success ">
+                                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip"
+                                                data-placement="top" title="Modifier cet élément"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Réponse Alternative</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'insertReponseAlternative' %}" >
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-4 ">
+                            <input placeholder="Type to search Question" class="form-control mb-3" list="datalistOptions" id="selectedQuestionnaire">
+                            <datalist id="datalistOptions">
+                                {% for question in questions %}
+                                <option value="{{ question.question }}" data-code="{{ question.code }}"></option>
+                                {% endfor %}
+                            </datalist>
+                            <input type="hidden" id="questionnaire" name="questionnaire">
+
+                            <textarea name="reponseAlternative" class="form-control mb-3" id=""></textarea>   
+                        </div>                  
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('selectedQuestionnaire').addEventListener('input', function() {
+    var selectedValue = this.value;
+    var options = document.querySelectorAll('#datalistOptions option');
+    
+    options.forEach(function(option) {
+        if (option.value === selectedValue) {
+            // Récupérer le matricule via data-matricule
+            var matricule = option.getAttribute('data-code');
+            // Assigner le matricule récupéré au champ caché
+            document.getElementById('questionnaire').value = matricule;
+        }
+    });
+});
+
+</script>
+<!-- Modal Modification Domaine-->
+{% for reponse in reponses %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Questionnaire</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'updateReponseAlternative' %}">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{reponse.code}}" name='code'>
+                    <div class="col-md-12 mb-4 ">
+                        <input placeholder="Type to search Question" class="form-control mb-3" list="datalistOptions" id="selectedQuestionnaire">
+                        <datalist id="datalistOptions">
+                            {% for question in questions %}
+                            <option value="{{ question.question }}" data-code="{{ question.code }}"></option>
+                            {% endfor %}
+                        </datalist>
+                        <input type="hidden" id="questionnaire" name="questionnaire">
+
+                        <textarea name="reponseAlternative" class="form-control mb-3" id=""></textarea>   
+                    </div>  
+
+                    <div class="col-md-12 text-center">
+                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

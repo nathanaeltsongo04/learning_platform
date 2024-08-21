@@ -59,10 +59,10 @@
                       {% for ressource in ressources %}
                       <tr>
                           <td scope="row">{{ ressource.code }}</td>
-                          <td>{{ ressource.titre }}</td>
-                          <td class="description-cell">{{ ressource.description }}</td>
-                          <td>{{ ressource.contenu.name }}</td>
-                          <td>{{ ressource.type_ressource.designation }}</td>
+                          <td>{{ ressource.formation.module.ressource.titre }}</td>
+                          <td class="description-cell">{{ ressource.formation.module.ressource.description }}</td>
+                          <td>{{ ressource.formation.module.ressource.contenu.name }}</td>
+                          <td>{{ ressource.formation.module.ressource.type_ressource.designation }}</td>
                           <td>
                               <a class="text-info mx-auto md-2" href="{% url 'downloadFile' ressource.code %}">
                                   <span class="badge bg-primary">
