@@ -26,6 +26,7 @@ class Apprenant(models.Model):
     etatcivil=models.CharField(max_length=25)
     addresse=models.CharField(max_length=50)
     contact=models.CharField(max_length=15)
+    email = models.EmailField(max_length=254)
     profession=models.CharField(max_length=50)
     photo=models.ImageField(upload_to='ImageProfilApprenant/',blank=True)
     
@@ -126,8 +127,8 @@ class Inscription(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
     formation=models.ForeignKey(Formation,on_delete=models.CASCADE, null=True) 
-    modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE)
-    date_inscription=models.DateTimeField()
+    modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE, null=True)
+    date_inscription=models.DateField(auto_now=True)
     
     class Meta:
         db_table='Inscription'
