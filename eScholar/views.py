@@ -12,13 +12,51 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 import random
 from django.db.models import Sum
-from django.core.mail import send_mail
-import smtplib
-from django.core.mail import EmailMessage, get_connection
+from django.db import transaction
+from datetime import date
 
 # Create your views here.
-
+@transaction.atomic
 def index(request):
+    try:
+        if request.method == "POST":
+            nom = request.POST.get("nom")
+            postnom = request.POST.get("postnom")
+            prenom = request.POST.get("prenom")
+            genre = request.POST.get("genre")
+            etatcivil = request.POST.get("etatcivil")
+            addresse = request.POST.get("addresse")
+            email = request.POST.get("email")
+            contact = request.POST.get("contact")
+            profession = request.POST.get("profession")
+            photo = request.FILES.get("photo")
+            
+            if Apprenant.objects.filter(nom = nom.capitalize(), postnom = postnom.capitalize(), prenom = prenom.title()):
+                messages.warning(request, "L'apprenant existe déjà !")
+                return redirect('home')
+            else:
+                with transaction.atomic():
+                    apprenant = Apprenant.objects.create(
+                        matricule = generer_matricule_apprenant(),
+                        nom = nom.capitalize(),
+                        postnom = postnom.capitalize(),
+                        prenom = prenom.title(),
+                        genre = genre.capitalize(),
+                        etatcivil = etatcivil.capitalize(),
+                        addresse = addresse.capitalize(),
+                        email = email.lower(),
+                        contact = contact.capitalize(),
+                        profession = profession.capitalize(),
+                        photo = photo
+                    )
+                    
+                    inscription,_ = Inscription.objects.get_or_create(apprenant = apprenant)
+                    inscription.date_inscription = date.today()
+                    inscription.save()
+                    messages.success(request, "Apprenant ajouté avec succès !")
+                    return redirect('home')
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'index.html')
 
 def video_conference(request):
@@ -380,6 +418,7 @@ def generer_matricule_apprenant():
             dernier_numero = 0
         prochain_numero = dernier_numero + 1
         return f"ETU{prochain_numero:04d}"
+
 
 def insertApprenant(request):
     try:

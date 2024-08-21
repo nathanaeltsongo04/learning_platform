@@ -366,7 +366,7 @@
               <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body ">
-              <form method="POST" action="{% url 'insert_apprenant' %}" enctype="multipart/form-data">
+              <form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
                   {% csrf_token %}
 
                       <div class="row">
@@ -375,7 +375,8 @@
                               <input type="text" name="postnom" class="form-control mb-3" id="" placeholder="Post-Nom" required>
                               <input type="text" name="prenom" class="form-control mb-3" id="" placeholder="Prenom" required>
                               <input type="text" name="addresse" class="form-control mb-3" id="" placeholder="Adresse" required>
-                          </div>
+                              <input type="email" name="email" class="form-control mb-3" id="" placeholder="Email" required>
+                            </div>
                           <div class="col-md-6 mb-4 ">                                    
                               <select name="genre" id="" class="form-select mb-3" required>
                                   <option value="Masculin">Masculin</option>
@@ -388,12 +389,12 @@
                               </select>
                               <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
                               <input type="text" name="contact" class="form-control mb-3" id="" value="+243" required>
+                              <input type="file" name="photo" class="form-control mb-3" id="">
                           </div>                            
                       </div>
                       <div class="row">
                           <div class="col-md-6 mb-4 ">                           
                                                       
-                          <input type="file" name="photo" class="form-control mb-3" id="">
                           </div>
                       </div>                       
 
