@@ -24,6 +24,9 @@ def index(request):
 def video_conference(request):
     return render(request, 'video_conference.html')
 
+def liste_formation(request):
+    return render(request, 'formation.html')
+
 def profile(request):
     return render(request, 'profile.html')
 

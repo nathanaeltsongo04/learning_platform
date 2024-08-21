@@ -102,5 +102,6 @@ urlpatterns = [
 # ========================================================================================================
 
     path('dashboard_apprenant', views.dashboard_apprenant, name='dashboard_apprenant'),
+    path('liste_formation', views.liste_formation, name="liste_formation"),
 
 ]
