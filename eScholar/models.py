@@ -218,3 +218,41 @@ class Test(models.Model):
     
     class Meta:
         db_table='Test'
+
+class Interrogation(models.Model):
+    code = models.AutoField(primary_key=True)
+    titre = models.CharField(max_length=150)
+    date_interro = models.DateField(auto_now=False, auto_now_add=False)
+    duree = models.TimeField(auto_now=False, auto_now_add=False)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    enseignant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Interrogation'
+
+class QuestionInterrogation(models.Model):
+    code = models.AutoField(primary_key=True)
+    enonce=models.TextField()
+    interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'QuestionInterrogation'
+
+class Participation(models.Model):
+    code = models.AutoField(primary_key=True)
+    date_participation = models.DateField(auto_now=False, auto_now_add=False)
+    cote_obtenu = models.DecimalField(max_digits=2, decimal_places=2)
+    apprenant = models.ForeignKey(Apprenant, on_delete=models.CASCADE)
+    interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Participation'
+
+class ReponseInterrogation(models.Model):
+    code = models.AutoField(primary_key=True)
+    texte = models.TextField()
+    # est_correcte = 
+    question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'ReponseInterrogation'
