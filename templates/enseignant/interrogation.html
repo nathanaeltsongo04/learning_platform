@@ -101,9 +101,9 @@
                     <div class="col-md-12 mb-4 ">
                         <div class="input-group has-validation">
                             <select name="formation" class="form-select mb-3" required>
-                                <option>--Selectionner Formation--</option>
+                                <option>--Selectionner Module--</option>
                                 {% for formation in formations %}
-                                <option value="{{formation.code}}">{{ formation.titre }}</option>
+                                <option value="{{formation.code}}">{{ formation.module.titre }}</option>
                                 {% endfor %}
                             </select>
                         </div>

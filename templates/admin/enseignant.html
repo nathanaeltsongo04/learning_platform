@@ -92,11 +92,7 @@
                         <td>{{ enseignant.profession }}</td>
                         
                         {% if enseignant.photo %}
-<<<<<<< HEAD
-                            <td><img class="" src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" style="width:60px; height:60px object-fit:cover;"></td>
-=======
-                            <td><img src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" class="rounded-circle" style="width: 45px;"></td>
->>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
+                            <td><img class="" src="{{ enseignant.photo.url }}" alt="Photo_Enseignants" style="width:30px; object-fit:cover;"></td>
                         {% else %}
                             <td><i class="bi-x-circle text-center"></i></td>
                         {% endif %}
@@ -106,11 +102,6 @@
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
-                                </span>
-                            </a>
-                            <a class="text-info mx-auto pd-2" href="">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-trash fa-lg "></i>
                                 </span>
                             </a>
                         </td>
@@ -155,7 +146,7 @@
                                 <option value="Célibataire">Célibataire</option>
                                 <option value="Divorcé(e)">Divorcé(e)</option>
                             </select>
-                            <input type="text" name="contact" class="form-control mb-3" id="" value="+243" required>
+                            <input type="tel" name="contact" class="form-control mb-3" id="" value="+243" required>
                             <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
 
                         </div>
@@ -211,13 +202,13 @@
                                 <option value="Divorcé(e)">Divorcé(e)</option>
                             </select>
                             
-                            <input type="text" name="contact" class="form-control mb-3" id="" value="{{enseignant.contact}}" required>
+                            <input type="tel" name="contact" class="form-control mb-3" id="" value="{{enseignant.contact}}" required>
                             <input type="text" name="profession" class="form-control mb-3" id="" value="{{enseignant.profession}}" placeholder="Profession" required>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-4 ">
+                        <div class="col-md-12 mb-4 ">
                             <input type="file" name="photo" class="form-control mb-3" id="">
                         </div>
                     </div>

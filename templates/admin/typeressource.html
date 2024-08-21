@@ -6,14 +6,14 @@
     {% include 'partials/sidebar.html' %}
 {% endblock %}
 
-{% block Dashboard %} Les types de ressources{% endblock %}
+{% block Dashboard %} Les types de publication{% endblock %}
 
 {% block ContentTitle %}
-    Administrateur
+Adminstrateur
 {% endblock %}
 
 {% block ContentSubTitle %}
-    Tableau de Bord
+    Type de publications
 {% endblock %}
 
 {% block content %}
@@ -63,7 +63,7 @@
                 <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
             </div>
           <div class="card-body">
-            <h5 class="card-title">Les Types de ressources</h5>
+            <h5 class="card-title">Les Types de publication</h5>
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
@@ -82,11 +82,6 @@
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
-                                </span>
-                            </a>
-                            <a class="text-info mx-auto pd-2" href="{{ type.code }}">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-trash fa-lg "></i>
                                 </span>
                             </a>
                         </td>
@@ -108,7 +103,7 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouveau type de ressource</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouveau type de publication</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
@@ -138,7 +133,7 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Type ressource</h5>
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification  Type publication</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">

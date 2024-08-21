@@ -1,54 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Posts</title>
-</head>
-<body>
-    <h1>All Posts</h1>
+{% extends 'base/layout.html' %}
 
-    <!-- Lien vers les publications populaires -->
-    <a href="{% url 'popular_posts' %}">View Popular Posts</a>
+{% block title %}eScholar{% endblock %}
 
-    <!-- Boucle à travers toutes les publications -->
-    {% for post in posts %}
-        <div style="border: 1px solid #ccc; margin-bottom: 20px; padding: 10px;">
-            <!-- Titre de la publication -->
-            <h2>{{ post.titre }}</h2>
-            
-            <!-- Contenu de la publication -->
-            <p>{{ post.description }}</p>
 
-            <!-- Auteur et date de création -->
-            <p>By {{ post.user.username }} on {{ post.date_publication }}</p>
+{% block Dashboard %} Les Publications{% endblock %}
 
-            <!-- Nombre de likes -->
-            <p>Likes: {{ post.total_likes }}</p>
 
-            <!-- Bouton Like -->
-            <a href="{% url 'like_post' post.code %}">Like</a>
+{% block ContentSubTitle %}
+    Publication
+{% endblock %}
 
-            <!-- Formulaire pour ajouter un commentaire -->
-            <form method="post" action="{% url 'comment_post' post.code %}">
-                {% csrf_token %}
-                <textarea name="content" placeholder="Add a comment"></textarea>
-                <button type="submit">Comment</button>
-            </form>
+{% block content %}
 
-            <!-- Liste des commentaires -->
-            <h3>Comments:</h3>
-            {% for comment in post.comments.all %}
-                <div style="margin-left: 20px;">
-                    <p>{{ comment.content }} - <strong>{% if comment.user.enseignant == NULL %}
-                                <p>{{ comment.user.apprenant.nom }} {{ comment.user.apprenant.postnom }} {{ comment.user.apprenant.prenom }}
-                            {% else %}
-                                {{ comment.user.enseignant.nom }} {{ comment.user.enseignant.postnom }} {{ comment.user.enseignant.prenom }}
-                            {% endif %}</strong></p>
-                    <p>Posted on {{ comment.created_at }}</p>
-                </div>
-            {% endfor %}
-        </div>
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
     {% endfor %}
-</body>
-</html>
+    {% endif %}
+</script>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.titre }}</h5>
+              <img src="{{ post.image.url }}" style="object-fit: cover; width:400px;" alt="" class="img-fluid">
+              <p>{{ post.description }}</p>
+              <h6>By {{ post.user.username }} on {{ post.date_publication }}</h6>
+              <div>
+                <p><a href="{% url 'like_post' post.code %}">Like</a> {{ post.total_likes }}</p>
+              </div>
+              <div>
+                <form method="post" action="{% url 'comment_post' post.code %}">
+                  {% csrf_token %}
+                  <textarea class="form-control" name="content" placeholder="Add a comment"></textarea>
+                  <button type="submit" class="btn btn-primary mt-2">Comment</button>
+                </form>
+              </div>
+              <!-- Liste des commentaires -->
+              <h5>Comments list:</h5>
+              {% for comment in post.comments.all %}
+                <div style="margin-left: 20px;">
+                  <p>{{ comment.content }} - 
+                    <strong>
+                      {% if comment.user.enseignant is None %}
+                        {{ comment.user.apprenant.nom }} {{ comment.user.apprenant.postnom }} {{ comment.user.apprenant.prenom }}
+                      {% else %}
+                        {{ comment.user.enseignant.nom }} {{ comment.user.enseignant.postnom }} {{ comment.user.enseignant.prenom }}
+                      {% endif %}
+                    </strong>
+                  </p>
+                  <p>Posted on {{ comment.created_at }}</p>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 and not forloop.last %}
+        </div><div class="row">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

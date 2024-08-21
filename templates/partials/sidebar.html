@@ -12,196 +12,85 @@
 
     <li class="nav-heading">Main</li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="{% url 'enseignant_admin' %}">
-        <i class="bi bi-file-text-fill"></i>
-        <span>Enseignant</span>
+      <a class="nav-link collapsed" href="{% url 'niveau_admin' %}">
+        <i class="bi bi-water"></i>
+        <span>Niveau</span>
       </a>
-    </li>
-    <!-- End Teacher Page Nav -->
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{% url 'apprenant_admin' %}">
-        <i class="bi bi-file-text-fill"></i>
-        <span>Apprenants</span>
-      </a>
-    </li>
-    <!-- End Apprenant Page Nav -->
-
-<<<<<<< HEAD
-            <li class="nav-heading">Main</li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'apprenant_admin' %}">
-                  <i class="bi bi-person-workspace"></i>
-                  <span>Apprenants</span>
-              </a>
-          </li><!-- End apprenant Page Nav -->            
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'enseignant_admin' %}">
-                  <i class="bi bi-person-video"></i>
-                  <span>Enseignants</span>
-              </a>
-            </li><!-- End Commandes Page Nav -->
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'formation_admin' %}">
-                  <i class="bi bi-journal-text"></i>
-                  <span>Formations</span>
-              </a>
-            </li><!-- End Formation Page Nav -->
-          </li><!-- End Paiement Nav -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'inscription_admin' %}">
-                <i class="bi bi-pencil-fill"></i>
-                <span>Inscription</span>
-            </a>
-        </li><!-- End inscription Page Nav -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-cash-coin"></i><span>Paiements</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="{% url 'paiement' %}">
-                  <i class="bi bi-circle"></i><span>Paiement</span>
-                </a>
-              </li>
-              <li>
-                <a href="{% url 'modalite_paiement' %}">
-                  <i class="bi bi-circle"></i><span>Modalité</span>
-                </a>
-              </li>
-            </ul>
-          </li><!-- End Paiement Nav -->
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'publication_admin' %}">
-                  <i class="bi bi-credit-card-fill"></i>
-                  <span>Publication</span>
-              </a>
-          </li><!-- End Paiement Page Nav -->
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#ressource" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-cash-coin"></i><span>Ressources</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="ressource" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="{% url 'ressource_admin' %}">
-                  <i class="bi bi-circle"></i><span>Ressources</span>
-                </a>
-              </li>
-              <li>
-                <a href="{% url 'typeressource' %}">
-                  <i class="bi bi-circle"></i><span>Types Ressources</span>
-                </a>
-              </li>
-            </ul>
-          </li><!-- End Paiement Nav -->
-
-            <li class="nav-heading">Others</li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'domaine_admin' %}">
-                  <i class="bi bi-file-text-fill"></i>
-                  <span>Domaine</span>
-              </a>
-            </li><!-- End Domaine Page Nav -->
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="{% url 'niveau_admin' %}">
-                  <i class="bi bi-water"></i>
-                  <span>Niveau</span>
-              </a>
-            </li><!-- End Niveau Page Nav -->
-=======
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{% url 'inscription_admin' %}">
-        <i class="bi bi-file-text-fill"></i>
-        <span>Inscription</span>
-      </a>
-    </li>
-    <!-- End Inscription Page Nav -->
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{% url 'formation_admin' %}">
-        <i class="bi bi-file-text-fill"></i>
-        <span>Formation</span>
-      </a>
-    </li>
-    <!-- End Formation Page Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Evaluations</span><i class="bi bi-chevron-down ms-auto"></i></a>
-      <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="{% url 'questionnaire' %}"><i class="bi bi-circle"></i><span>Question Réponse</span></a>
-        </li>
-        <li>
-          <a href="{% url 'Test' %}"><i class="bi bi-circle"></i><span>Test</span></a>
-        </li>
-      </ul>
-    </li>
-    <!-- End Evaluation Nav -->
+    </li><!-- End Niveau Page Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{% url 'domaine_admin' %}">
         <i class="bi bi-file-text-fill"></i>
         <span>Domaine</span>
       </a>
-    </li>
-    <!-- End Domaine Page Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{% url 'niveau_admin' %}">
-        <i class="bi bi-file-text-fill"></i>
-        <span>Niveau</span>
-      </a>
-    </li>
-    <!-- End Niveau Page Nav -->
+    </li><!-- End Domaine Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#forms-nav2" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Payements</span><i class="bi bi-chevron-down ms-auto"></i></a>
-      <ul id="forms-nav2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <a class="nav-link collapsed" href="{% url 'apprenant_admin' %}">
+        <i class="bi bi-person-workspace"></i>
+        <span>Apprenants</span>
+      </a>
+    </li><!-- End apprenant Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'enseignant_admin' %}">
+        <i class="bi bi-person-video"></i>
+        <span>Enseignants</span>
+      </a>
+    </li><!-- End Enseignants Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'formation_admin' %}">
+        <i class="bi bi-journal-text"></i>
+        <span>Formations</span>
+      </a>
+    </li><!-- End Formation Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-cash-coin"></i><span>Paiements</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="{% url 'modalite_paiement' %}"><i class="bi bi-circle"></i><span>Modalité</span></a>
+          <a href="{% url 'modalitepaiement' %}">
+            <i class="bi bi-circle"></i><span>Modalité</span>
+          </a>
         </li>
         <li>
-          <a href="{% url 'paiement' %}"><i class="bi bi-circle"></i><span>Payement</span></a>
+          <a href="{% url 'paiement' %}">
+            <i class="bi bi-circle"></i><span>Paiement</span>
+          </a>
         </li>
       </ul>
-    </li>
-    <!-- End Payement Nav -->
-
-    <!--   <li class="nav-item" >
-            <a class="nav-link collapsed" href="paiements.php">
-                <i class="bi bi-file-earmark"></i>
-                <span>Rapports</span>
-            </a>
-        </li>End Paiement Page Nav   -->
+    </li><!-- End Paiement Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#forms-nav3" data-bs-toggle="collapse" href="#"><i class="bi bi-journal-text"></i><span>Publications</span><i class="bi bi-chevron-down ms-auto"></i></a>
+      <a class="nav-link collapsed" href="{% url 'inscription_admin' %}">
+        <i class="bi bi-pencil-fill"></i>
+        <span>Inscription</span>
+      </a>
+    </li><!-- End inscription Page Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav3" data-bs-toggle="collapse" href="#"><i
+          class="bi bi-journal-text"></i><span>Publications</span><i class="bi bi-chevron-down ms-auto"></i></a>
       <ul id="forms-nav3" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a href="{% url 'type_publication_admin' %}"><i class="bi bi-circle"></i><span>Type publication</span></a>
+          <a href="{% url 'all_publications' %}"><i class="bi bi-circle"></i><span>Publications</span></a>
         </li>
         <li>
-          <a href="{% url 'publication_admin' %}"><i class="bi bi-circle"></i><span>Publication</span></a>
+          <a href="{% url 'publication_admin' %}"><i class="bi bi-circle"></i><span>Publier</span></a>
         </li>
       </ul>
     </li>
-    <!-- End Publication Page Nav -->
->>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
-
-    <li class="nav-heading">Others</li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="">
-        <i class="bi bi-list-task"></i>
-        <span>Services</span>
-      </a>
-    </li>
-    <!-- End Services Page Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="">
-        <i class="bi bi-people-fill"></i>
+        <i class="bi bi-credit-card-fill"></i>
         <span>Utilisateurs</span>
       </a>
-    </li>
-    <!-- End Utilisateurs Page Nav -->
+    </li><!-- End Paiement Page Nav -->
   </ul>
 </aside>
 <!-- End Sidebar -->

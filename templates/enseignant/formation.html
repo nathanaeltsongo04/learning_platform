@@ -72,8 +72,8 @@ Tableau de Bord
                                 <th scope="col">Duree</th>
                                 <th scope="col">Date_debut</th>
                                 <th scope="col">Date_fin</th>
-                                <th scope="col">Enseignant</th>
                                 <th scope="col">Module</th>
+                                <th scope="col">Statut</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -85,20 +85,14 @@ Tableau de Bord
                                 <td>{{ formation.duree }}</td>
                                 <td>{{ formation.date_debut }}</td>
                                 <td>{{ formation.date_fin }}</td>
-                                <td>{{ formation.enseignant.nom }} {{formation.enseignant.postnom}}
-                                    {{formation.enseignant.prenom}}</td>
                                 <td>{{ formation.module.titre }}</td>
+                                <td>{{ formation.status }}</td>
                                 <td>
                                     <a class="text-info mx-auto md-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1-{{forloop.counter}}">
                                         <span class="badge bg-success ">
                                             <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip"
                                                 data-placement="top" title="Modifier cet élément"></i>
-                                        </span>
-                                    </a>
-                                    <a class="text-info mx-auto pd-2" href="{{ formation.code }}">
-                                        <span class="badge bg-danger ">
-                                            <i class="bi bi-trash fa-lg "></i>
                                         </span>
                                     </a>
                                 </td>
@@ -115,5 +109,73 @@ Tableau de Bord
     </div>
 </section>
 
+<!-- Modal Modification Formation-->
+{% for formation in formations %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Formation</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="POST" action="{% url 'updateFormationEnseignant' %}">
+                    {% csrf_token %}
+                    <input type='hidden' value="{{formation.code}}" name='code'>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <input type="text" name="titre" class="form-control mb-3" id="titre" value="{{formation.titre}}" placeholder="Titre"
+                                    disabled>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="text" name="duree" class="form-control mb-3" id="" value="{{ formation.duree }}" disabled>
+                            </div>
 
+                            <div class="input-group has-validation">
+                                <input type="text" name="date_debut" class="form-control mb-3" id="date_début"
+                                    placeholder="Date_debut" value="{{ formation.date_debut }}" disabled>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="text" name="date_fin" class="form-control mb-3" id="date_fin" value="{{ formation.date_fin }}" placeholder="Date_fin"
+                                disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                            <div class="input-group has-validation">
+                                <input type="text" name="domaine" class="form-control mb-3" value="{{ formation.domaine.designation }}" id="" disabled>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="text" name="enseignant" class="form-control mb-3" value="{{ formation.enseignant.nom }} {{ formation.enseignant.postnom }} {{ formation.enseignant.prenom }}" id="" disabled>
+                            </div>
+                            <div class="input-group has-validation">
+                                <input type="text" name="module" class="form-control mb-3" value="{{ formation.module.titre }}" id="" disabled>
+                            </div>                      
+                            <div class="input-group has-validation">
+                                <select name="status" class="form-select" id="">
+                                    <option value="{{ formation.status }}" selected>{{ formation.status }}</option>
+                                    <option value="" disabled>--selectionner statut--</option>
+                                    <option value="En attente">En attente</option>
+                                    <option value="En cours">En cours</option>
+                                    <option value="Terminé">Terminé</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

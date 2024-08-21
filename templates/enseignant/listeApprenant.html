@@ -68,30 +68,15 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Noms</th>
-                  <th scope="col">Genre</th>
-                  <th scope="col">Etat civil</th>
-                  <th scope="col">Adresse</th>
-                  <th scope="col">Contact</th>
-                  <th scope="col">Profession</th>
-                  <th scope="col">Photo</th>
+                  <th scope="col">Formation</th>
                 </tr>
               </thead>
               <tbody>
-                  {% for apprenant in apprenants %}
+                  {% for inscription in inscriptions %}
                     <tr>
-                    <th scope="row">{{ apprenant.matricule }}</th>
-                        <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
-                        <td>{{ apprenant.genre }}</td>
-                        <td>{{ apprenant.etatcivil }}</td>
-                        <td>{{ apprenant.addresse }}</td>
-                        <td>{{ apprenant.contact }}</td>
-                        <td>{{ apprenant.profession }}</td>
-                        
-                        {% if apprenant.photo %}
-                            <td><img src="{{ apprenant.photo.url }}" alt="Photo_Apprennant"></td>
-                        {% else %}
-                            <td><i class="bi-x-circle text-center"></i></td>
-                        {% endif %}
+                    <th scope="row">{{ inscription.apprenant.matricule }}</th>
+                        <td>{{ inscription.apprenant.nom }} {{ inscription.apprenant.postnom }} {{ inscription.apprenant.prenom }}</td>
+                        <td>{{ inscription.formation.module.titre }}</td>
                             
                     </tr>
                     {% endfor %}

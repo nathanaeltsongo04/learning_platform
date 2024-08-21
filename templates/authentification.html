@@ -91,5 +91,10 @@
 
         </div>
     </main><!-- End #main -->
-
+    <script>
+        window.history.pushState(null, "", window.location.href);
+        window.addEventListener('popstate', function () {
+            window.location.href = '/authentification/';
+        })
+    </script>
 {% endblock%}
