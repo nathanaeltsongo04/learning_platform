@@ -72,17 +72,15 @@ Tableau de Bord
                 <th scope="col">Titre</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Niveau</th>
-                <th scope="col">Ressources</th>
               </tr>
             </thead>
             <tbody>
               {% for module in modules %}
               <tr>
                 <th scope="row">{{ module.code }}</th>
-                <td>{{ module.titre }}</td>
-                <td>{{ module.prix }} $</td>
-                <td>{{ module.niveau.designation }}</td>
-                <td>{{ module.ressource.titre }}</td>
+                <td>{{ module.formation.module.titre }}</td>
+                <td>{{ module.formation.module.prix }} $</td>
+                <td>{{ module.formation.module.niveau.designation }}</td>
               </tr>
               {% endfor %}
             </tbody>

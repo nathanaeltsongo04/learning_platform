@@ -81,11 +81,7 @@
                     <tr>
                     <th scope="row">{{ publication.code }}</th>
                         <td>{{ publication.titre }}</td>
-                        {% if user.enseignant == NULL %}
-                        <td>{{ publication.user.apprenant.nom }} {{ publication.user.apprenant.postnom }} {{ publication.user.apprenant.prenom }}</td>
-                        {% else %}
-                        <td>{{ publication.user.enseignant.nom }} {{ publication.user.enseignant.postnom }} {{ publication.user.enseignant.prenom }}</td>
-                        {% endif %}
+                        <td>{{ publication.user.username }} </td>
                         <td>{{ publication.date_publication }}</td>
                             
                         
@@ -93,11 +89,6 @@
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
                                 <span class="badge bg-success " >
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
-                                </span>
-                            </a>
-                            <a class="text-info mx-auto pd-2" href="">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-trash fa-lg "></i>
                                 </span>
                             </a>
                         </td>
@@ -123,13 +114,12 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'insertPublication' %}">
+                <form method="POST" action="{% url 'insertPublication' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                         <div class="col-md-12 mb-4 ">
-                            <input type="text" name="titre" class="form-control mb-3" required>
-                            <textarea name="description" class="form-control mb-3" required></textarea>
-                            <input type="hidden" name="compte_utilisateur" class="form-control mb-3" value="{{ user.id }}">
-                            <input type="date" name="date_publication" class="form-control mb-3" id="" required>
+                            <input type="text" name="titre" class="form-control mb-3" placeholder="Titre" required>
+                            <textarea name="description" class="form-control mb-3" placeholder="Déscription" required></textarea>
+                            <input type="file" name="image" class="form-control mb-3">
                         </div>
 
                     <div class="col-md-12 text-center">
@@ -138,7 +128,6 @@
                 </form>
             </div>
             <div class="modal-footer border-top-0">
-
             </div>
         </div>
     </div>
@@ -154,14 +143,13 @@
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-                <form method="POST" action="{% url 'updatePublication' %}" >
+                <form method="POST" action="{% url 'updatePublication' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" value="{{publication.code}}" name="code">
                     <div class="col-md-12 mb-4 ">
                             <input type="text" name="titre" class="form-control mb-3" value="{{ publication.titre }}" required>
                             <textarea name="description" class="form-control mb-3" required>{{ publication.description }}</textarea>
-                            <input type="hidden" name="compte_utilisateur" class="form-control mb-3" value="{{ user.id }}">
-                            <input type="date" name="date_publication" class="form-control mb-3" id="" required>
+                            <input type="file" name="image" class="form-control mb-3">
                         </div>
                 </div>
 

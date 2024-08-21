@@ -95,8 +95,6 @@ Tableau de Bord
                     data-bs-target="#exampleModal1-{{ forloop.counter }}"><span class="badge bg-success"><i
                         class="bi bi-pencil-square fa-lg" data-toggle="tooltip" data-placement="top"
                         title="Modifier cet élément"></i></span></a>
-                  <a class="text-info mx-auto pd-2" href="{{ module.code }}"><span class="badge bg-danger"><i
-                        class="bi bi-trash fa-lg"></i></span></a>
                 </td>
               </tr>
               {% endfor %}
@@ -202,6 +200,15 @@ Tableau de Bord
                 <option value="{{ n.niveau }}">{{ n.designation }}</option>
                 {% endfor %}
 
+              </select>
+            </div>
+            <div class="input-group has-validation">
+              <select name="chapitre" class="form-select mb-3" id="" required>
+                <option value="{{ module.chapitre.code }}" selected>{{ module.chapitre.titre }}</option>
+                <option value="" disabled>--Selectionner chapitre--</option>
+                {% for chapitre in chapitres %}
+                <option value="{{ chapitre.code }}">{{ chapitre.titre }}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="input-group has-validation">

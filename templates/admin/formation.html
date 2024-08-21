@@ -9,7 +9,7 @@
 {% block Dashboard %} Formations{% endblock %}
 
 {% block ContentTitle %}
-Apprenant
+Administrateur
 {% endblock %}
 
 {% block ContentSubTitle %}
@@ -78,6 +78,7 @@ Tableau de Bord
                                 <th scope="col">Date_fin</th>
                                 <th scope="col">Enseignant</th>
                                 <th scope="col">Module</th>
+                                <th scope="col">Statut</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -92,17 +93,11 @@ Tableau de Bord
                                 <td>{{ formation.enseignant.nom }} {{formation.enseignant.postnom}}
                                     {{formation.enseignant.prenom}}</td>
                                 <td>{{ formation.module.titre }}</td>
+                                <td>{{ formation.status }}</td>
                                 <td>
-                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1-{{forloop.counter}}">
-                                        <span class="badge bg-success ">
-                                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip"
-                                                data-placement="top" title="Modifier cet élément"></i>
-                                        </span>
-                                    </a>
-                                    <a class="text-info mx-auto pd-2" href="{{ formation.code }}">
-                                        <span class="badge bg-danger ">
-                                            <i class="bi bi-trash fa-lg "></i>
+                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
+                                        <span class="badge bg-success " >
+                                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
                                         </span>
                                     </a>
                                 </td>
@@ -140,15 +135,28 @@ Tableau de Bord
                                     <textarea name="description" class="form-control mb-3" id=""></textarea>
                             </div>
                             <div class="input-group has-validation">
-                                <input type="time" name="duree" class="form-control mb-3" id="durée" placeholder="Duree"
-                                    required>
+                                <select name="duree" class="form-select mb-3" id="" required>
+                                    <option value="">--selectionner Durée--</option>
+                                    <option value="1 Mois">1 Mois</option>
+                                    <option value="2 Mois">2 Mois</option>
+                                    <option value="3 Mois">3 Mois</option>
+                                    <option value="4 Mois">4 Mois</option>
+                                    <option value="5 Mois">5 Mois</option>
+                                    <option value="6 Mois">6 Mois</option>
+                                    <option value="7 Mois">7 Mois</option>
+                                    <option value="8 Mois">8 Mois</option>
+                                    <option value="9 Mois">9 Mois</option>
+                                    <option value="10 Mois">10 Mois</option>
+                                    <option value="11 Mois">11 Mois</option>
+                                    <option value="12 Mois">12 Mois</option>
+                                </select>
                             </div>
+
                             <div class="input-group has-validation">
                                 <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
                                     placeholder="Date_debut" required>
                             </div>
                         </div>
-<<<<<<< HEAD
                         <div class="col-md-6 mb-4 ">
                             <div class="input-group has-validation">
                                 <select name="domaine" class="form-select mb-4" id="">
@@ -184,46 +192,15 @@ Tableau de Bord
                             <div class="input-group has-validation">
                                 <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
                                     required>
-                            </div>                       
-=======
-                        <div class="input-group has-validation">
-                                <textarea name="description" class="form-control mb-3" id=""></textarea>
+                            </div>
                         </div>
-                        <div class="input-group has-validation">
-                            <select name="duree" class="form-select mb-3" id="" required>
-                                <option value="">--selectionner Durée--</option>
-                                <option value="1 Mois">1 Mois</option>
-                                <option value="2 Mois">2 Mois</option>
-                                <option value="3 Mois">3 Mois</option>
-                                <option value="4 Mois">4 Mois</option>
-                                <option value="5 Mois">5 Mois</option>
-                                <option value="6 Mois">6 Mois</option>
-                                <option value="7 Mois">7 Mois</option>
-                                <option value="8 Mois">8 Mois</option>
-                                <option value="9 Mois">9 Mois</option>
-                                <option value="10 Mois">10 Mois</option>
-                                <option value="11 Mois">11 Mois</option>
-                                <option value="12 Mois">12 Mois</option>
-                            </select>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
-                                placeholder="Date_debut" required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
-                                required>
-                        </div>
-                        <div class="input-group has-validation">
-                            <select name="domaine" class="form-select mb-3" id="">
-                                <option value="">--selectionner Domaine--</option>
->>>>>>> jean-louis
-
                     </div>
-                   
-                    <div class="col-md-12 text-center">
-                        <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
+                        </div>
                     </div>
+                            
                 </form>
             </div>
             <div class="modal-footer border-top-0">
@@ -247,22 +224,36 @@ Tableau de Bord
                 <form method="POST" action="{% url 'updateFormation' %}">
                     {% csrf_token %}
                     <input type='hidden' value="{{formation.code}}" name='code'>
-<<<<<<< HEAD
                     <div class="row">
                         <div class="col-md-6 mb-4 ">
                             <div class="input-group has-validation">
-                                <input type="text" name="titre" class="form-control mb-3" value="{{formation.titre}}" id="titre" placeholder="Titre"
+                                <input type="text" name="titre" class="form-control mb-3" id="titre" value="{{formation.titre}}" placeholder="Titre"
                                     required>
                             </div>
                             <div class="input-group has-validation">
-                                <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
+                                    <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
                             </div>
                             <div class="input-group has-validation">
-                                <input type="time" name="duree" class="form-control mb-3" value="{{formation.duree}}" id="durée" placeholder="Duree"
-                                    required>
+                                <select name="duree" class="form-select mb-3" id="" required>
+                                    <option value="{{formation.duree}}" selected>{{formation.duree}}</option>
+                                    <option value="" disabled>--selectionner Durée--</option>
+                                    <option value="1 Mois">1 Mois</option>
+                                    <option value="2 Mois">2 Mois</option>
+                                    <option value="3 Mois">3 Mois</option>
+                                    <option value="4 Mois">4 Mois</option>
+                                    <option value="5 Mois">5 Mois</option>
+                                    <option value="6 Mois">6 Mois</option>
+                                    <option value="7 Mois">7 Mois</option>
+                                    <option value="8 Mois">8 Mois</option>
+                                    <option value="9 Mois">9 Mois</option>
+                                    <option value="10 Mois">10 Mois</option>
+                                    <option value="11 Mois">11 Mois</option>
+                                    <option value="12 Mois">12 Mois</option>
+                                </select>
                             </div>
+
                             <div class="input-group has-validation">
-                                <input type="date" name="date_debut" class="form-control mb-3" value="{{formation.date_debut}}" id="date_début"
+                                <input type="date" name="date_debut" class="form-control mb-3" id="date_début"
                                     placeholder="Date_debut" required>
                             </div>
                         </div>
@@ -271,84 +262,46 @@ Tableau de Bord
                                 <select name="domaine" class="form-select mb-4" id="">
                                     <option value="{{formation.domaine.code}}" selected>{{ formation.domaine.designation }}</option>
                                     <option value="" disabled>--selectionner Domaine--</option>
-        
+    
                                     {% for d in domaines %}
                                     <option value="{{ d.code }}">{{ d.designation }}</option>
                                     {% endfor %}
-        
+    
                                 </select>
                             </div>
                             <div class="input-group has-validation">
                                 <select name="enseignant" class="form-select mb-4" id="">
-                                    <option value="{{ formation.enseignant.matricule }}" selected>{{ formation.enseignant.nom }} {{ formation.enseignant.postnom }} {{ formation.enseignant.prenom }}</option>
+                                    <option value="{{formation.enseignant.matricule}}" selected>{{ formation.enseignant.nom }} {{ formation.enseignant.postnom }} {{ formation.enseignant.prenom }}</option>
                                     <option value="" disabled>--selectionner Enseignant--</option>
-        
+    
                                     {% for e in enseignants %}
                                     <option value="{{ e.matricule }}">{{ e.nom }} {{e.postnom}} {{e.prenom}}</option>
                                     {% endfor %}
-        
+    
                                 </select>
                             </div>
                             <div class="input-group has-validation">
                                 <select name="module" class="form-select mb-4" id="">
                                     <option value="{{formation.module.code}}" selected>{{ formation.module.titre }}</option>
                                     <option value="" disabled>--selectionner Module--</option>
-        
+    
                                     {% for m in modules %}
                                     <option value="{{ m.code }}">{{ m.titre }} </option>
                                     {% endfor %}
+    
                                 </select>
-                                <div class="input-group has-validation">
-                                    <input type="date" name="date_fin" class="form-control mb-4" id="date_fin" placeholder="Date_fin"
-                                        required>
-                                </div>
+                            </div>                      
+                        
+                            <div class="input-group has-validation">
+                                <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
+                                    required>
                             </div>
                         </div>
-=======
-                    <div class="input-group has-validation">
-                        <input type="text" name="titre" class="form-control mb-3" value="{{formation.titre}}" id="titre" placeholder="Titre"
-                            required>
                     </div>
-                    <div class="input-group has-validation">
-                        <textarea name="description" class="form-control mb-3" id="">{{ formation.description }}</textarea>
-                    </div>
-                    <div class="input-group has-validation">
-                        <select name="duree" class="form-select mb-3" id="" required>
-                                <option value="{{formation.duree}}" selected>{{formation.duree}}</option>
-                                <option value="" disabled>--selectionner Durée--</option>
-                                <option value="1 Mois">1 Mois</option>
-                                <option value="2 Mois">2 Mois</option>
-                                <option value="3 Mois">3 Mois</option>
-                                <option value="4 Mois">4 Mois</option>
-                                <option value="5 Mois">5 Mois</option>
-                                <option value="6 Mois">6 Mois</option>
-                                <option value="7 Mois">7 Mois</option>
-                                <option value="8 Mois">8 Mois</option>
-                                <option value="9 Mois">9 Mois</option>
-                                <option value="10 Mois">10 Mois</option>
-                                <option value="11 Mois">11 Mois</option>
-                                <option value="12 Mois">12 Mois</option>
-                            </select>
-                    </div>
-                    <div class="input-group has-validation">
-                        <input type="date" name="date_debut" class="form-control mb-3" value="{{formation.date_debut}}" id="date_début"
-                            placeholder="Date_debut" required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <input type="date" name="date_fin" class="form-control mb-3" id="date_fin" placeholder="Date_fin"
-                            required>
-                    </div>
-                    <div class="input-group has-validation">
-                        <select name="domaine" class="form-select mb-3" id="">
-                            <option value="{{formation.domaine.code}}" selected>{{ formation.domaine.designation }}</option>
-                            <option value="" disabled>--selectionner Domaine--</option>
->>>>>>> jean-louis
-
-                        
-                    </div>
-
-                    <div class="col-md-12 text-center">
-                        <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button name="save" class="btn btn-success w-50 fw-bold mb-4" type="submit">Modifier</button>
+                        </div>
                     </div>
                 </form>
             </div>

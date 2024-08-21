@@ -8,7 +8,7 @@
   {% include 'partials/learner_sidebar.html' %}
 {% endblock %}
 {% block Dashboard %}
-  Statistiques
+  Publications
 {% endblock %}
 
 {% block ContentTitle %}
@@ -58,94 +58,31 @@
 </script>
   <div class="col-lg-12">
     <div class="row">
-      <!-- Sales Card -->
-      <div class="col-xxl-4 col-md-4">
-        <div class="card info-card sales-card">
-
-          <div class="card-body">
-            <h5 class="card-title">Nombre de modules</h5>
-
-            <div class="d-flex align-items-center">
-              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                <i class="bx bx-book-content"></i>
-              </div>
-              <div class="ps-3">
-                <h6> {{ total_modules }} </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Sales Card -->
-
-      <!-- Publication Card -->
-      <div class="col-xxl-4 col-md-4">
-        <div class="card info-card revenue-card">
-          <div class="card-body">
-            <h5 class="card-title">Nombre d'evaluations</h5>
-            <div class="d-flex align-items-center">
-              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                <i class="bx bxs-spreadsheet"></i>
-              </div>
-              <div class="ps-3">
-                <h6> {{ total_evaluations }} </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Revenue Card -->
-      <div class="col-xxl-4 col-md-4">
-        <div class="card info-card revenue-card">
-          <div class="card-body">
-            <h5 class="card-title">Nombre de publications</h5>
-            <div class="d-flex align-items-center">
-              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                <i class="bx bx-news"></i>
-              </div>
-              <div class="ps-3">
-                <h6> {{ total_publications }} </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- End Revenue Card -->
 
 {% comment %}================== Tableau ici=============== {% endcomment %}
 <section class="section">
-  <div class="row">
-    <div class="col-lg-12">
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Publications</h5>
-          <!-- Table with stripped rows -->
-          <table class="table datatable">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Auteur</th>
-                <th scope="col">Date de publication</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for publication in publications %}
-                  <tr>
-                  <th scope="row">{{ publication.code }}</th>
-                      <td>{{ publication.titre }}</td>
-                      <td>{{ publication.compte_utilisateur.username}}</td>
-                      <td>{{ publication.date_publication }}</td>
-                  </tr>
-                  {% endfor %}
-            </tbody>
-          </table>
-          <!-- End Table with stripped rows -->
-
+  <div class="container">
+    <div class="row">
+      {% for post in publications %}
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.titre }}</h5>
+              <img src="{{ post.image.url }}" style="object-fit: cover; width:400px;" alt="" class="img-fluid">
+              <p>{{ post.description }}</p>
+              
+              {% if post.user.enseignant %}
+              <h6>By <strong>{{ post.user.enseignant.nom }} {{ post.user.enseignant.postnom }} {{ post.user.enseignant.prenom }}</strong> on {{ post.date_publication }}</h6>
+                
+              {% endif %}
+            </div>
+          </div>
         </div>
-      </div>
-
+        {% if forloop.counter|divisibleby:2 and not forloop.last %}
+        </div><div class="row">
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>

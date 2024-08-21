@@ -66,7 +66,6 @@
           <div class="card-body">
             <h5 class="card-title">Apprenants</h5>
             <!-- Table with stripped rows -->
-<<<<<<< HEAD
             <div class="table-responsive">
                 <table class="table datatable table-responsive ">
                     <thead>
@@ -95,7 +94,7 @@
                               
                               {% if apprenant.photo %}
 
-                                  <td><img class="" src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" style="width:60px; height:60px object-fit:cover;"></td>
+                                  <td><img class="" src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" style="width:30px; object-fit: cover; "></td>
                               {% else %}
                                   <td><i class="bi-x-circle text-center"></i></td>
                               {% endif %}
@@ -107,69 +106,12 @@
                                           <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
                                       </span>
                                   </a>
-                                  <a class="text-info mx-auto pd-2" href="">
-                                      <span class="badge bg-danger ">
-                                          <i class="bi bi-trash fa-lg "></i>
-                                      </span>
-                                  </a>
                               </td>
                           </tr>
                           {% endfor %}
                     </tbody>
                   </table>
             </div>
-            
-       
-=======
-            <table class="table datatable">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Noms</th>
-                  <th scope="col">Genre</th>
-                  <th scope="col">Etat civil</th>
-                  <th scope="col">Adresse</th>
-                  <th scope="col">Contact</th>
-                  <th scope="col">Profession</th>
-                  <th scope="col">Photo</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {% for apprenant in apprenants %}
-                    <tr>
-                    <th scope="row">{{ apprenant.matricule }}</th>
-                        <td>{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</td>
-                        <td>{{ apprenant.genre }}</td>
-                        <td>{{ apprenant.etatcivil }}</td>
-                        <td>{{ apprenant.addresse }}</td>
-                        <td>{{ apprenant.contact }}</td>
-                        <td>{{ apprenant.profession }}</td>
-                        
-                        {% if apprenant.photo %}
-                            <td><img src="{{ apprenant.photo.url }}" alt="Photo_Apprennant" class="rounded-circle" style="width: 45px;"></td>
-                        {% else %}
-                            <td><i class="bi-x-circle text-center"></i></td>
-                        {% endif %}
-                            
-                        
-                        <td>
-                            <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
-                                <span class="badge bg-success " >
-                                    <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
-                                </span>
-                            </a>
-                            <a class="text-info mx-auto pd-2" href="">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-trash fa-lg "></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-              </tbody>
-            </table>
->>>>>>> 2fbf70692de42d4bec5a8905096fe5841bf93a0a
             <!-- End Table with stripped rows -->
 
           </div>
@@ -197,6 +139,7 @@
                                 <input type="text" name="postnom" class="form-control mb-3" id="" placeholder="Post-Nom" required>
                                 <input type="text" name="prenom" class="form-control mb-3" id="" placeholder="Prenom" required>
                                 <input type="text" name="addresse" class="form-control mb-3" id="" placeholder="Adresse" required>
+                                <input type="mail" name="email" class="form-control mb-3" id="" placeholder="Adresse Mail" required>
                             </div>
                             <div class="col-md-6 mb-4 ">                                    
                                 <select name="genre" id="" class="form-select mb-3" required>
@@ -209,13 +152,13 @@
                                     <option value="Divorcé(e)">Divorcé(e)</option>
                                 </select>
                                 <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
-                                <input type="text" name="contact" class="form-control mb-3" id="" value="+243" required>
+                                <input type="tel" name="contact" class="form-control mb-3" id="" value="+243" required>
+                                <input type="file" name="photo" class="form-control mb-3" id="">
                             </div>                            
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mb-4 ">                           
+                            <div class="col-md-12 mb-4 ">                           
                                                         
-                            <input type="file" name="photo" class="form-control mb-3" id="">
                             </div>
                         </div>                       
 
@@ -263,13 +206,13 @@
                                 <option value="Célibataire">Célibataire</option>
                                 <option value="Divorcé(e)">Divorcé(e)</option>
                             </select>
-                            <input type="text" name="contact" class="form-control mb-3" id="" value="{{apprenant.contact}}" required>
+                            <input type="tel" name="contact" class="form-control mb-3" id="" value="{{apprenant.contact}}" required>
                             <input type="text" name="profession" class="form-control mb-3" id="" value="{{apprenant.profession}}" placeholder="Profession" required>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-4 ">                                        
+                        <div class="col-md-12 mb-4 ">                                        
                             <input type="file" name="photo" class="form-control mb-3" id="">
                         </div>
                     </div>                    
