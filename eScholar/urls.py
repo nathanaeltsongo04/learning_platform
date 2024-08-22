@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
+from .views import send_email_view
 
 urlpatterns = [
+    # send_mail
+    path('email',send_email_view,name='email'),
+    
     path('', views.index, name='home'),
     path('test/', views.test, name='test'),
     path('dashboard_apprenant/', views.dashboard_apprenant, name='dashboard_apprenant'),
@@ -95,4 +99,5 @@ urlpatterns = [
     
     path('type_publication_admin/', views.typePublication, name='type_publication_admin'),
     path('liste_formation/',views.Liste_formation, name="liste_formation"),
+    
 ]

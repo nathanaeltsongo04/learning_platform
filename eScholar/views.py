@@ -9,9 +9,20 @@ from django.shortcuts import render
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 import random
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import  HttpResponseNotFound
 
 
-
+#  envoi mail
+def send_email_view(request):
+    subject = 'Bonjour team 287'
+    message = f"Votre team est le meilleur"
+    form_email = 'nathanaeltsongo04@gmail.com'
+    recipient_list = ['djogoantisystem11@gmail.com']
+    send_mail(subject, message, form_email, recipient_list)
+    return HttpResponse('Email envoye avec succes.')
+     
 # Create your views here.
 
 def index(request):
