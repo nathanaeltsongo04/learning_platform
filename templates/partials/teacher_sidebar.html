@@ -113,14 +113,17 @@
         <li>
           <a href="{% url 'evaluation' %}">
             <i class="bi bi-circle"></i>
-            <span>Évaluation</span>
+            <span>Interrogation</span>
           </a>
         </li>
         <li>
-          <a href="#"><i class="bi bi-circle"></i><span>Cotes</span></a>
+          <a href="{% url 'questionInterro' %}"><i class="bi bi-circle"></i><span>Questions Interro</span></a>
         </li>
         <li>
-          <a href="#"><i class="bi bi-circle"></i><span>Corrections</span></a>
+          <a href="{% url 'reponsesAlternativesInterro' %}"><i class="bi bi-circle"></i><span>Reponses Alternatives Interro</span></a>
+        </li>
+        <li>
+          <a href="#"><i class="bi bi-circle"></i><span>Participation</span></a>
         </li>
       </ul>
     </li>

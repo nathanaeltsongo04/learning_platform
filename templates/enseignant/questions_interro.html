@@ -1,0 +1,207 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+{% include 'partials/teacher_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %} Questions Interrogation {% endblock %}
+
+{% block ContentTitle %}
+Administrateur
+{% endblock %}
+
+{% block ContentSubTitle %}
+Tableau de Bord
+{% endblock %}
+
+{% block content %}
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    Swal.fire({
+        position: 'center',
+        icon: messageType === "success" ? 'success' : (messageType === "warning" ? 'warning' : 'error'),
+        title: messageText,
+        showConfirmButton: false,
+        timer: messageType === "error" ? 5000 : 1000
+    });
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="filter">
+                    <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                            class="bi bi-plus-circle-fill h4"></i></a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Questions Interrogation</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Module</th>
+                                <th scope="col">Enonce</th>
+                                <th scope="col">Réponses</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for q in questions %}
+                            <tr>
+                                <th scope="row">{{ q.code }}</th>
+                                <td>{{ q.interrogation.module.titre }}</td>
+                                <td>{{ q.enonce }}</td>
+                                <td>{{ q.reponse }}</td>
+                                <td>{{ q.maxima }}</td>
+                                <td>
+                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal1-{{forloop.counter}}">
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-pencil-square fa-lg" data-toggle="tooltip"
+                                                data-placement="top" title="Modifier cet élément"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal pour ajouter un nouveau questionnaire -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Ajouter une Question</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'insertQuestionInterro' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <div id="questionnaire-forms">
+                                <div class="questionnaire-form">
+                                    <input placeholder="Type to search Module" class="form-control mb-3" list="datalistOptions" id="selectedModule">
+                                    <input type="hidden" id="module" name="interrogation_code">
+
+
+                                    <textarea name="enonce" class="form-control mb-3" placeholder="Entrez la Question ici"></textarea>
+                                    <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici"></textarea>
+                                    <input type="number" name="maxima" class="form-control mb-3" value="10">
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button name="save" class="btn btn-secondary w-50 fw-bold mb-3" type="submit">Enregistrer</button>
+                                <button type="button" onclick="addQuestionnaireForm()" class="btn btn-primary w-50 fw-bold mb-3">Ajouter des champs</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Datalist partagé pour les modules -->
+<datalist id="datalistOptions">
+    {% for interrogation in interrogations %}
+    <option value="{{ interrogation.titre }}" data-code="{{ interrogation.code }}"></option>
+    {% endfor %}
+</datalist>
+
+<!-- Script pour ajouter dynamiquement des formulaires -->
+<script>
+    function addQuestionnaireForm() {
+        var formContainer = document.getElementById('questionnaire-forms');
+        var newForm = document.createElement('div');
+        newForm.className = 'questionnaire-form';
+        newForm.innerHTML = `
+            <hr>
+            <input placeholder="Type to search Module" class="form-control mb-3" list="datalistOptions" id="selectedModule">
+            <input type="hidden" id="module" name="module_code">
+
+            <textarea name="enonce" class="form-control mb-3" placeholder="Entrez la Question ici"></textarea>
+            <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici"></textarea>
+            <input type="number" name="maxima" class="form-control mb-3" value="10">
+        `;
+        formContainer.appendChild(newForm);
+    }
+
+    document.addEventListener('input', function (event) {
+    if (event.target && event.target.list && event.target.list.id === 'datalistOptions') {
+        var selectedValue = event.target.value;
+        var options = document.querySelectorAll('#datalistOptions option');
+
+        options.forEach(function (option) {
+            if (option.value === selectedValue) {
+                var moduleCode = option.getAttribute('data-code');
+                var hiddenInput = event.target.closest('.questionnaire-form').querySelector('input[type="hidden"]');
+                hiddenInput.value = moduleCode;
+            }
+        });
+    }
+});
+
+</script>
+
+<!-- Modal Modification Domaine -->
+{% for q in questions %}
+<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modifier une Question</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'updateQuestionInterro' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <div id="questionnaire-forms">
+                                <div class="questionnaire-form">
+                                    <input type="hidden" name="code" value="{{ q.code }}">
+                                    <select name="interrogation_code" class="form-select mb-3" required>
+                                        <option value="{{ q.interrogation.module.code }}" selected>{{ q.interrogation.module.titre }}</option>
+                                        <option disabled>--Sélectionner Module--</option>
+                                        {% for interrogation in interrogations %}
+                                        <option value="{{ interrogation.module.code }}">{{ interrogation.module.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <textarea name="enonce" class="form-control mb-3" placeholder="Entrez la Question ici">{{ q.enonce }}</textarea>
+                                    <textarea name="reponse" class="form-control mb-3" placeholder="Entrez la Réponse ici">{{ q.reponse }}</textarea>
+                                    <input type="number" name="maxima" class="form-control mb-3" value="{{ q.maxima }}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button name="save" class="btn btn-secondary w-50 fw-bold mb-3" type="submit">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0"></div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

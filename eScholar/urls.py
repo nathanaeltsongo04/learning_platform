@@ -91,8 +91,15 @@ urlpatterns = [
     path('downloadFile/<int:code>', views.download_file, name='downloadFile'),
 
     path('evaluation', views.evaluation, name='evaluation'),
-    path('insertEvaluation', views.insertEvaluation, name='insertEvaluation'),
-    path('updateEvaluation', views.updateEvaluation, name='updateEvaluation'),
+    path('insertInterrogation', views.insertInterrogation, name='insertInterrogation'),
+    path('updateInterrogation', views.updateInterrogation, name='updateInterrogation'),
+
+    path('questionInterro', views.questionInterro, name='questionInterro'),
+    path('insertQuestionInterro', views.insertQuestionInterro, name='insertQuestionInterro'),
+    path('updateQuestionInterro', views.updateQuestionInterro, name='updateQuestionInterro'),
+    path('reponsesAlternativesInterro', views.reponsesAlternativesInterro, name='reponsesAlternativesInterro'),
+    path('insertReponseAlternativeInterro', views.insertReponseAlternativeInterro, name='insertReponseAlternativeInterro'),
+    path('updateReponseAlternativeInterro', views.updateReponseAlternativeInterro, name='updateReponseAlternativeInterro'),
 
     path('publication_enseignant', views.publication_enseignant, name='publication_enseignant'),
     path('video_conference', views.video_conference, name='video_conference'),
@@ -100,8 +107,17 @@ urlpatterns = [
 # ========================================================================================================
 # APPRENANT
 # ========================================================================================================
+    path('tester_apprenant', views.tester_apprenant, name='tester_apprenant'),
+    path('prendre_test/<int:formation_id>/<int:question_index>', views.prendre_test, name='prendre_test'),
+    path('test_termine/<int:formation_id>/', views.test_termine, name='test_termine'),
+    path('confirmer_modification/<int:formation_id>/<str:niveau>', views.confirmer_modification, name='confirmer_modification'),
 
     path('dashboard_apprenant', views.dashboard_apprenant, name='dashboard_apprenant'),
     path('liste_formation', views.liste_formation, name="liste_formation"),
+    path('contenu_formation/<int:code>', views.contenu_formation, name='contenu_formation'),
+    path('module_apprenant', views.affichageModule, name='module_apprenant'),
+    path('ressource_apprenant', views.ressource_apprenant , name='ressource_apprenant'),
+    path('evaluation_apprenant', views.affichageEvaluation , name='evaluation_apprenant'),
+    path('chat_apprenant', views.chat_apprenant , name='chat_apprenant'),
 
 ]

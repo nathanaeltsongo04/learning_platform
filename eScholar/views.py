@@ -51,9 +51,11 @@ def index(request):
                     )
                     
                     inscription,_ = Inscription.objects.get_or_create(apprenant = apprenant)
+                    modalite = ModalitePaie.objects.filter(module = inscription.formation.module.code)
                     inscription.date_inscription = date.today()
+                    inscription.modalite = modalite
                     inscription.save()
-                    messages.success(request, "Apprenant ajouté avec succès !")
+                    messages.success(request, f"Vous avez été inscrit avec succès ! \n Veuillez utiliser ce matricule pour creer votre compte \n \n {apprenant.matricule}")
                     return redirect('home')
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
@@ -103,10 +105,12 @@ def contenu_formation(request, code):
     return render(request, 'apprenant/formation.html', context)
 
 def ressource_apprenant(request):
+    context = {}
     try:
         type = TypeRessource.objects.all()
-        ressource = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
+        ressource = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
+        # ressource = Formation.objects.filter(module = )
         context = {'ressources': ressource, 'types': type, 'formations':formations}
     except:
         messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
@@ -1101,9 +1105,9 @@ def updateInscription(request):
 
 def evaluation(request):
     try:
-        evaluation = Evaluation.objects.all()
-        formation = Formation.objects.all()
-        context = {'evaluations':evaluation, 'formations':formation}
+        interrogation = Interrogation.objects.all()
+        module = Module.objects.all()
+        context = {'interrogations':interrogation, 'modules':module}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
         return redirect('evaluation')    
@@ -1123,7 +1127,8 @@ def insertEvaluation(request):
               formation = formation,
               maximum = maximum,
               cote = cote,
-              date_evaluation = date_evaluation
+              date_evaluation = date_evaluation,
+              enseignant = request.user
           )
           messages.success(request, "Résultat de l'évaluation inseré avec succès !")
           return redirect('evaluation')
@@ -1157,6 +1162,156 @@ def updateEvaluation(request):
       return redirect('evaluation')
     return render(request, "enseignant/interrogation.html")
 
+def insertInterrogation(request):
+    try:
+        if request.method == "POST":
+            titre = request.POST.get("titre")
+            date_interro = request.POST.get("date_interro")
+            duree = request.POST.get("duree")
+            id_module = request.POST.get("module")
+
+            module = get_object_or_404(Module, code = id_module)
+
+            Interrogation.objects.create(
+                titre = titre,
+                date_interro = date_interro,
+                duree = duree,
+                module = module, 
+                enseignant = request.user.enseignant
+            )
+            messages.success(request, "Interrogation créée avec succès !")
+            return redirect('evaluation')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/interrogation.html")
+
+def updateInterrogation(request):
+    try:
+        if request.method == "POST":
+            code = request.POST.get("code")
+            titre = request.POST.get("titre")
+            date_interro = request.POST.get("date_interro")
+            duree = request.POST.get("duree")
+            id_module = request.POST.get("module")
+
+            module = get_object_or_404(Module, code = id_module)
+
+            Interrogation(
+                code = code,
+                titre = titre,
+                date_interro = date_interro,
+                duree = duree,
+                module = module, 
+                enseignant = request.user.enseignant
+            ).save()
+            messages.success(request, "Interrogation modifiée avec succès !")
+            return redirect('evaluation')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/interrogation.html")
+
+def questionInterro(request):
+    try:
+        questions = QuestionInterrogation.objects.all()
+        interrogation = Interrogation.objects.all()
+        context = {'questions':questions, 'interrogations':interrogation}
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/questions_interro.html", context)
+
+def insertQuestionInterro(request):
+    try:
+        if request.method == "POST":
+            interrogation_ids = request.POST.getlist('interrogation_code')
+            enonces = request.POST.getlist('enonce')
+            responses = request.POST.getlist('reponse')
+            maxima = request.POST.getlist('maxima')
+
+            for i in range(len(enonces)):
+                QuestionInterrogation.objects.create(
+                    interrogation_id=interrogation_ids[i],
+                    enonce=enonces[i].capitalize(),
+                    reponse=responses[i].capitalize(),
+                    maxima=maxima[i]
+                )
+            
+            messages.success(request, "Question(s) Ajoutée(s) avec succès !")
+            return redirect('questionInterro')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/questions_interro.html")
+
+def updateQuestionInterro(request):
+    try:
+        if request.method == "POST":
+            code = request.POST.get("code")
+            interrogation_id = request.POST.get('interrogation_code')
+            enonces = request.POST.get('enonce')
+            responses = request.POST.get('reponse')
+            maxima = request.POST.get('maxima')
+
+            interro = get_object_or_404(Interrogation, code = interrogation_id)
+
+            QuestionInterrogation(
+                code = code,
+                interrogation_id=interro,
+                enonce=enonces.capitalize(),
+                reponse=responses.capitalize(),
+                maxima=maxima
+                ).save()
+            
+            messages.success(request, "Question Modifiée avec succès !")
+            return redirect('questionInterro')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/questions_interro.html")
+
+def reponsesAlternativesInterro(request):
+    try:
+        question = QuestionInterrogation.objects.all()
+        reponses = ReponsesAlternativesInterro.objects.all()
+        context = {'questions':question, 'reponses':reponses}
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/reponses_alternatives_interro.html", context)
+
+def insertReponseAlternativeInterro(request):
+    try:
+        if request.method == "POST":
+            id_question = request.POST.get("question")
+            reponse_alternative = request.POST.get("reponseAlternative")
+
+            question = get_object_or_404(QuestionInterrogation, pk = id_question)
+
+            ReponsesAlternativesInterro.objects.create(
+                question = question,
+                reponse_alternative = reponse_alternative
+            )
+            messages.success(request, "Ajouté avec succès !")
+            return redirect('reponsesAlternativesInterro')
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/reponses_alternatives_interro.html")
+
+def updateReponseAlternativeInterro(request):
+    try:
+        if request.method == "POST":
+            code=request.POST.get("code")
+            id_question = request.POST.get("question")
+            reponse_alternative = request.POST.get("reponseAlternative")
+
+            question = get_object_or_404(QuestionInterrogation, pk = id_question)
+
+            ReponsesAlternativesInterro(
+                code = code,
+                question = question,
+                reponse_alternative = reponse_alternative
+            ).save()
+            messages.success(request, "Modifié avec succès !")
+            return redirect('reponsesAlternativesInterro')
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "enseignant/reponses_alternatives_interro.html")
 # =======================================================================================================
 # PUBLICATION
 # =======================================================================================================
@@ -1253,21 +1408,26 @@ def updatePublication(request):
                 return redirect('publication_admin')
         else:
             if image :
+                publication = Publication.objects.get(code = code)
                 Publication(
                         code = code,
                         titre = titre.title(),
                         description = description,
                         user = request.user,
                         image = image,
+                        date_publication = publication.date_publication
                     ).save()
                 messages.success(request, "Publication modifiée avec succès !")
                 return redirect('publication_admin')
             else:
+                publication = Publication.objects.get(code = code)
                 Publication(
                         code = code,
                         titre = titre.title(),
                         description = description,
-                        user = request.user
+                        user = request.user,
+                        image = publication.image,
+                        date_publication = publication.date_publication
                     ).save()
                 messages.success(request, "Publication modifiée avec succès !")
                 return redirect('publication_admin')
@@ -1570,8 +1730,8 @@ def prendre_test(request, formation_id, question_index=0):
     return render(request, 'take_test.html', context)
 
 def test_termine(request, formation_id):
-    context = {}
-    try:
+        context = {}
+    # try:
         # Récupérer la formation et l'utilisateur connecté
         formation = get_object_or_404(Formation, pk=formation_id)
         user = request.user
@@ -1612,23 +1772,24 @@ def test_termine(request, formation_id):
             # Si le test ou la somme maxima est introuvable
             messages.error(request, "Test ou somme maxima introuvable. Actualisez la page.")
         
-    except Exception as e:
-        # Gestion des erreurs
-        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    # except Exception as e:
+    #     # Gestion des erreurs
+    #     messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     
     # Retourner la page finale si aucune condition précédente n'a été remplie
-    return render(request, 'test_complete.html', context)
+        return render(request, 'test_complete.html', context)
 
 def confirmer_modification(request, formation_id, niveau):
     try:
         formation = get_object_or_404(Formation, pk=formation_id)
         apprenant = request.user.apprenant
         inscription = Inscription.objects.filter(apprenant=apprenant, formation__isnull=True).last()
-
+        modalite = ModalitePaie.objects.filter(module = formation.module.code).last()
         if inscription:
             if niveau == 'debutant':
                 # Inscrire l'apprenant au niveau débutant
                 inscription.formation = formation
+                inscription.modalite = modalite
                 inscription.save()
 
                 messages.success(request, f"Vous avez été inscrit au module {inscription.formation.module.titre} avec succès.")

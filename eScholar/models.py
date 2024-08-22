@@ -133,17 +133,6 @@ class Inscription(models.Model):
     class Meta:
         db_table='Inscription'
         
-class Evaluation(models.Model):
-    code=models.AutoField(primary_key=True)
-    apprenant=models.ForeignKey(Apprenant, on_delete=models.CASCADE, null=True)
-    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)
-    maximum=models.DecimalField(max_digits=10,decimal_places=1)
-    cote=models.DecimalField(max_digits=10,decimal_places=1)
-    date_evaluation=models.DateTimeField()
-    
-    class Meta:
-        db_table='Evaluation'
-        
 class CompteUtilisateur(AbstractUser):
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)
     enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE, null = True)
@@ -213,9 +202,8 @@ class Reponses_alternatives(models.Model):
 class Test(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-    questionnaire=models.ForeignKey(Questionnaire,on_delete=models.CASCADE)
-    reponse_alternative = models.ForeignKey(Reponses_alternatives, on_delete=models.CASCADE)
-    reponse=models.TextField()
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    resultat = models.IntegerField()
     
     class Meta:
         db_table='Test'
@@ -226,7 +214,7 @@ class Interrogation(models.Model):
     date_interro = models.DateField(auto_now=False, auto_now_add=False)
     duree = models.TimeField(auto_now=False, auto_now_add=False)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
-    enseignant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)
+    enseignant = models.ForeignKey(Enseignant, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'Interrogation'
@@ -234,6 +222,8 @@ class Interrogation(models.Model):
 class QuestionInterrogation(models.Model):
     code = models.AutoField(primary_key=True)
     enonce=models.TextField()
+    reponse=models.TextField()
+    maxima = models.IntegerField()
     interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)
 
     class Meta:
@@ -252,8 +242,27 @@ class Participation(models.Model):
 class ReponseInterrogation(models.Model):
     code = models.AutoField(primary_key=True)
     texte = models.TextField()
-    # est_correcte = 
     question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'ReponseInterrogation'
+
+class ReponsesAlternativesInterro(models.Model):
+    code = models.AutoField(primary_key=True)
+    question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)
+    reponse_alternative = models.CharField(max_length=255)
+
+    class Meta:
+        db_table='ReponsesAlternativesInterro'
+
+class Evaluation(models.Model):
+    code=models.AutoField(primary_key=True)
+    apprenant=models.ForeignKey(Apprenant, on_delete=models.CASCADE, null=True)
+    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)
+    maximum=models.DecimalField(max_digits=10,decimal_places=1)
+    cote=models.DecimalField(max_digits=10,decimal_places=1)
+    date_evaluation=models.DateTimeField()
+    
+    class Meta:
+        db_table='Evaluation'
+        
