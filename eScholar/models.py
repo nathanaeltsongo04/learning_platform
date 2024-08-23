@@ -126,7 +126,7 @@ class ModalitePaie(models.Model):
 class Inscription(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
-    formation=models.ForeignKey(Formation,on_delete=models.CASCADE, null=True) 
+    formation=models.ForeignKey(Formation,on_delete=models.CASCADE, null=True)
     modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE, null=True)
     date_inscription=models.DateField(auto_now=True)
     
@@ -198,7 +198,6 @@ class Reponses_alternatives(models.Model):
     class Meta:
         db_table='Reponses_alternatives'
 
-
 class Test(models.Model):
     code=models.AutoField(primary_key=True)
     apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)
@@ -213,7 +212,7 @@ class Interrogation(models.Model):
     titre = models.CharField(max_length=150)
     date_interro = models.DateField(auto_now=False, auto_now_add=False)
     duree = models.TimeField(auto_now=False, auto_now_add=False)
-    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
     enseignant = models.ForeignKey(Enseignant, on_delete=models.CASCADE)
 
     class Meta:

@@ -3,7 +3,15 @@
 {% block title %}eScholar{% endblock %}
 
 {% block sidebar%}
-    {% include 'partials/sidebar.html' %}
+
+    {% if user.enseignant %}
+        {% include 'partials/teacher_sidebar.html' %}
+    {% elif user.apprenant %}
+        {% include 'partials/learner_sidebar.html' %}
+    {% else %}
+        {% include 'partials/sidebar.html' %}
+    {% endif %}
+    
 {% endblock %}
 
 {% block Dashboard %} Profile{% endblock %}
@@ -23,12 +31,30 @@
     <div class="card">
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="" style="height: 100px; width:100px;" alt="Profile" class="rounded-circle">
-            <h4 class="text-center"></h4>
-            MUMBERE TSONGO NATHANAEL</h4>
-            <h6 class="fw-bold ">
-                IT MANAGER
-            </h6>
+            {% if user.enseignant %}
+            
+                {% if user.enseignant.photo %}
+                <img src="{{ user.enseignant.photo.url }}" style="height: 100px; width:100px;" alt="Profile" class="rounded-circle">
+                {% else %}
+                <a href="#" class=""><i class="fas fa-x"></i></a>
+                {% endif %}
+                
+                <h4 class="text-center">{{ user.enseignant.nom }} {{ user.enseignant.postnom }} {{ user.enseignant.prenom }}</h4>
+                <h6 class="fw-bold ">
+                    {{ user.enseignant.profession }}
+                </h6>
+            {% elif user.apprenant %}
+                {% if user.apprenant.photo %}
+                <img src="{{ user.apprenant.photo.url }}" style="height: 100px; width:100px;" alt="Profile" class="rounded-circle">
+                {% else %}
+                <a href="#" class=""><i class="fas fa-x"></i></a>
+                {% endif %}
+            
+                <h4 class="text-center">{{ user.apprenant.nom }} {{ user.apprenant.postnom }} {{ user.apprenant.prenom }}</h4>
+                <h6 class="fw-bold ">
+                    {{ user.apprenant.profession }}
+                </h6>
+            {% endif %}
             <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -37,7 +63,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="col-xl-8">
@@ -61,12 +86,42 @@
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                     <h5 class="card-title">Details Profile</h5>
-
+                    
+                    
+                    
+                    <div class="row mb-2">
+                        <div class="col-lg-3 col-md-4 label fw-bold ">Username</div>
+                        <div class="col-lg-9 col-md-8">
+                            {{ user.username }}
+                        </div>
+                    </div>
+                    {% if user.apprenant %}
                     <div class="row mb-2">
                         <div class="col-lg-3 col-md-4 label fw-bold ">Noms</div>
                         <div class="col-lg-9 col-md-8">
-                            MUMBERE TSONGO NATHANAEL</div>
+                            {{ user.apprenant.nom }} {{ user.apprenant.postnom }} {{ user.apprenant.prenom }}
+                        </div>
                     </div>
+                    <div class="row mb-2">
+                        <div class="col-lg-3 col-md-4 label fw-bold ">Profession</div>
+                        <div class="col-lg-9 col-md-8">
+                            {{ user.apprenant.profession }}
+                        </div>
+                    </div>
+                    {% elif user.enseignant %}
+                    <div class="row mb-2">
+                        <div class="col-lg-3 col-md-4 label fw-bold ">Noms</div>
+                        <div class="col-lg-9 col-md-8">
+                            {{ user.enseignant.nom }} {{ user.enseignant.postnom }} {{ user.enseignant.prenom }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-lg-3 col-md-4 label fw-bold ">Profession</div>
+                        <div class="col-lg-9 col-md-8">
+                            {{ user.enseignant.profession }}
+                        </div>
+                    </div>
+                    {% endif %}
 
                 </div>
                 <div class="tab-pane fade pt-3" id="profile-change-password">
@@ -77,14 +132,14 @@
                             <label for="currentPassword" class="col-md-6 col-lg-5 col-form-label">Nom
                                 d'Utilisateur</label>
                             <div class="col-md-6 col-lg-7">
-                                <input value="" name="nomutilisateur" type="text" class="form-control" id="currentPassword">
+                                <input value="{{user.username}}" name="nomutilisateur" type="text" class="form-control" id="currentPassword">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="currentPassword" class="col-md-6 col-lg-5 col-form-label">Mot de Passe
                                 Courant</label>
                             <div class="col-md-6 col-lg-7">
-                                <input name="password" type="password" class="form-control" id="currentPassword">
+                                <input name="password" type="password" class="form-control" value="{{user.password}}" id="currentPassword">
                             </div>
                         </div>
 
@@ -97,14 +152,14 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="confirmassword" class="col-md-6 col-lg-5 col-form-label">Confirmer le</label>
+                            <label for="confirmassword" class="col-md-6 col-lg-5 col-form-label">Confirmer le Nouveau Mot de passe</label>
                             <div class="col-md-6 col-lg-7">
                                 <input name="confirmpassword" type="password" class="form-control" id="renewPassword">
                             </div>
                         </div>
 
                         <div class="text-center">
-                            <button name="" type="submit" class="btn btn-success">Modifier</button>
+                            <button type="submit" class="btn btn-success">Modifier</button>
                         </div>
                     </form><!-- End Change Password Form -->
 

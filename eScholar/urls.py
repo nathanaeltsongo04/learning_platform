@@ -8,6 +8,7 @@ urlpatterns = [
     path('creer_compte', views.creer_compte, name='creation_compte_utilisateur'),
     path('logout', views.logout_view, name='logout'),
     path('logged_out', views.logged_out, name='logged_out'),
+    path('profile', views.profile, name='profile'),
 #=========================================================================================================
 # ADMINISTRATEUR
 # ========================================================================================================
@@ -116,8 +117,8 @@ urlpatterns = [
     path('liste_formation', views.liste_formation, name="liste_formation"),
     path('contenu_formation/<int:code>', views.contenu_formation, name='contenu_formation'),
     path('module_apprenant', views.affichageModule, name='module_apprenant'),
-    path('ressource_apprenant', views.ressource_apprenant , name='ressource_apprenant'),
-    path('evaluation_apprenant', views.affichageEvaluation , name='evaluation_apprenant'),
+    # path('ressource_apprenant', views.ressource_apprenant , name='ressource_apprenant'),
+    path('evaluation_apprenant', views.interrogations_apprenant , name='evaluation_apprenant'),
     path('chat_apprenant', views.chat_apprenant , name='chat_apprenant'),
 
 ]

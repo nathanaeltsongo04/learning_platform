@@ -60,18 +60,20 @@
                 </div>
             </div>
         </div>
-        
+        <div class="row">
+        {% for formation in formations %}
         <div class="col-md-4">
-          <div class="card mb-3 mt-4 border-o" style="max-width: 100%">
+          <div class="card mb-3 mt-4 border-o" style="max-width: 100%;">
             <div class="row g-0">
               <div class="col-md-4">
                 <img src="{% static 'assets/img/courses.jpg' %}" class="img-fluid rounded-start" style="height: 22.2vh" alt="..." />
               </div>
               <div class="col-md-8">
                   <div class="card-body">
-                    <h6 class="card-text text-start fw-bold mt-2 text-primary">Nom de la formation</h6>
+                    <h5 class="card-text text-start fw-bold mt-2 ">{{ formation.titre }}</h5>
+                    <h6 class="card-text text-start fw-bold mt-2 text-primary">{{ formation.module.titre }}</h6>
                     <p class="card-text text-start lh-5  mb-3 fw-normal">
-                       breve description
+                       {% comment %} {{ formation.description }} {% endcomment %}
                     </p>
                     
                   </div>
@@ -79,6 +81,8 @@
             </div>
           </div>
         </div>
+        {% endfor %}
+      </div>
       </div>
     </div>
   </section>

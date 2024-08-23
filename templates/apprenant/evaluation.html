@@ -44,28 +44,30 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Formation</th>
-                  <th scope="col">Maximum</th>
-                  <th scope="col">Cote</th>
-                  <th scope="col">Date Evaluation</th>
+                  <th scope="col">interrogation</th>
+                  <th scope="col">Module</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Duree</th>
+                  <th scope="col">Enseignant</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                  {% for evaluation in evaluations %}
+                  {% for interrogation in interrogations %}
                     <tr>
-                    <th scope="row">{{ evaluation.code }}</th>
-                        <td>{{ evaluation.formation.titre }}</td>
-                        <td>{{ evaluation.maximum }}</td>
-                        <td>{{ evaluation.cote }}</td>
-                        <td>{{ evaluation.date_evaluation }}</td>
-                        <td>
-                            <a class="text-info mx-auto pd-2" href="{{ domaine.code }}">
-                                <span class="badge bg-danger ">
-                                    <i class="bi bi-pencil-square fa-lg "></i>
-                                </span>
-                            </a>
-                        </td>
+                    <th scope="row">{{ interrogation.code }}</th>
+                    <td>{{ interrogation.titre }}</td>
+                    <td>{{ interrogation.formation.module.titre }}</td>
+                    <td>{{ interrogation.date_interro }}</td>
+                    <td>{{ interrogation.duree }}</td>
+                    <td>{{ interrogation.enseignant.nom }} {{ interrogation.enseignant.postnom }} {{ interrogation.enseignant.prenom }}</td>
+                    <td>
+                        <a href="">
+                          <span class="badge bg-success " >Passer Interro
+                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Répondez à ces questions" ></i>
+                        </span>
+                        </a>
+                    </td>
                     </tr>
                     {% endfor %}
               </tbody>

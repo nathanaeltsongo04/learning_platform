@@ -59,7 +59,7 @@
                     <tr>
                     <th scope="row">{{ interrogation.code }}</th>
                         <td>{{ interrogation.titre }}</td>
-                        <td>{{ interrogation.module.titre }}</td>
+                        <td>{{ interrogation.formation.module.titre }}</td>
                         <td>{{ interrogation.date_interro }}</td>
                         <td>{{ interrogation.duree }}</td>
                         <td>
@@ -106,8 +106,8 @@
                         <div class="input-group has-validation">
                             <select name="module" class="form-select mb-3" required>
                                 <option >--Selectionner Module--</option>
-                                {% for module in modules %}
-                                <option value="{{module.code}}">{{ module.titre }}</option>
+                                {% for formation in modules %}
+                                <option value="{{formation.module.code}}">{{ module.titre }}</option>
                                 {% endfor %}
                             </select>
                         </div>

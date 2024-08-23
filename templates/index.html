@@ -176,6 +176,7 @@
               <img
                 src="{% static 'assets/img/formation.jpg' %}"
                 class="card-img-top img-fixed-size"
+                style="height: 37.5vh"
                 alt="..."
               />
               <div class="card-body">
@@ -311,7 +312,11 @@
     <footer class="py-3 bg-dark">
       <div class="container px-5">
         <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website {{ current_year }}
+          
+          Copyright &copy; All right reserved to eScholar <span id="currentYear"></span>  CFPI
+          <script>
+            document.getElementById('currentYear').textContent=new Date().getFullYear();
+          </script>
         </p>
       </div>
     </footer>

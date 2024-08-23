@@ -14,61 +14,77 @@ import random
 from django.db.models import Sum
 from django.db import transaction
 from datetime import date
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 @transaction.atomic
 def index(request):
-    try:
-        if request.method == "POST":
-            nom = request.POST.get("nom")
-            postnom = request.POST.get("postnom")
-            prenom = request.POST.get("prenom")
-            genre = request.POST.get("genre")
-            etatcivil = request.POST.get("etatcivil")
-            addresse = request.POST.get("addresse")
-            email = request.POST.get("email")
-            contact = request.POST.get("contact")
-            profession = request.POST.get("profession")
-            photo = request.FILES.get("photo")
-            
-            if Apprenant.objects.filter(nom = nom.capitalize(), postnom = postnom.capitalize(), prenom = prenom.title()):
-                messages.warning(request, "L'apprenant existe déjà !")
-                return redirect('home')
-            else:
-                with transaction.atomic():
-                    apprenant = Apprenant.objects.create(
-                        matricule = generer_matricule_apprenant(),
-                        nom = nom.capitalize(),
-                        postnom = postnom.capitalize(),
-                        prenom = prenom.title(),
-                        genre = genre.capitalize(),
-                        etatcivil = etatcivil.capitalize(),
-                        addresse = addresse.capitalize(),
-                        email = email.lower(),
-                        contact = contact.capitalize(),
-                        profession = profession.capitalize(),
-                        photo = photo
-                    )
-                    
-                    inscription,_ = Inscription.objects.get_or_create(apprenant = apprenant)
-                    modalite = ModalitePaie.objects.filter(module = inscription.formation.module.code)
-                    inscription.date_inscription = date.today()
-                    inscription.modalite = modalite
-                    inscription.save()
-                    messages.success(request, f"Vous avez été inscrit avec succès ! \n Veuillez utiliser ce matricule pour creer votre compte \n \n {apprenant.matricule}")
-                    return redirect('home')
-    except Exception as e:
-        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request, 'index.html')
+    if request.method == "POST":
+        nom = request.POST.get("nom")
+        postnom = request.POST.get("postnom")
+        prenom = request.POST.get("prenom")
+        genre = request.POST.get("genre")
+        etatcivil = request.POST.get("etatcivil")
+        addresse = request.POST.get("addresse")
+        email = request.POST.get("email")
+        contact = request.POST.get("contact")
+        profession = request.POST.get("profession")
+        photo = request.FILES.get("photo")
+        
+        if Apprenant.objects.filter(nom=nom.capitalize(), postnom=postnom.capitalize(), prenom=prenom.title()).exists():
+            messages.warning(request, "L'apprenant existe déjà !")
+            return redirect('home')
+        else:
+            with transaction.atomic():
+                apprenant = Apprenant.objects.create(
+                    matricule=generer_matricule_apprenant(),
+                    nom=nom.capitalize(),
+                    postnom=postnom.capitalize(),
+                    prenom=prenom.title(),
+                    genre=genre.capitalize(),
+                    etatcivil=etatcivil.capitalize(),
+                    addresse=addresse.capitalize(),
+                    email=email.lower(),
+                    contact=contact.capitalize(),
+                    profession=profession.capitalize(),
+                    photo=photo
+                )
+                
+                inscription, _ = Inscription.objects.get_or_create(apprenant=apprenant)
+                inscription.date_inscription = date.today()
+                inscription.save()
 
+                # Envoi de l'email avant de définir le message de succès
+                subject = 'Votre matricule d\'inscription'
+                message = f"Bonjour {apprenant.prenom}, \n Merci d'avoir créer votre compte sur eScholar ! \n Veuillez utiliser ce matricule pour créer votre compte: {apprenant.matricule}."
+                form_email = 'nathanaeltsongo04@gmail.com'
+                recipient_list = [apprenant.email]
+                
+                try:
+                    send_mail(subject, message, form_email, recipient_list)
+                    messages.success(request, f"Vous avez été inscrit avec succès ! \n  Veuillez consulter votre mail pour votre matricule !")
+                except Exception as e:
+                    messages.error(request, f"L'inscription a réussi, mais une erreur s'est produite lors de l'envoi de l'email : {str(e)}")
+                
+                return redirect('home')
+    
+    return render(request, 'index.html')
 def video_conference(request):
     return render(request, 'video_conference.html')
 
 def liste_formation(request):
-    return render(request, 'formation.html')
+    formation = Formation.objects.all()
+    context = {'formations':formation}
+    return render(request, 'formation.html', context)
 
 def profile(request):
-    return render(request, 'profile.html')
+    try:
+        user = CompteUtilisateur.objects.get(id = request.user.id)
+        context = {'user':user}
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'profile.html', context)
 
 def interrogation_enseignant(request):
     render(request,'enseignant/interrogation.html')
@@ -96,25 +112,38 @@ def formation_apprenant(request):
 
 def contenu_formation(request, code):
     try:
+        type = TypeRessource.objects.all()
+        ressource = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         contenus = Formation.objects.get(code = code)
         contenu_chapitre = ContenuChapitre.objects.filter(chapitre__titre = contenus.module.chapitre.titre)
-        context = {'contenus':contenus, 'formations':formations, 'contenu_chapitres':contenu_chapitre}
+        context = {'ressources': ressource, 'types': type, 'contenus':contenus, 'formations':formations, 'contenu_chapitres':contenu_chapitre}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'apprenant/formation.html', context)
 
-def ressource_apprenant(request):
-    context = {}
+def interrogations_apprenant(request):
     try:
-        type = TypeRessource.objects.all()
-        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
-        ressource = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
-        # ressource = Formation.objects.filter(module = )
-        context = {'ressources': ressource, 'types': type, 'formations':formations}
-    except:
-        messages.error(request, "Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
-    return render(request, 'apprenant/ressource.html', context)
+        # Étape 1: Récupérer l'apprenant connecté et ses inscriptions
+        apprenant = request.user.apprenant
+        inscriptions = Inscription.objects.filter(apprenant=apprenant)
+        
+        # Étape 2: Récupérer les formations liées aux inscriptions de l'apprenant
+        formations = [inscription.formation for inscription in inscriptions]
+        
+        # Étape 3: Filtrer les interrogations en fonction des formations de l'apprenant
+        interrogations = Interrogation.objects.filter(formation__in=formations)
+        
+        # Passer les interrogations au contexte
+        context = {
+            'interrogations': interrogations,
+        }
+        
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite : {str(e)}")
+        context = {}
+    
+    return render(request, 'apprenant/evaluation.html', context)
 
 def chat_apprenant(request):
     try:
@@ -1106,8 +1135,8 @@ def updateInscription(request):
 def evaluation(request):
     try:
         interrogation = Interrogation.objects.all()
-        module = Module.objects.all()
-        context = {'interrogations':interrogation, 'modules':module}
+        formation = Formation.objects.all()
+        context = {'interrogations':interrogation, 'modules':formation}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
         return redirect('evaluation')    
@@ -1854,7 +1883,8 @@ def affichageFormationApprenant(request):
 def affichageEvaluation(request):
     try:
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
-        context = {'formations':formations}
+        interro = Interrogation.objects.all()
+        context = {'formations':formations, 'interrogations':interro}
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request,'apprenant/evaluation.html', context)

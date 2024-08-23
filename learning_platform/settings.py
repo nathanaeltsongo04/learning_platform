@@ -125,6 +125,13 @@ MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'images'
 AUTH_USER_MODEL = 'eScholar.CompteUtilisateur'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'
+EMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
