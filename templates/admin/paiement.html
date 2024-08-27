@@ -66,7 +66,7 @@
           <div class="card-body">
             <h5 class="card-title">Paiements</h5>
             <!-- Table with stripped rows -->
-            <table class="table datatable">
+            <table class="table datatable" id="pdfFrame">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -91,7 +91,24 @@
                                     <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
                                 </span>
                             </a>
+                            <a class="text-info mx-auto md-2" onclick="printPDF();">
+                                <span class="badge bg-primary " >
+                                    <i class="bi bi-eye fa-lg " data-toggle="tooltip" data-placement="top" title="Modifier cet élément" ></i>
+                                </span>
+                            </a>
                         </td>
+                        <script>
+                            // Load the PDF into the iframe
+                            document.getElementById('pdfFrame').src = "{% url 'generate_pdf_recu' paiement.code %}";
+                    
+                            function printPDF() {
+                                // Open the iframe content in a new window and trigger print
+                                var pdfWindow = window.open(document.getElementById('pdfFrame').src);
+                                pdfWindow.onload = function() {
+                                    pdfWindow.print();
+                                };
+                            }
+                        </script>
                     </tr>
                     {% endfor %}
               </tbody>
@@ -117,14 +134,13 @@
                 <form method="POST" action="{% url 'insertPaiement' %}">
                     {% csrf_token %}
                         <div class="col-md-12 mb-4 ">
-                            <select name="apprenant" id="" class="form-select mb-3" required>
-                                <option value="">--Selectionner Apprenant--</option>
-                                
+                            <input placeholder="Type to search" class="form-control mb-3" list="datalistOptions" id="selectedApprenant">
+                            <datalist id="datalistOptions">
                                 {% for apprenant in apprenants %}
-                                <option value="{{apprenant.matricule}}">{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}</option>
+                                <option value="{{ apprenant.nom }} {{ apprenant.postnom }} {{ apprenant.prenom }}" data-matricule="{{ apprenant.matricule }}"></option>
                                 {% endfor %}
-                                    
-                            </select>
+                            </datalist>
+                            <input type="text" id="apprenant" name="apprenant_matricule">
                             <div class="input-group has-validation">
                                 <select name="module" class="form-select mb-3" id="">
                                     <option value="">--select Module--</option>
@@ -156,6 +172,22 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('selectedApprenant').addEventListener('input', function() {
+    var selectedValue = this.value;
+    var options = document.querySelectorAll('#datalistOptions option');
+    
+    options.forEach(function(option) {
+        if (option.value === selectedValue) {
+            // Récupérer le matricule via data-matricule
+            var matricule = option.getAttribute('data-matricule');
+            // Assigner le matricule récupéré au champ caché
+            document.getElementById('apprenant').value = matricule;
+        }
+    });
+});
+
+</script>
 
 <!-- Modal Modification Domaine-->
  {% for paiement in paiements %}

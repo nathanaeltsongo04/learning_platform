@@ -1,3 +1,4 @@
+from decimal import Decimal, InvalidOperation
 import os
 import requests
 from django.conf import settings
@@ -14,8 +15,11 @@ import random
 from django.db.models import Sum
 from django.db import transaction
 from datetime import date
+from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
+# from django.template.loader import get_template
+# from weasyprint import HTML
 
 # Create your views here.
 @transaction.atomic
@@ -80,8 +84,9 @@ def liste_formation(request):
 
 def profile(request):
     try:
+        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         user = CompteUtilisateur.objects.get(id = request.user.id)
-        context = {'user':user}
+        context = {'user':user, 'formations':formations}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'profile.html', context)
@@ -133,10 +138,13 @@ def interrogations_apprenant(request):
         
         # Étape 3: Filtrer les interrogations en fonction des formations de l'apprenant
         interrogations = Interrogation.objects.filter(formation__in=formations)
+
+        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         
         # Passer les interrogations au contexte
         context = {
             'interrogations': interrogations,
+            'formations':formations
         }
         
     except Exception as e:
@@ -144,6 +152,78 @@ def interrogations_apprenant(request):
         context = {}
     
     return render(request, 'apprenant/evaluation.html', context)
+
+def voirInterro(request, code, question_index=0):
+    # try:
+        # Récupérer l'interrogation spécifique
+        interrogation = get_object_or_404(Interrogation, code=code)
+
+        # Récupérer toutes les questions de cette interrogation
+        questions = QuestionInterrogation.objects.filter(interrogation=interrogation)
+
+        # Vérifier si toutes les questions ont été répondues
+        if question_index >= questions.count():
+            # Rediriger vers une page de résultats ou de succès après la fin de l'interrogation
+            return redirect('evaluation_apprenant')
+
+        # Récupérer la question actuelle
+        question_actuelle = questions[question_index]
+
+        # Récupérer les réponses alternatives pour la question actuelle
+        reponses_alternatives = list(ReponsesAlternativesInterro.objects.filter(question=question_actuelle))
+        random.shuffle(reponses_alternatives)
+        # Créer ou récupérer la participation de l'utilisateur actuel
+        participation, created = Participation.objects.get_or_create(
+            apprenant=request.user.apprenant,
+            interrogation=interrogation,
+            defaults={
+                'date_participation': timezone.now().date(),  # Set the date_participation to the current date
+                'cote_obtenu': 0  # Set a default value for cote_obtenu, adjust as needed
+            }
+        )
+
+        if request.method == "POST":
+            # Récupérer l'ID de la réponse sélectionnée
+            alternative_id = request.POST.get('reponse')
+
+            # Récupérer la réponse alternative sélectionnée
+            alternative_selectionnee = ReponsesAlternativesInterro.objects.get(pk=alternative_id)
+
+            # Convertir les valeurs en décimales
+            maxima_decimal = Decimal(question_actuelle.maxima)
+            current_cote_obtenu = Decimal(participation.cote_obtenu)
+            
+            # Ajouter à la cote obtenue si la réponse est correcte
+            if alternative_selectionnee.reponse_alternative == question_actuelle.reponse:
+                participation.cote_obtenu = current_cote_obtenu + maxima_decimal
+                participation.save()
+
+            # Passer à la question suivante
+            return redirect('voirInterro', code=code, question_index=question_index + 1)
+
+        # Contexte pour le template
+        context = {
+            'interrogation': interrogation,
+            'question': question_actuelle,
+            'reponses_alternatives': reponses_alternatives,
+            'question_index': question_index + 1,
+            'total_questions': questions.count()
+        }
+
+    # except Exception as e:
+    #     messages.error(request, f"Une erreur s'est produite : {str(e)}")
+    #     context = {}
+        return render(request, 'apprenant/repondre_questions_interro.html', context)
+
+
+
+def passerInterro(request):
+    try:
+        if request.method == "POST":
+            pass
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, "apprenant/repondre_questions_interro.html")
 
 def chat_apprenant(request):
     try:
@@ -542,7 +622,6 @@ def updateApprenant(request):
                 return redirect('apprenant_admin')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-      return redirect('apprenant_admin')
     return render(request,'admin/apprenant.html')
 
 # =======================================================================================================
@@ -1472,7 +1551,7 @@ def updatePublication(request):
 def insertPaiement(request):
     try:
       if request.method == "POST":
-          id_apprenant = request.POST.get("apprenant")
+          id_apprenant = request.POST.get("apprenant_matricule")
           id_module = request.POST.get("module")
           montant = request.POST.get("montant")
           date_paiement = request.POST.get("date_paiement")
@@ -1785,7 +1864,7 @@ def test_termine(request, formation_id):
                 context['niveau'] = 'debutant'
 
             # Bloc 2: Pourcentage entre 61% et 80%
-            elif int(pourcentage) > 60 and int(pourcentage) <= 80:
+            elif int(pourcentage) > 60 and int(pourcentage) < 80:
                 context['message'] = f"Votre score est {int(pourcentage)}%. Souhaitez-vous confirmer votre inscription au niveau moyen ?"
                 context['niveau'] = 'moyen'
 
@@ -2036,3 +2115,29 @@ def insertContenuChapitre(request):
 
 def typePublication(request):
     return render(request,'admin/typepublication.html')
+
+def participation(request):
+    participations = Participation.objects.all()
+    context = {'participations':participations}
+    return render(request, 'enseignant/participation.html', context)
+
+def generate_pdf_recu(request, code):
+    paiement = get_object_or_404(Paiement, code=code)
+    context = {'paiement':paiement}
+    return render(request, 'admin/recu.html', context)
+
+def pdf_preview_recu(request, code):
+    paiement = get_object_or_404(Paiement, code=code)
+    context = {'paiement':paiement}
+    return render(request, 'admin/preview_page.html', context)
+
+def generate_pdf_certificate(request, code):
+    participation = get_object_or_404(Participation, code=code)
+    context = {'participation':participation}
+    return render(request, 'admin/certificat.html', context)
+
+def pdf_preview_certificate(request, code):
+    participation = get_object_or_404(Participation, code=code)
+    aujourdhui = date.today()
+    context = {'participation':participation, 'date':aujourdhui}
+    return render(request, 'admin/preview_certificate_page.html', context)

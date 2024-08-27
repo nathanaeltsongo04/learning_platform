@@ -62,7 +62,7 @@
                     <td>{{ interrogation.duree }}</td>
                     <td>{{ interrogation.enseignant.nom }} {{ interrogation.enseignant.postnom }} {{ interrogation.enseignant.prenom }}</td>
                     <td>
-                        <a href="">
+                        <a href="{% url 'voirInterro' interrogation.code 0 %}">
                           <span class="badge bg-success " >Passer Interro
                             <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip" data-placement="top" title="Répondez à ces questions" ></i>
                         </span>

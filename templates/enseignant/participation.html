@@ -1,0 +1,119 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}
+eScholar
+{% endblock %}
+
+{% block sidebar %}
+{% include 'partials/teacher_sidebar.html' %}
+{% endblock %}
+
+{% block Dashboard %}
+Les Resultats Des Evaluations
+{% endblock %}
+
+{% block ContentTitle %}
+Enseignant
+{% endblock %}
+
+{% block ContentSubTitle %}
+Tableau de Bord
+{% endblock %}
+
+{% block content %}
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 2800
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<section class="section" id="pdfFrame">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="filter">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Resultats Des Evaluations</h5>
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Formation</th>
+                <th scope="col">Enseignant</th>
+                <th scope="col">Apprenant</th>
+                <th scope="col">Cote obtenu</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for participation in participations %}
+              <tr>
+                <th scope="row">{{ participation.code }}</th>
+                <td>{{ participation.interrogation.formation.module.titre }} </td>
+                <td>{{ participation.interrogation.enseignant.nom }} {{ participation.interrogation.enseignant.postnom }} {{ participation.interrogation.enseignant.prenom }}</td>
+                <td>{{ participation.apprenant.nom }} {{ participation.apprenant.postnom }} {{ participation.apprenant.prenom }}</td>
+                <td>{{ participation.cote_obtenu }}</td>
+                <td>{{ participation.date_participation }}</td>
+                <td>
+                  <a class="text-info mx-auto md-2" onclick="printPDF();"><span class="badge bg-success"><i
+                        class="bi bi-eye fa-lg" data-toggle="tooltip" data-placement="top"
+                        title="Modifier cet élément"></i></span></a>
+                </td>
+              </tr>
+              <script>
+                // Load the PDF into the iframe
+                document.getElementById('pdfFrame').src = "{% url 'generate_pdf_certificate' participation.code %}";
+            
+                function printPDF() {
+                    // Open the iframe content in a new window and trigger print
+                    var pdfWindow = window.open(document.getElementById('pdfFrame').src);
+                    pdfWindow.onload = function() {
+                        pdfWindow.print();
+                    };
+                }
+            </script>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

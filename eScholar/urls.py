@@ -91,6 +91,7 @@ urlpatterns = [
     path('updateRessource', views.updateRessource, name='updateRessource'),    
     path('downloadFile/<int:code>', views.download_file, name='downloadFile'),
 
+    path('participation', views.participation, name='participation'),
     path('evaluation', views.evaluation, name='evaluation'),
     path('insertInterrogation', views.insertInterrogation, name='insertInterrogation'),
     path('updateInterrogation', views.updateInterrogation, name='updateInterrogation'),
@@ -117,8 +118,14 @@ urlpatterns = [
     path('liste_formation', views.liste_formation, name="liste_formation"),
     path('contenu_formation/<int:code>', views.contenu_formation, name='contenu_formation'),
     path('module_apprenant', views.affichageModule, name='module_apprenant'),
-    # path('ressource_apprenant', views.ressource_apprenant , name='ressource_apprenant'),
     path('evaluation_apprenant', views.interrogations_apprenant , name='evaluation_apprenant'),
+    path('voirInterro/<int:code>/<int:question_index>/', views.voirInterro, name='voirInterro'),
+    
     path('chat_apprenant', views.chat_apprenant , name='chat_apprenant'),
 
+    path('pdf_preview_recu/<int:code>', views.pdf_preview_recu, name='pdf_preview_recu'),
+    path('generate_pdf_recu/<int:code>', views.generate_pdf_recu, name='generate_pdf_recu'),
+
+    path('pdf_preview_certificate/<int:code>', views.pdf_preview_certificate, name='pdf_preview_certificate'),
+    path('generate_pdf_certificate/<int:code>', views.generate_pdf_certificate, name='generate_pdf_certificate'),
 ]

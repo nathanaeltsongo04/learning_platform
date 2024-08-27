@@ -59,7 +59,7 @@ Tableau de Bord
                             {% for q in questions %}
                             <tr>
                                 <th scope="row">{{ q.code }}</th>
-                                <td>{{ q.interrogation.module.titre }}</td>
+                                <td>{{ q.interrogation.formation.module.titre }}</td>
                                 <td>{{ q.enonce }}</td>
                                 <td>{{ q.reponse }}</td>
                                 <td>{{ q.maxima }}</td>
@@ -180,10 +180,10 @@ Tableau de Bord
                                 <div class="questionnaire-form">
                                     <input type="hidden" name="code" value="{{ q.code }}">
                                     <select name="interrogation_code" class="form-select mb-3" required>
-                                        <option value="{{ q.interrogation.module.code }}" selected>{{ q.interrogation.module.titre }}</option>
+                                        <option value="{{ q.interrogation.formation.module.code }}" selected>{{ q.interrogation.formation.module.titre }}</option>
                                         <option disabled>--Sélectionner Module--</option>
                                         {% for interrogation in interrogations %}
-                                        <option value="{{ interrogation.module.code }}">{{ interrogation.module.titre }}</option>
+                                        <option value="{{ interrogation.formation.module.code }}">{{ interrogation.formation.module.titre }}</option>
                                         {% endfor %}
                                     </select>
                                     <textarea name="enonce" class="form-control mb-3" placeholder="Entrez la Question ici">{{ q.enonce }}</textarea>

@@ -231,7 +231,7 @@ class QuestionInterrogation(models.Model):
 class Participation(models.Model):
     code = models.AutoField(primary_key=True)
     date_participation = models.DateField(auto_now=False, auto_now_add=False)
-    cote_obtenu = models.DecimalField(max_digits=2, decimal_places=2)
+    cote_obtenu = models.IntegerField()
     apprenant = models.ForeignKey(Apprenant, on_delete=models.CASCADE)
     interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)
 
