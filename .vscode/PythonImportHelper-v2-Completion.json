@@ -1,5 +1,61 @@
 [
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "django.contrib.auth.models",
         "kind": 6,
         "isExtraImport": true,
@@ -98,6 +154,190 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -107,6 +347,14 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -164,6 +412,38 @@
         "documentation": {}
     },
     {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -173,6 +453,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -196,6 +484,22 @@
         "documentation": {}
     },
     {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidOperation",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -205,19 +509,12 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
+        "label": "requests",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
         "documentation": {}
     },
     {
@@ -238,6 +535,14 @@
     },
     {
         "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -269,6 +574,14 @@
         "documentation": {}
     },
     {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -290,6 +603,55 @@
         "description": "django.contrib.auth",
         "isExtraImport": true,
         "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "cache_control",
+        "importPath": "django.views.decorators.cache",
+        "description": "django.views.decorators.cache",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.cache",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Sum",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
         "documentation": {}
     },
     {
@@ -338,44 +700,161 @@
         "kind": 6,
         "importPath": "eScholar.migrations.0001_initial",
         "description": "eScholar.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Apprenant',\n            fields=[\n                ('matricule', models.CharField(max_length=25, primary_key=True, serialize=False)),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CompteUtilisateur',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "eScholar.migrations.0001_initial",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "eScholar.migrations.0002_auto_20240808_1928",
-        "description": "eScholar.migrations.0002_auto_20240808_1928",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0001_initial'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='compteutilisateur',\n            name='photo',\n        ),\n        migrations.AlterField(",
-        "detail": "eScholar.migrations.0002_auto_20240808_1928",
+        "importPath": "eScholar.migrations.0002_sous_chapitre_titre",
+        "description": "eScholar.migrations.0002_sous_chapitre_titre",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='sous_chapitre',\n            name='titre',\n            field=models.CharField(default=1, max_length=255),\n            preserve_default=False,",
+        "detail": "eScholar.migrations.0002_sous_chapitre_titre",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "eScholar.migrations.0003_publication_compte_utilisateur",
-        "description": "eScholar.migrations.0003_publication_compte_utilisateur",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0002_auto_20240808_1928'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='publication',\n            name='compte_utilisateur',\n            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='eScholar.compteutilisateur'),\n            preserve_default=False,",
-        "detail": "eScholar.migrations.0003_publication_compte_utilisateur",
+        "importPath": "eScholar.migrations.0003_auto_20240813_1140",
+        "description": "eScholar.migrations.0003_auto_20240813_1140",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0002_sous_chapitre_titre'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='questionnaire',\n            name='formation',\n        ),\n        migrations.AddField(",
+        "detail": "eScholar.migrations.0003_auto_20240813_1140",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "eScholar.migrations.0004_auto_20240808_2223",
-        "description": "eScholar.migrations.0004_auto_20240808_2223",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0003_publication_compte_utilisateur'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='module',\n            name='description',\n            field=models.TextField(),\n        ),",
-        "detail": "eScholar.migrations.0004_auto_20240808_2223",
+        "importPath": "eScholar.migrations.0004_questionnaire_maxima",
+        "description": "eScholar.migrations.0004_questionnaire_maxima",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0003_auto_20240813_1140'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='questionnaire',\n            name='maxima',\n            field=models.IntegerField(default=10),\n            preserve_default=False,",
+        "detail": "eScholar.migrations.0004_questionnaire_maxima",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "eScholar.migrations.0005_alter_formation_duree",
-        "description": "eScholar.migrations.0005_alter_formation_duree",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0004_auto_20240808_2223'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='formation',\n            name='duree',\n            field=models.CharField(max_length=20),\n        ),",
-        "detail": "eScholar.migrations.0005_alter_formation_duree",
+        "importPath": "eScholar.migrations.0005_remove_chapitre_description",
+        "description": "eScholar.migrations.0005_remove_chapitre_description",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0004_questionnaire_maxima'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='chapitre',\n            name='description',\n        ),\n    ]",
+        "detail": "eScholar.migrations.0005_remove_chapitre_description",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0006_auto_20240813_1316",
+        "description": "eScholar.migrations.0006_auto_20240813_1316",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0005_remove_chapitre_description'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='chapitre',\n            name='sous_chapitre',\n        ),\n        migrations.CreateModel(",
+        "detail": "eScholar.migrations.0006_auto_20240813_1316",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0007_reponses_alternatives",
+        "description": "eScholar.migrations.0007_reponses_alternatives",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0006_auto_20240813_1316'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Reponses_alternatives',\n            fields=[\n                ('code', models.AutoField(primary_key=True, serialize=False)),\n                ('reponse_alternative', models.CharField(max_length=255)),",
+        "detail": "eScholar.migrations.0007_reponses_alternatives",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0008_test_reponse_alternative",
+        "description": "eScholar.migrations.0008_test_reponse_alternative",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0007_reponses_alternatives'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='test',\n            name='reponse_alternative',\n            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='eScholar.reponses_alternatives'),\n            preserve_default=False,",
+        "detail": "eScholar.migrations.0008_test_reponse_alternative",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0009_apprenant_email_alter_inscription_modalite_and_more",
+        "description": "eScholar.migrations.0009_apprenant_email_alter_inscription_modalite_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0008_test_reponse_alternative'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='apprenant',\n            name='email',\n            field=models.EmailField(default=1, max_length=254),\n            preserve_default=False,",
+        "detail": "eScholar.migrations.0009_apprenant_email_alter_inscription_modalite_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0010_alter_inscription_date_inscription",
+        "description": "eScholar.migrations.0010_alter_inscription_date_inscription",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0009_apprenant_email_alter_inscription_modalite_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='inscription',\n            name='date_inscription',\n            field=models.DateField(auto_now=True),\n        ),",
+        "detail": "eScholar.migrations.0010_alter_inscription_date_inscription",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0011_remove_test_questionnaire_remove_test_reponse_and_more",
+        "description": "eScholar.migrations.0011_remove_test_questionnaire_remove_test_reponse_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0010_alter_inscription_date_inscription'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='test',\n            name='questionnaire',\n        ),\n        migrations.RemoveField(",
+        "detail": "eScholar.migrations.0011_remove_test_questionnaire_remove_test_reponse_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0012_alter_interrogation_enseignant",
+        "description": "eScholar.migrations.0012_alter_interrogation_enseignant",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0011_remove_test_questionnaire_remove_test_reponse_and_more'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='interrogation',\n            name='enseignant',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='eScholar.enseignant'),\n        ),",
+        "detail": "eScholar.migrations.0012_alter_interrogation_enseignant",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0013_questioninterrogation_maxima_and_more",
+        "description": "eScholar.migrations.0013_questioninterrogation_maxima_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0012_alter_interrogation_enseignant'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='questioninterrogation',\n            name='maxima',\n            field=models.IntegerField(default=1),\n            preserve_default=False,",
+        "detail": "eScholar.migrations.0013_questioninterrogation_maxima_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0014_reponsesalternativesinterro",
+        "description": "eScholar.migrations.0014_reponsesalternativesinterro",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0013_questioninterrogation_maxima_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='ReponsesAlternativesInterro',\n            fields=[\n                ('code', models.AutoField(primary_key=True, serialize=False)),\n                ('reponse_alternative', models.CharField(max_length=255)),",
+        "detail": "eScholar.migrations.0014_reponsesalternativesinterro",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0015_remove_interrogation_module_interrogation_formation",
+        "description": "eScholar.migrations.0015_remove_interrogation_module_interrogation_formation",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0014_reponsesalternativesinterro'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='interrogation',\n            name='module',\n        ),\n        migrations.AddField(",
+        "detail": "eScholar.migrations.0015_remove_interrogation_module_interrogation_formation",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0016_alter_participation_cote_obtenu",
+        "description": "eScholar.migrations.0016_alter_participation_cote_obtenu",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0015_remove_interrogation_module_interrogation_formation'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='participation',\n            name='cote_obtenu',\n            field=models.IntegerField(),\n        ),",
+        "detail": "eScholar.migrations.0016_alter_participation_cote_obtenu",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "eScholar.migrations.0017_conversation_message",
+        "description": "eScholar.migrations.0017_conversation_message",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('eScholar', '0016_alter_participation_cote_obtenu'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Conversation',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('created_at', models.DateTimeField(auto_now_add=True)),",
+        "detail": "eScholar.migrations.0017_conversation_message",
+        "documentation": {}
+    },
+    {
+        "label": "TabClient",
+        "kind": 6,
+        "importPath": "eScholar.admin",
+        "description": "eScholar.admin",
+        "peekOfCode": "class TabClient(admin.ModelAdmin):\n    list_display=['last_name','first_name','username','email','password']",
+        "detail": "eScholar.admin",
         "documentation": {}
     },
     {
@@ -383,7 +862,7 @@
         "kind": 6,
         "importPath": "eScholar.apps",
         "description": "eScholar.apps",
-        "peekOfCode": "class EscholarConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'eScholar'",
+        "peekOfCode": "class EscholarConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'eScholar'\n    def ready(self):\n        import eScholar.signals",
         "detail": "eScholar.apps",
         "documentation": {}
     },
@@ -410,7 +889,7 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Apprenant(models.Model):\n    matricule=models.CharField(max_length=25, primary_key=True)\n    nom=models.CharField(max_length=25)\n    postnom=models.CharField(max_length=25)\n    prenom=models.CharField(max_length=25)\n    genre=models.CharField(max_length=1)\n    etatcivil=models.CharField(max_length=25)\n    addresse=models.CharField(max_length=50)\n    contact=models.CharField(max_length=15)\n    profession=models.CharField(max_length=50)",
+        "peekOfCode": "class Apprenant(models.Model):\n    matricule=models.CharField(max_length=25, primary_key=True)\n    nom=models.CharField(max_length=25)\n    postnom=models.CharField(max_length=25)\n    prenom=models.CharField(max_length=25)\n    genre=models.CharField(max_length=1)\n    etatcivil=models.CharField(max_length=25)\n    addresse=models.CharField(max_length=50)\n    contact=models.CharField(max_length=15)\n    email = models.EmailField(max_length=254)",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -437,7 +916,34 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Ressource(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=25)\n    description=models.TextField()\n    contenu=models.FileField(upload_to=\"Ressource/\", max_length=500)\n    type_ressource=models.ForeignKey(TypeRessource,on_delete=models.CASCADE)\n    class Meta:\n        db_table='Ressource'\nclass Module(models.Model):\n    code=models.AutoField(primary_key=True)",
+        "peekOfCode": "class Ressource(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=25)\n    description=models.TextField()\n    contenu=models.FileField(upload_to=\"Ressource/\", max_length=500)\n    type_ressource=models.ForeignKey(TypeRessource,on_delete=models.CASCADE)\n    class Meta:\n        db_table='Ressource'\nclass Sous_chapitre(models.Model):\n    code=models.AutoField(primary_key=True)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Sous_chapitre",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Sous_chapitre(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre = models.CharField(max_length=255)\n    contenu=models.TextField()\n    class Meta:\n        db_table='Sous_chapitre'\nclass Chapitre(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre = models.CharField(max_length=255)\n    class Meta:",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Chapitre",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Chapitre(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre = models.CharField(max_length=255)\n    class Meta:\n        db_table='Chapitre'\nclass ContenuChapitre(models.Model):\n    code = models.AutoField(primary_key=True)\n    chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE)\n    sous_chapitre=models.ForeignKey(Sous_chapitre, on_delete=models.CASCADE)\n    class Meta:",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "ContenuChapitre",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class ContenuChapitre(models.Model):\n    code = models.AutoField(primary_key=True)\n    chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE)\n    sous_chapitre=models.ForeignKey(Sous_chapitre, on_delete=models.CASCADE)\n    class Meta:\n        db_table='ContenuChapitre'\nclass Module(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=25)\n    description=models.TextField()",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -446,7 +952,7 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Module(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=25)\n    description=models.TextField()\n    prix=models.DecimalField(max_digits=10, decimal_places=2)\n    niveau=models.ForeignKey(Niveau,on_delete=models.CASCADE)\n    ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE)\n    class Meta:\n        db_table='Module'\nclass Formation(models.Model):",
+        "peekOfCode": "class Module(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=25)\n    description=models.TextField()\n    prix=models.DecimalField(max_digits=10, decimal_places=2)\n    niveau=models.ForeignKey(Niveau,on_delete=models.CASCADE)\n    chapitre=models.ForeignKey(Chapitre, on_delete=models.CASCADE)\n    ressource=models.ForeignKey(Ressource,on_delete=models.CASCADE, null=True)\n    class Meta:\n        db_table='Module'",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -473,16 +979,7 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Inscription(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)\n    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)\n    modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE)\n    date_inscription=models.DateTimeField()\n    class Meta:\n        db_table='Inscription'\nclass Evaluation(models.Model):\n    code=models.AutoField(primary_key=True)",
-        "detail": "eScholar.models",
-        "documentation": {}
-    },
-    {
-        "label": "Evaluation",
-        "kind": 6,
-        "importPath": "eScholar.models",
-        "description": "eScholar.models",
-        "peekOfCode": "class Evaluation(models.Model):\n    code=models.AutoField(primary_key=True)\n    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)\n    maximum=models.DecimalField(max_digits=10,decimal_places=1)\n    cote=models.DecimalField(max_digits=10,decimal_places=1)\n    date_evaluation=models.DateTimeField()\n    class Meta:\n        db_table='Evaluation'\nclass CompteUtilisateur(AbstractUser):\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)",
+        "peekOfCode": "class Inscription(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)\n    formation=models.ForeignKey(Formation,on_delete=models.CASCADE, null=True)\n    modalite=models.ForeignKey(ModalitePaie,on_delete=models.CASCADE, null=True)\n    date_inscription=models.DateField(auto_now=True)\n    class Meta:\n        db_table='Inscription'\nclass CompteUtilisateur(AbstractUser):\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -491,7 +988,7 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class CompteUtilisateur(AbstractUser):\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)\n    enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE, null = True)\nclass Publication(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=50)\n    description=models.TextField()\n    compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)\n    date_publication=models.DateTimeField()\n    class Meta:",
+        "peekOfCode": "class CompteUtilisateur(AbstractUser):\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE, null=True)\n    enseignant=models.ForeignKey(Enseignant,on_delete=models.CASCADE, null = True)\nclass Publication(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=255)\n    description=models.TextField()\n    user=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)\n    image=models.ImageField(upload_to='publication/', blank=True)\n    date_publication=models.DateTimeField(auto_now_add=True)",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -500,7 +997,25 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Publication(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=50)\n    description=models.TextField()\n    compte_utilisateur=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)\n    date_publication=models.DateTimeField()\n    class Meta:\n        db_table='Publication'\nclass Paiement(models.Model):\n    code=models.AutoField(primary_key=True)",
+        "peekOfCode": "class Publication(models.Model):\n    code=models.AutoField(primary_key=True)\n    titre=models.CharField(max_length=255)\n    description=models.TextField()\n    user=models.ForeignKey(CompteUtilisateur,on_delete=models.CASCADE)\n    image=models.ImageField(upload_to='publication/', blank=True)\n    date_publication=models.DateTimeField(auto_now_add=True)\n    def total_likes(self):\n        return self.likes.count()\n    class Meta:",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Like",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Like(models.Model):\n    id = models.AutoField(primary_key=True)\n    publication = models.ForeignKey(Publication, related_name='likes', on_delete=models.CASCADE)\n    user = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        db_table = 'Like'\nclass Commentaire(models.Model):\n    id = models.AutoField(primary_key=True)\n    publication = models.ForeignKey(Publication, related_name='comments', on_delete=models.CASCADE)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Commentaire",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Commentaire(models.Model):\n    id = models.AutoField(primary_key=True)\n    publication = models.ForeignKey(Publication, related_name='comments', on_delete=models.CASCADE)\n    user = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)\n    content = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        db_table = 'Commentaire'\nclass Paiement(models.Model):\n    code=models.AutoField(primary_key=True)",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -518,7 +1033,16 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Questionnaire(models.Model):\n    code=models.AutoField(primary_key=True)\n    module=models.ForeignKey(Module, on_delete=models.CASCADE)\n    question=models.TextField()\n    reponse=models.TextField()\n    class Meta:\n        db_table='Questionnaire'\nclass Test(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)",
+        "peekOfCode": "class Questionnaire(models.Model):\n    code=models.AutoField(primary_key=True)\n    module=models.ForeignKey(Module, on_delete=models.CASCADE)\n    question=models.TextField()\n    reponse=models.TextField()\n    maxima=models.IntegerField()\n    class Meta:\n        db_table='Questionnaire'\nclass Reponses_alternatives(models.Model):\n    code = models.AutoField(primary_key=True)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Reponses_alternatives",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Reponses_alternatives(models.Model):\n    code = models.AutoField(primary_key=True)\n    questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE)\n    reponse_alternative = models.CharField(max_length=255)\n    class Meta:\n        db_table='Reponses_alternatives'\nclass Test(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)\n    module = models.ForeignKey(Module, on_delete=models.CASCADE)",
         "detail": "eScholar.models",
         "documentation": {}
     },
@@ -527,8 +1051,89 @@
         "kind": 6,
         "importPath": "eScholar.models",
         "description": "eScholar.models",
-        "peekOfCode": "class Test(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)\n    questionnaire=models.ForeignKey(Questionnaire,on_delete=models.CASCADE)\n    reponse=models.TextField()\n    class Meta:\n        db_table='Test'",
+        "peekOfCode": "class Test(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant,on_delete=models.CASCADE)\n    module = models.ForeignKey(Module, on_delete=models.CASCADE)\n    resultat = models.IntegerField()\n    class Meta:\n        db_table='Test'\nclass Interrogation(models.Model):\n    code = models.AutoField(primary_key=True)\n    titre = models.CharField(max_length=150)",
         "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Interrogation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Interrogation(models.Model):\n    code = models.AutoField(primary_key=True)\n    titre = models.CharField(max_length=150)\n    date_interro = models.DateField(auto_now=False, auto_now_add=False)\n    duree = models.TimeField(auto_now=False, auto_now_add=False)\n    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)\n    enseignant = models.ForeignKey(Enseignant, on_delete=models.CASCADE)\n    class Meta:\n        db_table = 'Interrogation'\nclass QuestionInterrogation(models.Model):",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionInterrogation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class QuestionInterrogation(models.Model):\n    code = models.AutoField(primary_key=True)\n    enonce=models.TextField()\n    reponse=models.TextField()\n    maxima = models.IntegerField()\n    interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)\n    class Meta:\n        db_table = 'QuestionInterrogation'\nclass Participation(models.Model):\n    code = models.AutoField(primary_key=True)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Participation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Participation(models.Model):\n    code = models.AutoField(primary_key=True)\n    date_participation = models.DateField(auto_now=False, auto_now_add=False)\n    cote_obtenu = models.IntegerField()\n    apprenant = models.ForeignKey(Apprenant, on_delete=models.CASCADE)\n    interrogation = models.ForeignKey(Interrogation, on_delete=models.CASCADE)\n    class Meta:\n        db_table = 'Participation'\nclass ReponseInterrogation(models.Model):\n    code = models.AutoField(primary_key=True)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "ReponseInterrogation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class ReponseInterrogation(models.Model):\n    code = models.AutoField(primary_key=True)\n    texte = models.TextField()\n    question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)\n    class Meta:\n        db_table = 'ReponseInterrogation'\nclass ReponsesAlternativesInterro(models.Model):\n    code = models.AutoField(primary_key=True)\n    question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)\n    reponse_alternative = models.CharField(max_length=255)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "ReponsesAlternativesInterro",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class ReponsesAlternativesInterro(models.Model):\n    code = models.AutoField(primary_key=True)\n    question = models.ForeignKey(QuestionInterrogation, on_delete=models.CASCADE)\n    reponse_alternative = models.CharField(max_length=255)\n    class Meta:\n        db_table='ReponsesAlternativesInterro'\nclass Evaluation(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant, on_delete=models.CASCADE, null=True)\n    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Evaluation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Evaluation(models.Model):\n    code=models.AutoField(primary_key=True)\n    apprenant=models.ForeignKey(Apprenant, on_delete=models.CASCADE, null=True)\n    formation=models.ForeignKey(Formation,on_delete=models.CASCADE)\n    maximum=models.DecimalField(max_digits=10,decimal_places=1)\n    cote=models.DecimalField(max_digits=10,decimal_places=1)\n    date_evaluation=models.DateTimeField()\n    class Meta:\n        db_table='Evaluation'\nclass Conversation(models.Model):",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Conversation",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Conversation(models.Model):\n    apprenant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE, related_name='conversations_as_apprenant', null=True)\n    enseignant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE, related_name='conversations_as_enseignant', null=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        db_table = 'Conversation'\n    def __str__(self):\n        return f\"Conversation between {self.apprenant} and {self.enseignant}\"\nclass Message(models.Model):\n    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "Message",
+        "kind": 6,
+        "importPath": "eScholar.models",
+        "description": "eScholar.models",
+        "peekOfCode": "class Message(models.Model):\n    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')\n    sender = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)\n    content = models.TextField()\n    timestamp = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        db_table = 'Message'\n    def __str__(self):\n        return f\"Message from {self.sender} at {self.timestamp}\"",
+        "detail": "eScholar.models",
+        "documentation": {}
+    },
+    {
+        "label": "envoyer_matricule_par_email",
+        "kind": 2,
+        "importPath": "eScholar.signals",
+        "description": "eScholar.signals",
+        "peekOfCode": "def envoyer_matricule_par_email(sender, instance, created, **kwargs):\n    if created and instance.email:\n        sujet = 'Votre Matricule'\n        message = f'Bonjour {instance.prenom} {instance.postnom},\\n\\n Merci de vous etre enregistré(e) sur notre plateforme. Voici maintenant Votre matricule : {instance.matricule}. \\n Utilisez-le pour creer un compte dans notre plateforme !\\n\\n Merci beaucoup !'\n        destinataire = [instance.email]\n        send_mail(\n            sujet,\n            message,\n            settings.EMAIL_HOST_USER,\n            destinataire,",
+        "detail": "eScholar.signals",
         "documentation": {}
     },
     {
@@ -536,7 +1141,7 @@
         "kind": 5,
         "importPath": "eScholar.urls",
         "description": "eScholar.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.index, name='home'),\n    path('Test', views.test,name='Test'),\n    path('dashboard_apprenant/', views.dashboard_apprenant, name='dashboard_apprenant'),\n    # path('formation/', views.formation_apprenant, name='formation_apprenant'),\n    path('chat/', views.chat_apprenant, name='chat_apprenant'),\n    path('horaire/', views.horaire_apprenant, name='horaire_apprenant'),\n    path('correcton/',views.correction_enseignant,name='correction_enseignant'),\n    path('cote/',views.correction_enseignant,name='cote_enseignant'),\n    # path('formation/',views.formation_enseignant,name='formation_enseignant'),",
+        "peekOfCode": "urlpatterns = [\n    path('', views.index, name='home'),\n    path('authentification', views.authentification, name='authentification'),\n    path('rediriger_utilisateur', views.rediriger_utilisateur, name='rediriger_utilisateur'),\n    path('creer_compte', views.creer_compte, name='creation_compte_utilisateur'),\n    path('logout', views.logout_view, name='logout'),\n    path('logged_out', views.logged_out, name='logged_out'),\n    path('profile', views.profile, name='profile'),\n#=========================================================================================================\n# ADMINISTRATEUR",
         "detail": "eScholar.urls",
         "documentation": {}
     },
@@ -545,16 +1150,43 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def index(request):\n    return render(request, 'index.html')\ndef test(request):\n    try:\n      test = Test.objects.all()\n      context = {'tests':test}\n    except:\n      print('An exception occurred')\n    return render(request,'Test.html', context)\ndef dashboard_apprenant(request):",
+        "peekOfCode": "def index(request):\n    if request.method == \"POST\":\n        nom = request.POST.get(\"nom\")\n        postnom = request.POST.get(\"postnom\")\n        prenom = request.POST.get(\"prenom\")\n        genre = request.POST.get(\"genre\")\n        etatcivil = request.POST.get(\"etatcivil\")\n        addresse = request.POST.get(\"addresse\")\n        email = request.POST.get(\"email\")\n        contact = request.POST.get(\"contact\")",
         "detail": "eScholar.views",
         "documentation": {}
     },
     {
-        "label": "test",
+        "label": "video_conference",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def test(request):\n    try:\n      test = Test.objects.all()\n      context = {'tests':test}\n    except:\n      print('An exception occurred')\n    return render(request,'Test.html', context)\ndef dashboard_apprenant(request):\n    try:\n        publications = Publication.objects.all()",
+        "peekOfCode": "def video_conference(request):\n    return render(request, 'video_conference.html')\ndef liste_formation(request):\n    formation = Formation.objects.all()\n    context = {'formations':formation}\n    return render(request, 'formation.html', context)\ndef profile(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        user = CompteUtilisateur.objects.get(id = request.user.id)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "liste_formation",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def liste_formation(request):\n    formation = Formation.objects.all()\n    context = {'formations':formation}\n    return render(request, 'formation.html', context)\ndef profile(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        user = CompteUtilisateur.objects.get(id = request.user.id)\n        context = {'user':user, 'formations':formations}\n    except Exception as e:",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "profile",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def profile(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        user = CompteUtilisateur.objects.get(id = request.user.id)\n        context = {'user':user, 'formations':formations}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'profile.html', context)\ndef interrogation_enseignant(request):\n    render(request,'enseignant/interrogation.html')",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "interrogation_enseignant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def interrogation_enseignant(request):\n    render(request,'enseignant/interrogation.html')\ndef dashboard_apprenant(request):\n    context = {}\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        publications = Publication.objects.all().order_by('-date_publication')\n        context = {\n            'publications': publications,\n            'formations':formations",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -563,7 +1195,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def dashboard_apprenant(request):\n    try:\n        publications = Publication.objects.all()\n        total_publications = publications.count()\n        total_modules = Module.objects.all().count()\n        total_evaluations=Formation.objects.all().count()\n        context = {\n            'publications': publications, \n            'total_publications':total_publications,\n            'total_modules':total_modules,",
+        "peekOfCode": "def dashboard_apprenant(request):\n    context = {}\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        publications = Publication.objects.all().order_by('-date_publication')\n        context = {\n            'publications': publications,\n            'formations':formations\n            }\n    except Exception as e:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -572,25 +1204,43 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def formation_apprenant(request):\n    return render(request,'apprenant/formation.html')\ndef ressource_apprenant(request):\n    try:\n        type = TypeRessource.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'ressources':ressource, 'types':type}\n    except:\n        messages.error(request, \"Une erreur s'est produite lors de l'exécution \\n Actualisez la page !\")\n    return render(request,'apprenant/ressource.html', context)",
+        "peekOfCode": "def formation_apprenant(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        context = {'formations':formations}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'partials/learner_sidebar.html', context)\ndef contenu_formation(request, code):\n    try:\n        type = TypeRessource.objects.all()",
         "detail": "eScholar.views",
         "documentation": {}
     },
     {
-        "label": "ressource_apprenant",
+        "label": "contenu_formation",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def ressource_apprenant(request):\n    try:\n        type = TypeRessource.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'ressources':ressource, 'types':type}\n    except:\n        messages.error(request, \"Une erreur s'est produite lors de l'exécution \\n Actualisez la page !\")\n    return render(request,'apprenant/ressource.html', context)\ndef chat_apprenant(request):\n    return render(request,'apprenant/chat.html')",
+        "peekOfCode": "def contenu_formation(request, code):\n    try:\n        type = TypeRessource.objects.all()\n        ressource = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        contenus = Formation.objects.get(code = code)\n        contenu_chapitre = ContenuChapitre.objects.filter(chapitre__titre = contenus.module.chapitre.titre)\n        context = {'ressources': ressource, 'types': type, 'contenus':contenus, 'formations':formations, 'contenu_chapitres':contenu_chapitre}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")",
         "detail": "eScholar.views",
         "documentation": {}
     },
     {
-        "label": "chat_apprenant",
+        "label": "interrogations_apprenant",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def chat_apprenant(request):\n    return render(request,'apprenant/chat.html')\ndef horaire_apprenant(request):\n    return render(request,'apprenant/horaire.html')\ndef formation_enseignant(request):\n    return render(request,'enseignant/formation.html')\ndef cote_enseignant(request):\n    return render(request,'enseignant/cote.html')\ndef correction_enseignant(request):\n    return render(request,'enseignant/correction.html')",
+        "peekOfCode": "def interrogations_apprenant(request):\n    try:\n        # Étape 1: Récupérer l'apprenant connecté et ses inscriptions\n        apprenant = request.user.apprenant\n        inscriptions = Inscription.objects.filter(apprenant=apprenant)\n        # Étape 2: Récupérer les formations liées aux inscriptions de l'apprenant\n        formations = [inscription.formation for inscription in inscriptions]\n        # Étape 3: Filtrer les interrogations en fonction des formations de l'apprenant\n        interrogations = Interrogation.objects.filter(formation__in=formations)\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "voirInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def voirInterro(request, code, question_index=0):\n    # try:\n        # Récupérer l'interrogation spécifique\n        interrogation = get_object_or_404(Interrogation, code=code)\n        # Récupérer toutes les questions de cette interrogation\n        questions = QuestionInterrogation.objects.filter(interrogation=interrogation)\n        # Vérifier si toutes les questions ont été répondues\n        if question_index >= questions.count():\n            # Rediriger vers une page de résultats ou de succès après la fin de l'interrogation\n            return redirect('evaluation_apprenant')",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "passerInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def passerInterro(request):\n    try:\n        if request.method == \"POST\":\n            pass\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"apprenant/repondre_questions_interro.html\")\ndef horaire_apprenant(request):\n    return render(request, 'apprenant/horaire.html')\ndef formation_enseignant(request):",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -599,7 +1249,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def horaire_apprenant(request):\n    return render(request,'apprenant/horaire.html')\ndef formation_enseignant(request):\n    return render(request,'enseignant/formation.html')\ndef cote_enseignant(request):\n    return render(request,'enseignant/cote.html')\ndef correction_enseignant(request):\n    return render(request,'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:",
+        "peekOfCode": "def horaire_apprenant(request):\n    return render(request, 'apprenant/horaire.html')\ndef formation_enseignant(request):\n    try:\n        user = request.user\n        formation = Formation.objects.filter(enseignant = user.enseignant)\n        context = {'formations':formation}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str:e} \\n Actualisez la page !\")\n    return render(request,'enseignant/formation.html', context)",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -608,7 +1258,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def formation_enseignant(request):\n    return render(request,'enseignant/formation.html')\ndef cote_enseignant(request):\n    return render(request,'enseignant/cote.html')\ndef correction_enseignant(request):\n    return render(request,'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()",
+        "peekOfCode": "def formation_enseignant(request):\n    try:\n        user = request.user\n        formation = Formation.objects.filter(enseignant = user.enseignant)\n        context = {'formations':formation}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str:e} \\n Actualisez la page !\")\n    return render(request,'enseignant/formation.html', context)\ndef cote_enseignant(request):\n    return render(request, 'enseignant/cote.html')",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -617,7 +1267,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def cote_enseignant(request):\n    return render(request,'enseignant/cote.html')\ndef correction_enseignant(request):\n    return render(request,'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules=Module.objects.all().count()",
+        "peekOfCode": "def cote_enseignant(request):\n    return render(request, 'enseignant/cote.html')\ndef correction_enseignant(request):\n    return render(request, 'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules = Module.objects.all().count()",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -626,7 +1276,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def correction_enseignant(request):\n    return render(request,'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules=Module.objects.all().count()\n        context = {\n            'ressources': ressources, ",
+        "peekOfCode": "def correction_enseignant(request):\n    return render(request, 'enseignant/correction.html')\ndef dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules = Module.objects.all().count()\n        context = {\n            'ressources': ressources, ",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -635,7 +1285,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules=Module.objects.all().count()\n        context = {\n            'ressources': ressources, \n            'total_ressources':total_ressources,\n            'total_publications':total_publications,",
+        "peekOfCode": "def dashboard_enseignant(request):\n    try:\n        ressources = Ressource.objects.all()\n        total_ressources = ressources.count()\n        total_publications = Publication.objects.all().count()\n        total_modules = Module.objects.all().count()\n        context = {\n            'ressources': ressources, \n            'total_ressources': total_ressources,\n            'total_publications': total_publications,",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -644,7 +1294,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def publication_enseignant(request):\n    return render(request,'enseignant/publication.html')\ndef authentification(request):\n    try:\n        if request.method == \"POST\":\n            username = request.POST.get(\"nomdutilisateur\")\n            password = request.POST.get(\"password\")\n            # Authentification de l'utilisateur\n            user = authenticate(request, username=username, password=password)\n            if user is not None:",
+        "peekOfCode": "def publication_enseignant(request):\n    context = {}\n    try:\n        publications = Publication.objects.all().order_by('-date_publication')\n        context = {\n            'publications': publications\n            }\n    except Exception as e:\n                messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'enseignant/publication.html', context)",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -653,7 +1303,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def authentification(request):\n    try:\n        if request.method == \"POST\":\n            username = request.POST.get(\"nomdutilisateur\")\n            password = request.POST.get(\"password\")\n            # Authentification de l'utilisateur\n            user = authenticate(request, username=username, password=password)\n            if user is not None:\n                login(request, user)  # Connexion de l'utilisateur\n                messages.success(request, f\"Bienvenue, {user.username}!\")",
+        "peekOfCode": "def authentification(request):\n    try:\n        if request.method == \"POST\":\n            username = request.POST.get(\"nomdutilisateur\")\n            password = request.POST.get(\"password\")\n            # Authentification de l'utilisateur\n            user = authenticate(request, username=username, password=password)\n            if user is not None:\n                login(request, user)  \n                return redirect('rediriger_utilisateur')  # Redirige vers la page d'accueil ou une autre page sécurisée",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -671,7 +1321,16 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def logout_view(request):\n    logout(request)\n    return redirect('home')\ndef dashboard_admin(request):\n    try:\n        apprenants = Apprenant.objects.all()\n        total_apprenants = apprenants.count()\n        total_enseignants = Enseignant.objects.all().count()\n        total_formations=Formation.objects.all().count()\n        context = {",
+        "peekOfCode": "def logout_view(request):\n    logout(request)\n    return redirect('logged_out')\n@cache_control(no_cache=True, must_revalidate=True, no_store=True)\ndef logged_out(request):\n    return render(request, 'authentification.html')\n@login_required\ndef dashboard_admin(request):\n    try:\n        apprenants = Apprenant.objects.all()",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "logged_out",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def logged_out(request):\n    return render(request, 'authentification.html')\n@login_required\ndef dashboard_admin(request):\n    try:\n        apprenants = Apprenant.objects.all()\n        total_apprenants = apprenants.count()\n        total_enseignants = Enseignant.objects.all().count()\n        total_formations = Formation.objects.all().count()\n        context = {",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -680,7 +1339,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def dashboard_admin(request):\n    try:\n        apprenants = Apprenant.objects.all()\n        total_apprenants = apprenants.count()\n        total_enseignants = Enseignant.objects.all().count()\n        total_formations=Formation.objects.all().count()\n        context = {\n            'apprenants': apprenants, \n            'total_apprenants':total_apprenants,\n            'total_enseignants':total_enseignants,",
+        "peekOfCode": "def dashboard_admin(request):\n    try:\n        apprenants = Apprenant.objects.all()\n        total_apprenants = apprenants.count()\n        total_enseignants = Enseignant.objects.all().count()\n        total_formations = Formation.objects.all().count()\n        context = {\n            'apprenants': apprenants, \n            'total_apprenants': total_apprenants,\n            'total_enseignants': total_enseignants,",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -725,7 +1384,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def typeressource(request):\n    try:\n        type = TypeRessource.objects.all()\n        context = {'types':type}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        return redirect('inscription_admin')\n    return render(request,'enseignant/typeressource.html', context)\n# =======================================================================================================\n# NIVEAU",
+        "peekOfCode": "def typeressource(request):\n    try:\n        type = TypeRessource.objects.all()\n        context = {'types':type}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        # return redirect('inscription_admin')\n    return render(request,'enseignant/typeressource.html', context)\n# =======================================================================================================\n# NIVEAU",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -734,7 +1393,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertNiveau(request):\n    try:\n      if request.method == \"POST\":\n        designation = request.POST.get(\"designation\")\n        if Niveau.objects.filter(designation = designation.capitalize()):\n            messages.warning(request, \"Cette information existe déjà !\")\n        else:\n            Niveau.objects.create(\n                designation = designation.capitalize()\n            )",
+        "peekOfCode": "def insertNiveau(request):\n    try:\n      if request.method == \"POST\":\n        designation = request.POST.get(\"designation\")\n        if Niveau.objects.filter(designation = designation.capitalize()):\n            messages.warning(request, \"Cette information existe déjà !\")\n            return redirect('niveau_admin')\n        else:\n            Niveau.objects.create(\n                designation = designation.capitalize()",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -743,7 +1402,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def updateNiveau(request):\n    try:\n      if request.method == \"POST\":\n        code = request.POST.get(\"code\")\n        designation = request.POST.get(\"designation\")\n        if Niveau.objects.filter(designation = designation.capitalize()):\n            messages.warning(request, \"Cette information existe déjà !\")\n        else:\n            Niveau(\n                code = code,",
+        "peekOfCode": "def updateNiveau(request):\n    try:\n      if request.method == \"POST\":\n        code = request.POST.get(\"code\")\n        designation = request.POST.get(\"designation\")\n        if Niveau.objects.filter(designation = designation.capitalize()):\n            messages.warning(request, \"Cette information existe déjà !\")\n            return redirect('niveau_admin')\n        else:\n            Niveau(",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -788,7 +1447,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertApprenant(request):\n    try:\n      if request.method == \"POST\":\n        nom = request.POST.get(\"nom\")\n        postnom = request.POST.get(\"postnom\")\n        prenom = request.POST.get(\"prenom\")\n        genre = request.POST.get(\"genre\")\n        etatcivil = request.POST.get(\"etatcivil\")\n        addresse = request.POST.get(\"addresse\")\n        contact = request.POST.get(\"contact\")",
+        "peekOfCode": "def insertApprenant(request):\n    try:\n      if request.method == \"POST\":\n        nom = request.POST.get(\"nom\")\n        postnom = request.POST.get(\"postnom\")\n        prenom = request.POST.get(\"prenom\")\n        genre = request.POST.get(\"genre\")\n        etatcivil = request.POST.get(\"etatcivil\")\n        addresse = request.POST.get(\"addresse\")\n        email = request.POST.get(\"email\")",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -856,11 +1515,11 @@
         "documentation": {}
     },
     {
-        "label": "ressource_admin",
+        "label": "ressource",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def ressource_admin(request):\n    try:\n        type = TypeRessource.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'ressources':ressource, 'types':type}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'enseignant/ressource.html', context)\ndef insertRessource(request):\n    try:",
+        "peekOfCode": "def ressource(request):\n    try:\n        type = TypeRessource.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'ressources':ressource, 'types':type}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'enseignant/ressource.html', context)\ndef insertRessource(request):\n    try:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -896,7 +1555,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def module_enseignant(request):\n    try:\n        module = Module.objects.all()\n        niveau = Niveau.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'modules': module, 'niveaux':niveau, 'ressources':ressource}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        return redirect('module_enseignant')\n    return render(request,'enseignant/module.html', context)",
+        "peekOfCode": "def module_enseignant(request):\n    try:\n        module = Module.objects.all()\n        niveau = Niveau.objects.all()\n        chapitre = Chapitre.objects.all()\n        ressource = Ressource.objects.all()\n        context = {'modules': module, 'niveaux':niveau, 'ressources':ressource, 'chapitres':chapitre}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        return redirect('module_enseignant')",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -905,7 +1564,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertModule(request):\n    try:\n      if request.method == \"POST\":\n        titre = request.POST.get(\"titre\")\n        description = request.POST.get(\"description\")\n        prix = request.POST.get(\"prix\")\n        id_niveau = request.POST.get(\"niveau\")\n        id_ressource = request.POST.get(\"ressource\")\n        niveau = get_object_or_404(Niveau, pk = id_niveau)\n        ressource = get_object_or_404(Ressource, pk = id_ressource)",
+        "peekOfCode": "def insertModule(request):\n    if request.method == \"POST\":\n        titre = request.POST.get(\"titre\")\n        description = request.POST.get(\"description\")\n        prix = request.POST.get(\"prix\")\n        id_niveau = request.POST.get(\"niveau\")\n        id_chapitre = request.POST.get(\"chapitre\")\n        id_ressource = request.POST.get(\"ressource\")\n        if not id_niveau or not id_chapitre:\n            messages.error(request, \"Veuillez sélectionner un niveau et un chapitre.\")",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -914,7 +1573,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def updateModule(request):\n    try:\n      if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            titre = request.POST.get(\"titre\")\n            description = request.POST.get(\"description\")\n            prix = request.POST.get(\"prix\")\n            id_niveau = request.POST.get(\"niveau\")\n            id_ressource = request.POST.get(\"ressource\")\n            niveau = get_object_or_404(Niveau, pk = id_niveau)",
+        "peekOfCode": "def updateModule(request):\n    try:\n      if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            titre = request.POST.get(\"titre\")\n            description = request.POST.get(\"description\")\n            prix = request.POST.get(\"prix\")\n            id_niveau = request.POST.get(\"niveau\")\n            id_chapitre = request.POST.get(\"chapitre\")\n            id_ressource = request.POST.get(\"ressource\")",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -946,11 +1605,20 @@
         "documentation": {}
     },
     {
+        "label": "updateStatus",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateStatus(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            status = request.POST.get(\"status\")\n            formation = get_object_or_404(Formation, pk = code)\n            Formation(\n                code = code,\n                titre = formation.titre,\n                description = formation.description,",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
         "label": "insertModalitePaie",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertModalitePaie(request):\n    try:\n      if request.method == \"POST\":\n          tranche = request.POST.get(\"tranche\")\n          montant_fixe = request.POST.get(\"montant_fixe\")\n          id_module = request.POST.get(\"module\")\n          module = get_object_or_404(Module, pk = id_module)\n          ModalitePaie.objects.create(\n              tranche = tranche.capitalize(),\n              montant_fixe = montant_fixe,",
+        "peekOfCode": "def insertModalitePaie(request):\n    try:\n      if request.method == \"POST\":\n          tranche = request.POST.get(\"tranche\")\n          id_module = request.POST.get(\"module\")\n          module = get_object_or_404(Module, pk = id_module)\n          if tranche == \"Une Tranche\":\n            montant_fixe = module.prix\n          elif tranche == \"Deux Tranches\":\n            montant_fixe = module.prix/2",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -977,7 +1645,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertInscription(request):\n    try:\n      if request.method == \"POST\":\n          id_apprenant = request.POST.get(\"apprenant\")\n          id_formation = request.POST.get(\"formation\")\n          id_modalite = request.POST.get(\"modalite\")\n          date_inscription = request.POST.get(\"date_inscription\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          formation = get_object_or_404(Formation, pk = id_formation)\n          modalite = get_object_or_404(ModalitePaie, pk = id_modalite)",
+        "peekOfCode": "def insertInscription(request):\n    try:\n      if request.method == \"POST\":\n          id_apprenant = request.POST.get(\"apprenant_matricule\")\n          # id_formation = request.POST.get(\"formation\")\n          id_modalite = request.POST.get(\"modalite\")\n          date_inscription = request.POST.get(\"date_inscription\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          # formation = get_object_or_404(Formation, pk = id_formation)\n          modalite = get_object_or_404(ModalitePaie, pk = id_modalite)",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -986,7 +1654,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def updateInscription(request):\n    try:\n      if request.method == \"POST\":\n          code = request.POST.get(\"code\")\n          id_apprenant = request.POST.get(\"apprenant\")\n          id_formation = request.POST.get(\"formation\")\n          id_modalite = request.POST.get(\"modalite\")\n          date_inscription = request.POST.get(\"date_inscription\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          formation = get_object_or_404(Formation, pk = id_formation)",
+        "peekOfCode": "def updateInscription(request):\n    try:\n      if request.method == \"POST\":\n          code = request.POST.get(\"code\")\n          id_apprenant = request.POST.get(\"apprenant\")\n          id_modalite = request.POST.get(\"modalite\")\n          date_inscription = request.POST.get(\"date_inscription\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          modalite = get_object_or_404(ModalitePaie, pk = id_modalite)\n          Inscription(",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -995,7 +1663,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def evaluation(request):\n    try:\n        evaluation = Evaluation.objects.all()\n        formation = Formation.objects.all()\n        context = {'evaluations':evaluation, 'formations':formation}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        return redirect('evaluation')    \n    return render(request, \"enseignant/interrogation.html\", context)\ndef insertEvaluation(request):",
+        "peekOfCode": "def evaluation(request):\n    try:\n        interrogation = Interrogation.objects.all()\n        formation = Formation.objects.all()\n        context = {'interrogations':interrogation, 'modules':formation}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n        return redirect('evaluation')    \n    return render(request, \"enseignant/interrogation.html\", context)\ndef insertEvaluation(request):",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1018,11 +1686,92 @@
         "documentation": {}
     },
     {
+        "label": "insertInterrogation",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertInterrogation(request):\n    try:\n        if request.method == \"POST\":\n            titre = request.POST.get(\"titre\")\n            date_interro = request.POST.get(\"date_interro\")\n            duree = request.POST.get(\"duree\")\n            id_module = request.POST.get(\"module\")\n            module = get_object_or_404(Module, code = id_module)\n            Interrogation.objects.create(\n                titre = titre,",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateInterrogation",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateInterrogation(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            titre = request.POST.get(\"titre\")\n            date_interro = request.POST.get(\"date_interro\")\n            duree = request.POST.get(\"duree\")\n            id_module = request.POST.get(\"module\")\n            module = get_object_or_404(Module, code = id_module)\n            Interrogation(",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "questionInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def questionInterro(request):\n    try:\n        questions = QuestionInterrogation.objects.all()\n        interrogation = Interrogation.objects.all()\n        context = {'questions':questions, 'interrogations':interrogation}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"enseignant/questions_interro.html\", context)\ndef insertQuestionInterro(request):\n    try:",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertQuestionInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertQuestionInterro(request):\n    try:\n        if request.method == \"POST\":\n            interrogation_ids = request.POST.getlist('interrogation_code')\n            enonces = request.POST.getlist('enonce')\n            responses = request.POST.getlist('reponse')\n            maxima = request.POST.getlist('maxima')\n            for i in range(len(enonces)):\n                QuestionInterrogation.objects.create(\n                    interrogation_id=interrogation_ids[i],",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateQuestionInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateQuestionInterro(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            interrogation_id = request.POST.get('interrogation_code')\n            enonces = request.POST.get('enonce')\n            responses = request.POST.get('reponse')\n            maxima = request.POST.get('maxima')\n            interro = get_object_or_404(Interrogation, code = interrogation_id)\n            QuestionInterrogation(",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "reponsesAlternativesInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def reponsesAlternativesInterro(request):\n    try:\n        question = QuestionInterrogation.objects.all()\n        reponses = ReponsesAlternativesInterro.objects.all()\n        context = {'questions':question, 'reponses':reponses}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"enseignant/reponses_alternatives_interro.html\", context)\ndef insertReponseAlternativeInterro(request):\n    try:",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertReponseAlternativeInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertReponseAlternativeInterro(request):\n    try:\n        if request.method == \"POST\":\n            id_question = request.POST.get(\"question\")\n            reponse_alternative = request.POST.get(\"reponseAlternative\")\n            question = get_object_or_404(QuestionInterrogation, pk = id_question)\n            ReponsesAlternativesInterro.objects.create(\n                question = question,\n                reponse_alternative = reponse_alternative\n            )",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateReponseAlternativeInterro",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateReponseAlternativeInterro(request):\n    try:\n        if request.method == \"POST\":\n            code=request.POST.get(\"code\")\n            id_question = request.POST.get(\"question\")\n            reponse_alternative = request.POST.get(\"reponseAlternative\")\n            question = get_object_or_404(QuestionInterrogation, pk = id_question)\n            ReponsesAlternativesInterro(\n                code = code,\n                question = question,",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "publication",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def publication(request):\n    try:\n        posts = Publication.objects.all().order_by('-date_publication')\n        context = {'publications':posts}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"admin/all_publications.html\", context)\n# def comment_post(request, post_id):\n#     try:\n#         post = get_object_or_404(Publication, code=post_id)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
         "label": "publication_admin",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def publication_admin(request):\n    try:\n        publication = Publication.objects.all()\n        context = {'publications':publication}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'admin/publication.html', context)\ndef insertPublication(request):\n    try:\n      if request.method == \"POST\":",
+        "peekOfCode": "def publication_admin(request):\n    context={}\n    try:\n        publication = Publication.objects.all()\n        context = {'publications':publication}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'admin/publication.html', context)\ndef insertPublication(request):\n    try:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1031,7 +1780,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertPublication(request):\n    try:\n      if request.method == \"POST\":\n          titre = request.POST.get(\"titre\")\n          description = request.POST.get(\"description\")\n          id_compte_utilisateur = request.POST.get(\"compte_utilisateur\")\n          date_publication = request.POST.get(\"date_publication\")\n          compte_utilisateur = get_object_or_404(CompteUtilisateur, pk = id_compte_utilisateur)\n          if Publication.objects.filter(titre = titre.capitalize(), description = description.capitalize(), compte_utilisateur = compte_utilisateur):\n              messages.warning(\"Ces informations existent déjà !\")",
+        "peekOfCode": "def insertPublication(request):\n    try:\n      if request.method == \"POST\":\n          titre = request.POST.get(\"titre\")\n          description = request.POST.get(\"description\")\n          image = request.FILES.get(\"image\")\n          if Publication.objects.filter(titre = titre.title(), description = description, user = request.user):\n            messages.warning(\"Ces informations existent déjà !\")\n            return redirect('publication_admin')\n          else:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1040,7 +1789,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def updatePublication(request):\n    try:\n      if request.method == \"POST\":\n          code = request.POST.get(\"code\")\n          titre = request.POST.get(\"titre\")\n          description = request.POST.get(\"description\")\n          id_compte_utilisateur = request.POST.get(\"compte_utilisateur\")\n          date_publication = request.POST.get(\"date_publication\")\n          compte_utilisateur = get_object_or_404(CompteUtilisateur, pk = id_compte_utilisateur)\n          if Publication.objects.filter(titre = titre.capitalize(), description = description.capitalize(), compte_utilisateur = compte_utilisateur):",
+        "peekOfCode": "def updatePublication(request):\n    try:\n      if request.method == \"POST\":\n        code = request.POST.get(\"code\")\n        titre = request.POST.get(\"titre\")\n        description = request.POST.get(\"description\")\n        image = request.FILES.get(\"image\")\n        if Publication.objects.filter(titre = titre.capitalize(), description = description.capitalize(), user = request.user):\n                messages.warning(\"Ces informations existent déjà !\")\n                return redirect('publication_admin')",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1049,7 +1798,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertPaiement(request):\n    try:\n      if request.method == \"POST\":\n          id_apprenant = request.POST.get(\"apprenant\")\n          id_module = request.POST.get(\"module\")\n          montant = request.POST.get(\"montant\")\n          date_paiement = request.POST.get(\"date_paiement\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          module = get_object_or_404(Module, pk = id_module)\n          Paiement.objects.create(",
+        "peekOfCode": "def insertPaiement(request):\n    try:\n      if request.method == \"POST\":\n          id_apprenant = request.POST.get(\"apprenant_matricule\")\n          id_module = request.POST.get(\"module\")\n          montant = request.POST.get(\"montant\")\n          date_paiement = request.POST.get(\"date_paiement\")\n          apprenant = get_object_or_404(Apprenant, pk = id_apprenant)\n          module = get_object_or_404(Module, pk = id_module)\n          Paiement.objects.create(",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1063,11 +1812,20 @@
         "documentation": {}
     },
     {
-        "label": "insertQuestionnaire",
+        "label": "questionnaire",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def insertQuestionnaire(request):\n    try:\n      if request.method == \"POST\":\n          id_module = request.POST.get(\"id_module\")\n          question = request.POST.get(\"question\")\n          reponse = request.POST.get(\"reponse\")\n          module = get_object_or_404(Module, pk = id_module)\n          if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):\n              messages.warning(request, \"Ces informations existent déjà !\")\n          else:",
+        "peekOfCode": "def questionnaire(request):\n    try:\n        modules = Module.objects.all()\n        questionnaire = Questionnaire.objects.all()\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'enseignant/questionnaire.html', {'modules': modules, 'questionnaire':questionnaire})\ndef add_questionnaire(request):\n    try:\n        if request.method == \"POST\":",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "add_questionnaire",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def add_questionnaire(request):\n    try:\n        if request.method == \"POST\":\n            module_ids = request.POST.getlist('module_code')\n            questions = request.POST.getlist('question')\n            responses = request.POST.getlist('reponse')\n            maxima = request.POST.getlist('maxima')\n            for i in range(len(questions)):\n                Questionnaire.objects.create(\n                    module_id=module_ids[i],",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1076,7 +1834,34 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def updateQuestionnaire(request, code):\n    try:\n      questionnaire = get_object_or_404(Questionnaire, pk = code)\n      context = {'questionnaire' : questionnaire}\n      if request.method == \"POST\":\n          id_module = request.POST.get(\"id_module\")\n          question = request.POST.get(\"question\")\n          reponse = request.POST.get(\"reponse\")\n          module = get_object_or_404(Module, pk = id_module)\n          if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):",
+        "peekOfCode": "def updateQuestionnaire(request):\n    try:\n      if request.method == \"POST\":\n          code = request.POST.get(\"code\")\n          id_module = request.POST.get(\"module\")\n          question = request.POST.get(\"question\")\n          reponse = request.POST.get(\"reponse\")\n          maxima = request.POST.get(\"maxima\")\n          module = get_object_or_404(Module, pk = id_module)\n          if Questionnaire.objects.filter(module = module, question = question.capitalize(), reponse = reponse.capitalize()):",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "reponsesAlternatives",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def reponsesAlternatives(request):\n    try:\n        questionnaire = Questionnaire.objects.all()\n        reponses = Reponses_alternatives.objects.all()\n        context = {'questions':questionnaire, 'reponses':reponses}\n    except Exception as e:\n        messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"enseignant/reponses_alternatives.html\", context)\ndef insertReponseAlternative(request):\n    try:",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertReponseAlternative",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertReponseAlternative(request):\n    try:\n        if request.method == \"POST\":\n            id_questionnaire = request.POST.get(\"questionnaire\")\n            reponse_alternative = request.POST.get(\"reponseAlternative\")\n            questionnaire = get_object_or_404(Questionnaire, pk = id_questionnaire)\n            Reponses_alternatives.objects.create(\n                questionnaire = questionnaire,\n                reponse_alternative = reponse_alternative\n            )",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateReponseAlternative",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateReponseAlternative(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            id_questionnaire = request.POST.get(\"questionnaire\")\n            reponse_alternative = request.POST.get(\"reponseAlternative\")\n            questionnaire = get_object_or_404(Questionnaire, pk = id_questionnaire)\n            Reponses_alternatives(\n                code = code,\n                questionnaire = questionnaire,",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1090,11 +1875,74 @@
         "documentation": {}
     },
     {
+        "label": "rediriger_utilisateur",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def rediriger_utilisateur(request):\n    user = request.user  # Récupération de l'utilisateur connecté\n    if user.apprenant is not None:  # Vérification si l'attribut `apprenant` n'est pas nul\n        if Apprenant.objects.filter(matricule=user.apprenant.matricule).exists():  # Vérification si le matricule de l'apprenant existe\n            apprenant = user.apprenant\n            inscription = Inscription.objects.filter(apprenant=apprenant).last()\n            if inscription:\n                if inscription.formation is None:\n                    messages.warning(request, \"Vous devez répondre à ces questions !\")\n                    return redirect('tester_apprenant')",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "tester_apprenant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def tester_apprenant(request):\n    formations = Formation.objects.all()\n    context = {'formations':formations}\n    if request.method == \"POST\":\n        id_formation = request.POST.get(\"formation\")\n        formation = get_object_or_404(Formation, code=id_formation)\n        return redirect('prendre_test', formation_id=formation.code, question_index=0)\n    return render(request,'apprenant/pretestis.html', context)\ndef prendre_test(request, formation_id, question_index=0):\n    # Récupérer la formation spécifique",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "prendre_test",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def prendre_test(request, formation_id, question_index=0):\n    # Récupérer la formation spécifique\n    formation = get_object_or_404(Formation, code=formation_id)\n    user = request.user\n    # Filtrer les questions par formation\n    questions = Questionnaire.objects.filter(module=formation.module.code)\n    if question_index >= len(questions):\n        # Si toutes les questions ont été répondues, rediriger vers une page de succès ou de résultats\n        return redirect('test_termine', formation_id=formation.code)\n    # Obtenir la question actuelle",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_termine",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def test_termine(request, formation_id):\n        context = {}\n    # try:\n        # Récupérer la formation et l'utilisateur connecté\n        formation = get_object_or_404(Formation, pk=formation_id)\n        user = request.user\n        # Calculer la somme maxima des questions du module lié à la formation\n        somme_maxima = Questionnaire.objects.filter(module=formation.module.code).aggregate(Sum('maxima'))['maxima__sum']\n        # Récupérer le dernier test effectué par l'apprenant dans ce module\n        test = Test.objects.filter(apprenant=user.apprenant.matricule, module=formation.module).last()",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "confirmer_modification",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def confirmer_modification(request, formation_id, niveau):\n    try:\n        formation = get_object_or_404(Formation, pk=formation_id)\n        apprenant = request.user.apprenant\n        inscription = Inscription.objects.filter(apprenant=apprenant, formation__isnull=True).last()\n        modalite = ModalitePaie.objects.filter(module = formation.module.code).last()\n        if inscription:\n            if niveau == 'debutant':\n                # Inscrire l'apprenant au niveau débutant\n                inscription.formation = formation",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
         "label": "affichageModule",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def affichageModule(request):\n    return render(request,'apprenant/module.html')\n# ============================= Affichage formation dans Apprenant=================\ndef affichageFormationApprenant(request):\n    return render(request,'apprenant/formation.html')\n# ============================ Affichage evaluation dans Apprenant=================\ndef affichageEvaluation(request):\n    return render(request,'apprenant/evaluation.html')\n# =========================== Affichage publication dans Apprenant=================\ndef affichagePublication(request):",
+        "peekOfCode": "def affichageModule(request):\n    try:\n        module = Inscription.objects.filter(apprenant = request.user.apprenant.matricule)\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        context = {'modules':module, 'formations':formations}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'apprenant/module.html', context)\ndef contenu_module(request, code):\n    return render(request, \"apprenant/formation.html\")",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "contenu_module",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def contenu_module(request, code):\n    return render(request, \"apprenant/formation.html\")\ndef formationsApprenant(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        context = {'formations':formations}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"partials/learner_sidebar.html\", context)\ndef affichageFormationApprenant(request):",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "formationsApprenant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def formationsApprenant(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        context = {'formations':formations}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, \"partials/learner_sidebar.html\", context)\ndef affichageFormationApprenant(request):\n    return render(request,'apprenant/formation.html')\ndef affichageEvaluation(request):",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1103,7 +1951,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def affichageFormationApprenant(request):\n    return render(request,'apprenant/formation.html')\n# ============================ Affichage evaluation dans Apprenant=================\ndef affichageEvaluation(request):\n    return render(request,'apprenant/evaluation.html')\n# =========================== Affichage publication dans Apprenant=================\ndef affichagePublication(request):\n    return render(request,'apprenant/publication.html')\n# ============================= Affichage sous chapitre dans Apprenant=================\ndef sous_chapitre_apprenant(request):",
+        "peekOfCode": "def affichageFormationApprenant(request):\n    return render(request,'apprenant/formation.html')\ndef affichageEvaluation(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        interro = Interrogation.objects.all()\n        context = {'formations':formations, 'interrogations':interro}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'apprenant/evaluation.html', context)",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1112,7 +1960,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def affichageEvaluation(request):\n    return render(request,'apprenant/evaluation.html')\n# =========================== Affichage publication dans Apprenant=================\ndef affichagePublication(request):\n    return render(request,'apprenant/publication.html')\n# ============================= Affichage sous chapitre dans Apprenant=================\ndef sous_chapitre_apprenant(request):\n    return render(request,'apprenant/souschapitre.html')\n# ============================= Affichage chapitre dans Apprenant=================\ndef chapitre_apprenant(request):",
+        "peekOfCode": "def affichageEvaluation(request):\n    try:\n        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n        interro = Interrogation.objects.all()\n        context = {'formations':formations, 'interrogations':interro}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'apprenant/evaluation.html', context)\ndef affichagePublication(request):\n    return render(request,'apprenant/publication.html')",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1121,7 +1969,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def affichagePublication(request):\n    return render(request,'apprenant/publication.html')\n# ============================= Affichage sous chapitre dans Apprenant=================\ndef sous_chapitre_apprenant(request):\n    return render(request,'apprenant/souschapitre.html')\n# ============================= Affichage chapitre dans Apprenant=================\ndef chapitre_apprenant(request):\n    return render(request,'apprenant/chapitre.html')\n# ============================== Partie Enseignant ================================\n# ============================= Affichage Apprenant dans Enseignant===================",
+        "peekOfCode": "def affichagePublication(request):\n    return render(request,'apprenant/publication.html')\ndef sous_chapitre_apprenant(request):\n    try:\n        sous_chapitre = Sous_chapitre.objects.all()\n        context = {'sous_chapitres': sous_chapitre}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'apprenant/souschapitre.html',context)\ndef chapitre_apprenant(request):",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1130,7 +1978,7 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def sous_chapitre_apprenant(request):\n    return render(request,'apprenant/souschapitre.html')\n# ============================= Affichage chapitre dans Apprenant=================\ndef chapitre_apprenant(request):\n    return render(request,'apprenant/chapitre.html')\n# ============================== Partie Enseignant ================================\n# ============================= Affichage Apprenant dans Enseignant===================\ndef affichageApprenant(request):\n    return render(request,'enseignant/listeApprenant.html')\n# ============================= Affichage formation dans Enseignant=================",
+        "peekOfCode": "def sous_chapitre_apprenant(request):\n    try:\n        sous_chapitre = Sous_chapitre.objects.all()\n        context = {'sous_chapitres': sous_chapitre}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'apprenant/souschapitre.html',context)\ndef chapitre_apprenant(request):\n    return render(request,'apprenant/chapitre.html')\ndef enseignant_liste_apprenant(request):",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1139,25 +1987,16 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def chapitre_apprenant(request):\n    return render(request,'apprenant/chapitre.html')\n# ============================== Partie Enseignant ================================\n# ============================= Affichage Apprenant dans Enseignant===================\ndef affichageApprenant(request):\n    return render(request,'enseignant/listeApprenant.html')\n# ============================= Affichage formation dans Enseignant=================\ndef affichageFormationEnseignant(request):\n    return render(request,'enseignant/formation.html')\n# ============================= Affichage sous chapitre dans Enseignant=================",
+        "peekOfCode": "def chapitre_apprenant(request):\n    return render(request,'apprenant/chapitre.html')\ndef enseignant_liste_apprenant(request):\n    try:\n        enseignant = request.user.enseignant  # Assuming the logged-in user is an `Enseignant`\n        inscriptions = Inscription.objects.filter(formation__enseignant=enseignant)\n        context = {'inscriptions':inscriptions}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'enseignant/listeApprenant.html',context)",
         "detail": "eScholar.views",
         "documentation": {}
     },
     {
-        "label": "affichageApprenant",
+        "label": "enseignant_liste_apprenant",
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def affichageApprenant(request):\n    return render(request,'enseignant/listeApprenant.html')\n# ============================= Affichage formation dans Enseignant=================\ndef affichageFormationEnseignant(request):\n    return render(request,'enseignant/formation.html')\n# ============================= Affichage sous chapitre dans Enseignant=================\ndef sous_chapitre_enseignant(request):\n    return render(request,'enseignant/souschapitre.html')\n# ============================= Affichage chapitre dans Enseignant=================\ndef chapitre_enseignant(request):",
-        "detail": "eScholar.views",
-        "documentation": {}
-    },
-    {
-        "label": "affichageFormationEnseignant",
-        "kind": 2,
-        "importPath": "eScholar.views",
-        "description": "eScholar.views",
-        "peekOfCode": "def affichageFormationEnseignant(request):\n    return render(request,'enseignant/formation.html')\n# ============================= Affichage sous chapitre dans Enseignant=================\ndef sous_chapitre_enseignant(request):\n    return render(request,'enseignant/souschapitre.html')\n# ============================= Affichage chapitre dans Enseignant=================\ndef chapitre_enseignant(request):\n    return render(request,'enseignant/chapitre.html')\n# =========================== Admin & Type de publications ============================\ndef typePublication(request):",
+        "peekOfCode": "def enseignant_liste_apprenant(request):\n    try:\n        enseignant = request.user.enseignant  # Assuming the logged-in user is an `Enseignant`\n        inscriptions = Inscription.objects.filter(formation__enseignant=enseignant)\n        context = {'inscriptions':inscriptions}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'enseignant/listeApprenant.html',context)\ndef sous_chapitre_enseignant(request):\n    try:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1166,7 +2005,25 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def sous_chapitre_enseignant(request):\n    return render(request,'enseignant/souschapitre.html')\n# ============================= Affichage chapitre dans Enseignant=================\ndef chapitre_enseignant(request):\n    return render(request,'enseignant/chapitre.html')\n# =========================== Admin & Type de publications ============================\ndef typePublication(request):\n    return render(request,'admin/typepublication.html')",
+        "peekOfCode": "def sous_chapitre_enseignant(request):\n    try:\n        sous_chapitre = Sous_chapitre.objects.all()\n        context = {'sous_chapitres': sous_chapitre}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'enseignant/souschapitre.html', context)\ndef insertSousChapitre(request):\n    try:\n        if request.method == \"POST\":",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertSousChapitre",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertSousChapitre(request):\n    try:\n        if request.method == \"POST\":\n            titre = request.POST.get(\"titre\")\n            contenu = request.POST.get(\"contenu\")\n            if Sous_chapitre.objects.filter(titre = titre, contenu = contenu):\n                messages.warning(request, \"Ces informations existent déjà !\")\n                return redirect('sous_chapitre_enseignant')\n            else:\n                Sous_chapitre.objects.create(",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateSousChapitre",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateSousChapitre(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            titre = request.POST.get(\"titre\")\n            contenu = request.POST.get(\"contenu\")\n            if Sous_chapitre.objects.filter(titre = titre, contenu = contenu):\n                messages.warning(request, \"Ces informations existent déjà !\")\n                return redirect('sous_chapitre_enseignant')\n            else:",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1175,7 +2032,34 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def chapitre_enseignant(request):\n    return render(request,'enseignant/chapitre.html')\n# =========================== Admin & Type de publications ============================\ndef typePublication(request):\n    return render(request,'admin/typepublication.html')",
+        "peekOfCode": "def chapitre_enseignant(request):\n    try:\n        chapitre = Chapitre.objects.all()\n        sous_chapitre = Sous_chapitre.objects.all()\n        contenu_chapitre = ContenuChapitre.objects.all()\n        context = {'chapitres': chapitre, 'sous_chapitres':sous_chapitre, 'contenu_chapitre':contenu_chapitre}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request,'enseignant/chapitre.html', context)\ndef insertChapitre(request):",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertChapitre",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertChapitre(request):\n    try:\n        if request.method == \"POST\":\n            titre = request.POST.get(\"titre\")\n            if Chapitre.objects.filter(titre = titre):\n                messages.warning(request, \"Ces informations existent déjà !\")\n                return redirect('chapitre_enseignant')\n            else:\n                Chapitre.objects.create(\n                    titre = titre",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "updateChapitre",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def updateChapitre(request):\n    try:\n        if request.method == \"POST\":\n            code = request.POST.get(\"code\")\n            titre = request.POST.get(\"titre\")\n            if Chapitre.objects.filter(titre = titre):\n                messages.warning(request, \"Ces informations existent déjà !\")\n                return redirect('chapitre_enseignant')\n            else:\n                Chapitre(",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "insertContenuChapitre",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def insertContenuChapitre(request):\n    try:\n        if request.method == \"POST\":\n            id_chapitre = request.POST.get(\"chapitre\")\n            id_sous_chapitre = request.POST.get(\"sous_chapitre\")\n            chapitre = get_object_or_404(Chapitre, pk = id_chapitre)\n            sous_chapitre = get_object_or_404(Sous_chapitre, pk = id_sous_chapitre)\n            if ContenuChapitre.objects.filter(chapitre = chapitre, sous_chapitre=sous_chapitre):\n                messages.warning(request, \"Ces informations existent déjà !\")\n                return redirect('chapitre_enseignant')",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1184,7 +2068,97 @@
         "kind": 2,
         "importPath": "eScholar.views",
         "description": "eScholar.views",
-        "peekOfCode": "def typePublication(request):\n    return render(request,'admin/typepublication.html')",
+        "peekOfCode": "def typePublication(request):\n    return render(request,'admin/typepublication.html')\ndef participation(request):\n    participations = Participation.objects.all()\n    context = {'participations':participations}\n    return render(request, 'enseignant/participation.html', context)\ndef generate_pdf_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)\n    context = {'paiement':paiement}\n    return render(request, 'admin/recu.html', context)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "participation",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def participation(request):\n    participations = Participation.objects.all()\n    context = {'participations':participations}\n    return render(request, 'enseignant/participation.html', context)\ndef generate_pdf_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)\n    context = {'paiement':paiement}\n    return render(request, 'admin/recu.html', context)\ndef pdf_preview_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "generate_pdf_recu",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def generate_pdf_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)\n    context = {'paiement':paiement}\n    return render(request, 'admin/recu.html', context)\ndef pdf_preview_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)\n    context = {'paiement':paiement}\n    return render(request, 'admin/preview_page.html', context)\ndef generate_pdf_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "pdf_preview_recu",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def pdf_preview_recu(request, code):\n    paiement = get_object_or_404(Paiement, code=code)\n    context = {'paiement':paiement}\n    return render(request, 'admin/preview_page.html', context)\ndef generate_pdf_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)\n    context = {'participation':participation}\n    return render(request, 'admin/certificat.html', context)\ndef pdf_preview_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "generate_pdf_certificate",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def generate_pdf_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)\n    context = {'participation':participation}\n    return render(request, 'admin/certificat.html', context)\ndef pdf_preview_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)\n    aujourdhui = date.today()\n    context = {'participation':participation, 'date':aujourdhui}\n    return render(request, 'admin/preview_certificate_page.html', context)\n# ==============================================================================================================================",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "pdf_preview_certificate",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def pdf_preview_certificate(request, code):\n    participation = get_object_or_404(Participation, code=code)\n    aujourdhui = date.today()\n    context = {'participation':participation, 'date':aujourdhui}\n    return render(request, 'admin/preview_certificate_page.html', context)\n# ==============================================================================================================================\n# CHAT\n# ===============================================================================================================================\n@login_required\ndef chat_apprenant(request):",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "chat_apprenant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def chat_apprenant(request):\n        context = {}\n    # try:\n        conversations = []\n        enseignants = []\n        apprenants = []\n        if request.user.apprenant:\n            formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)\n            conversations = Conversation.objects.filter(apprenant=request.user)\n            enseignants = CompteUtilisateur.objects.filter(enseignant__isnull=False)",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "send_message",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def send_message(request, conversation_id):\n    try:\n        conversation = get_object_or_404(Conversation, pk=conversation_id)\n        if request.method == 'POST':\n            content = request.POST.get('content')\n            if content:\n                Message.objects.create(\n                    conversation=conversation,\n                    sender=request.user,\n                    content=content",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "conversation_detail",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def conversation_detail(request, conversation_id):\n    try:\n        conversation = get_object_or_404(Conversation, pk = conversation_id)\n        messages = Message.objects.filter(conversation = conversation)\n        context = {'messages':messages, 'conversation': conversation}\n    except Exception as e:\n      messages.error(request, f\"Une erreur s'est produite lors de l'exécution : {str(e)} \\n Actualisez la page !\")\n    return render(request, 'envoyer_message.html', context)\ndef new_conversation_apprenant(request):\n    try:",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "new_conversation_apprenant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def new_conversation_apprenant(request):\n    try:\n        if request.method == \"POST\":\n            apprenant = request.user\n            enseignant_id = request.POST.get(\"enseignant_id\")\n            enseignant = get_object_or_404(CompteUtilisateur, pk = enseignant_id)\n            Conversation.objects.create(\n                apprenant = apprenant,\n                enseignant = enseignant\n            )",
+        "detail": "eScholar.views",
+        "documentation": {}
+    },
+    {
+        "label": "new_conversation_enseignant",
+        "kind": 2,
+        "importPath": "eScholar.views",
+        "description": "eScholar.views",
+        "peekOfCode": "def new_conversation_enseignant(request):\n    try:\n        if request.method == \"POST\":\n            enseignant = request.user\n            id_apprenant = request.POST.get(\"apprenant_id\")\n            apprenant = get_object_or_404(CompteUtilisateur, pk = id_apprenant)\n            Conversation.objects.create(\n                apprenant = apprenant,\n                enseignant = enseignant\n            )",
         "detail": "eScholar.views",
         "documentation": {}
     },
@@ -1202,7 +2176,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1211,7 +2185,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1220,7 +2194,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1229,7 +2203,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'eScholar',",
+        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'eScholar',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1274,7 +2248,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'learning_platform.wsgi.application'\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': 'eScholar_db',\n        'USER': 'root',",
+        "peekOfCode": "WSGI_APPLICATION = 'learning_platform.wsgi.application'\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n#API\nDAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362d'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.mysql',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1283,7 +2257,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "STATIC_URL = '/static/'\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': 'eScholar_db',\n        'USER': 'root',\n        'PASSWORD': '',",
+        "peekOfCode": "STATIC_URL = '/static/'\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n#API\nDAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362d'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.mysql',\n        'NAME': 'eScholar_db',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1292,7 +2266,16 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': 'eScholar_db',\n        'USER': 'root',\n        'PASSWORD': '',\n        'HOST': 'localhost',",
+        "peekOfCode": "STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n#API\nDAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362d'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.mysql',\n        'NAME': 'eScholar_db',\n        'USER': 'root',",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DAILY_API_KEY",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "DAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362d'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.mysql',\n        'NAME': 'eScholar_db',\n        'USER': 'root',\n        'PASSWORD': '',\n        'HOST': 'localhost',",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1301,7 +2284,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': 'eScholar_db',\n        'USER': 'root',\n        'PASSWORD': '',\n        'HOST': 'localhost',\n        'PORT': '3306',\n    }\n}",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.mysql',\n        'NAME': 'eScholar_db',\n        'USER': 'root',\n        'PASSWORD': '',\n        'HOST': 'localhost',\n        'PORT': '3306',\n    }\n}",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1328,7 +2311,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1337,7 +2320,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1346,7 +2329,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1355,7 +2338,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_URL = 'static/'\nMEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1364,7 +2347,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "MEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "MEDIA_URL = '/images/'\nMEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1373,7 +2356,7 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'images'\nAUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
@@ -1382,7 +2365,61 @@
         "kind": 5,
         "importPath": "learning_platform.settings",
         "description": "learning_platform.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "AUTH_USER_MODEL = 'eScholar.CompteUtilisateur'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_HOST = 'smtp.gmail.com'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_TLS",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_USE_TLS = True\nEMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_HOST_USER = 'nathanaeltsongo04@gmail.com'\nEMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "learning_platform.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "learning_platform.settings",
+        "description": "learning_platform.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = 'cvmbubfurglpjpsc'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "learning_platform.settings",
         "documentation": {}
     },
