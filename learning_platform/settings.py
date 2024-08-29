@@ -79,7 +79,7 @@ DAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eScholar_db',
         'USER': 'root',
         'PASSWORD': '',

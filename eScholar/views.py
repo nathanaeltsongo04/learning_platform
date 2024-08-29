@@ -430,6 +430,7 @@ def insertNiveau(request):
 
         if Niveau.objects.filter(designation = designation.capitalize()):
             messages.warning(request, "Cette information existe déjà !")
+            return redirect('niveau_admin')
         else:
             Niveau.objects.create(
                 designation = designation.capitalize()
@@ -449,6 +450,7 @@ def updateNiveau(request):
 
         if Niveau.objects.filter(designation = designation.capitalize()):
             messages.warning(request, "Cette information existe déjà !")
+            return redirect('niveau_admin')
         else:
             Niveau(
                 code = code,
