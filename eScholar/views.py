@@ -21,6 +21,9 @@ from django.conf import settings
 from django.core.paginator import Paginator
 
 # Create your views here.
+def chatt(request):
+    return render(request, 'chatt.html')
+
 @transaction.atomic
 def index(request):
     if request.method == "POST":
