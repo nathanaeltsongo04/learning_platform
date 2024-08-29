@@ -80,7 +80,7 @@
                     <tr>
                     <th scope="row">{{ modalitepaie.code }}</th>
                         <td>{{ modalitepaie.tranche }}</td>
-                        <td>{{ modalitepaie.montant_fixe }}</td>
+                        <td>{{ modalitepaie.montant_fixe }} $</td>
                         <td>{{ modalitepaie.module.titre }}</td>
                         <td>
                             <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1-{{forloop.counter}}" >
@@ -127,13 +127,6 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-4 ">
-                            <div class="input-group has-validation">
-                                                       
-                                
-                            </div>
-                            <div class="input-group has-validation">
-                                <input type="number" name="montant_fixe" class="form-control mb-3" id="montant_fixe" placeholder="Montant_fixe" required>
-                            </div>
                             <div class="input-group has-validation">
                                 <select name="module" class="form-select mb-3" id="">
                                     <option value="">--select Module--</option>
@@ -183,12 +176,9 @@
                             </select>
                         </div>
                         <div class="input-group has-validation">
-                            <input type="text" name="montant_fixe" class="form-control mb-3" id="montant_fixe" value="{{modalitepaie.montant_fixe}}" placeholder="Montant_fixe" required>
-                        </div>
-                        <div class="input-group has-validation">
                             <select name="module"  class="form-select mb-3" id="">
                                 <option value="{{ modalitepaie.module.code }}" selected>{{ modalitepaie.module.titre }}</option>
-                                <option value="" disables>--select Module--</option>
+                                <option value="" disabled>--select Module--</option>
 
                                 {% for m in modules %}
                                 <option value="{{ m.code }}">{{ m.titre }} </option>

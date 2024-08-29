@@ -41,6 +41,7 @@ class Enseignant(models.Model):
     genre=models.CharField(max_length=1)
     etatcivil=models.CharField(max_length=25)
     addresse=models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
     contact=models.CharField(max_length=15)
     profession=models.CharField(max_length=50)
     photo=models.ImageField(upload_to='ImageProfilEnseignant/',blank=True)

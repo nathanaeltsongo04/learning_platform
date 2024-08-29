@@ -18,8 +18,7 @@ from datetime import date
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
-# from django.template.loader import get_template
-# from weasyprint import HTML
+from django.core.paginator import Paginator
 
 # Create your views here.
 @transaction.atomic
@@ -61,7 +60,7 @@ def index(request):
 
                 # Envoi de l'email avant de définir le message de succès
                 subject = 'Votre matricule d\'inscription'
-                message = f"Bonjour {apprenant.prenom}, \n Merci d'avoir créer votre compte sur eScholar ! \n Veuillez utiliser ce matricule pour créer votre compte: {apprenant.matricule}."
+                message = f"Bonjour {apprenant.prenom}, \n Merci pour votre inscription sur eScholar ! \n Veuillez utiliser ce matricule pour créer votre compte: {apprenant.matricule}."
                 form_email = 'nathanaeltsongo04@gmail.com'
                 recipient_list = [apprenant.email]
                 
@@ -74,14 +73,18 @@ def index(request):
                 return redirect('home')
     
     return render(request, 'index.html')
+
+@login_required
 def video_conference(request):
     return render(request, 'video_conference.html')
+
 
 def liste_formation(request):
     formation = Formation.objects.all()
     context = {'formations':formation}
     return render(request, 'formation.html', context)
 
+@login_required
 def profile(request):
     try:
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
@@ -91,9 +94,11 @@ def profile(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'profile.html', context)
 
+@login_required
 def interrogation_enseignant(request):
     render(request,'enseignant/interrogation.html')
 
+@login_required
 def dashboard_apprenant(request):
     context = {}
     try:
@@ -107,6 +112,7 @@ def dashboard_apprenant(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request,'apprenant/dashboard.html', context)
 
+@login_required
 def formation_apprenant(request):
     try:
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
@@ -115,6 +121,7 @@ def formation_apprenant(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'partials/learner_sidebar.html', context)
 
+@login_required
 def contenu_formation(request, code):
     try:
         type = TypeRessource.objects.all()
@@ -122,11 +129,15 @@ def contenu_formation(request, code):
         formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
         contenus = Formation.objects.get(code = code)
         contenu_chapitre = ContenuChapitre.objects.filter(chapitre__titre = contenus.module.chapitre.titre)
-        context = {'ressources': ressource, 'types': type, 'contenus':contenus, 'formations':formations, 'contenu_chapitres':contenu_chapitre}
+        paginator = Paginator(contenu_chapitre, 2)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {'ressources': ressource, 'types': type, 'contenus':contenus, 'formations':formations, 'page_obj':page_obj}
     except Exception as e:
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'apprenant/formation.html', context)
 
+@login_required
 def interrogations_apprenant(request):
     try:
         # Étape 1: Récupérer l'apprenant connecté et ses inscriptions
@@ -153,8 +164,9 @@ def interrogations_apprenant(request):
     
     return render(request, 'apprenant/evaluation.html', context)
 
+@login_required
 def voirInterro(request, code, question_index=0):
-    # try:
+    try:
         # Récupérer l'interrogation spécifique
         interrogation = get_object_or_404(Interrogation, code=code)
 
@@ -210,13 +222,12 @@ def voirInterro(request, code, question_index=0):
             'total_questions': questions.count()
         }
 
-    # except Exception as e:
-    #     messages.error(request, f"Une erreur s'est produite : {str(e)}")
-    #     context = {}
-        return render(request, 'apprenant/repondre_questions_interro.html', context)
+    except Exception as e:
+        messages.error(request, f"Une erreur s'est produite : {str(e)}")
+        context = {}
+    return render(request, 'apprenant/repondre_questions_interro.html', context)
 
-
-
+@login_required
 def passerInterro(request):
     try:
         if request.method == "POST":
@@ -225,9 +236,7 @@ def passerInterro(request):
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, "apprenant/repondre_questions_interro.html")
 
-def horaire_apprenant(request):
-    return render(request, 'apprenant/horaire.html')
-
+@login_required
 def formation_enseignant(request):
     try:
         user = request.user
@@ -237,12 +246,15 @@ def formation_enseignant(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str:e} \n Actualisez la page !")
     return render(request,'enseignant/formation.html', context)
 
+@login_required
 def cote_enseignant(request):
     return render(request, 'enseignant/cote.html')
 
+@login_required
 def correction_enseignant(request):
     return render(request, 'enseignant/correction.html')
 
+@login_required
 def dashboard_enseignant(request):
     try:
         ressources = Ressource.objects.all()
@@ -260,6 +272,7 @@ def dashboard_enseignant(request):
         context = {}
     return render(request, 'enseignant/dashboard.html', context)
 
+@login_required
 def publication_enseignant(request):
     context = {}
     try:
@@ -347,13 +360,14 @@ def creer_compte(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'creer_compte.html')
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('logged_out')
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def logged_out(request):
-    return render(request, 'authentification.html')
+    return render(request, 'index.html')
 
 @login_required
 def dashboard_admin(request):
@@ -373,6 +387,7 @@ def dashboard_admin(request):
         context = {}
     return render(request, 'admin/dashboard.html', context)
 
+@login_required
 def domaine_admin(request):
     try:
         domaine = Domaine.objects.all()
@@ -381,6 +396,7 @@ def domaine_admin(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request,'admin/domaine.html', context)
 
+@login_required
 def modalitepaiement(request):
     try:
       modalite = ModalitePaie.objects.all()
@@ -390,6 +406,7 @@ def modalitepaiement(request):
         messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request,'admin/modalitepaiement.html', context)
 
+@login_required
 def niveau(request):
     try:
         niveau = Niveau.objects.all()
@@ -398,6 +415,7 @@ def niveau(request):
         messages.error("Une erreur s'est produite lors de l'exécution \n Actualisez la page !")
     return render(request,'admin/niveau.html',context)
 
+@login_required
 def paiement(request):
     try:
         paiement = Paiement.objects.all()
@@ -409,6 +427,7 @@ def paiement(request):
         return redirect('paiement')
     return render(request,'admin/paiement.html', context)
 
+@login_required
 def typeressource(request):
     try:
         type = TypeRessource.objects.all()
@@ -422,7 +441,7 @@ def typeressource(request):
 # =======================================================================================================
 # NIVEAU
 # =======================================================================================================
-
+@login_required
 def insertNiveau(request):
     try:
       if request.method == "POST":
@@ -441,6 +460,7 @@ def insertNiveau(request):
       return redirect('niveau_admin')
     return render(request,'admin/niveau.html')
 
+@login_required
 def updateNiveau(request):
     try:
       if request.method == "POST":
@@ -465,6 +485,7 @@ def updateNiveau(request):
 # DOMAINE
 # =======================================================================================================
 
+@login_required
 def insertDomaine(request):
     try:
       if request.method == "POST":
@@ -482,6 +503,7 @@ def insertDomaine(request):
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, 'admin/domaine.html')
 
+@login_required
 def updateDomaine(request):
     try:
       if request.method == "POST":
@@ -506,6 +528,7 @@ def updateDomaine(request):
 # APPRENANT
 # =======================================================================================================
 
+@login_required
 def apprenant_admin(request):
     try:
       apprenant = Apprenant.objects.all()
@@ -524,7 +547,7 @@ def generer_matricule_apprenant():
         prochain_numero = dernier_numero + 1
         return f"ETU{prochain_numero:04d}"
 
-
+@login_required
 def insertApprenant(request):
     try:
       if request.method == "POST":
@@ -563,6 +586,7 @@ def insertApprenant(request):
       return redirect('apprenant_admin')
     return render(request,'admin/apprenant.html')
 
+@login_required
 def updateApprenant(request):
     try:
       if request.method == "POST":
@@ -620,6 +644,7 @@ def updateApprenant(request):
 # ENSEIGNANT
 # =======================================================================================================
 
+@login_required
 def enseignant_admin(request):
     try:
       enseignant = Enseignant.objects.all()
@@ -639,6 +664,7 @@ def generer_matricule_enseignant():
     prochain_numero = dernier_numero + 1
     return f"ENS{prochain_numero:04d}"
 
+@login_required
 def insertEnseignant(request):
     try:
       if request.method == "POST":
@@ -649,13 +675,15 @@ def insertEnseignant(request):
         etatcivil = request.POST.get("etatcivil")
         addresse = request.POST.get("addresse")
         contact = request.POST.get("contact")
+        email = request.POST.get("email")
         profession = request.POST.get("profession")
         photo = request.FILES.get("photo")
         
         if Enseignant.objects.filter(nom = nom.capitalize(), postnom = postnom.capitalize(), prenom = prenom.title()):
             messages.error(request, "L'enseignant existe déjà !")
+            return redirect('enseignant_admin')
         else:
-            Enseignant.objects.create(
+            enseignant = Enseignant.objects.create(
                 matricule = generer_matricule_enseignant(),
                 nom = nom.capitalize(),
                 postnom = postnom.capitalize(),
@@ -664,9 +692,22 @@ def insertEnseignant(request):
                 etatcivil = etatcivil.capitalize(),
                 addresse = addresse.capitalize(),
                 contact = contact.capitalize(),
+                email = email,
                 profession = profession.capitalize(),
                 photo = photo
             )
+             # Envoi de l'email avant de définir le message de succès
+            subject = 'Votre matricule d\'inscription'
+            message = f"Bonjour {enseignant.prenom}, \n Merci d'avoir créer votre compte sur eScholar ! \n Veuillez utiliser ce matricule pour créer votre compte: {enseignant.matricule}."
+            form_email = 'nathanaeltsongo04@gmail.com'
+            recipient_list = [enseignant.email]
+                
+            try:
+                send_mail(subject, message, form_email, recipient_list)
+                messages.success(request, f"Vous avez été inscrit avec succès ! \n  Veuillez consulter votre mail pour votre matricule !")
+            except Exception as e:
+                messages.error(request, f"L'inscription a réussi, mais une erreur s'est produite lors de l'envoi de l'email : {str(e)}")
+            enseignant.save()
             messages.success(request, "Enseignant ajouté avec succès !")
             return redirect('enseignant_admin')
     except Exception as e:
@@ -924,25 +965,41 @@ def updateModule(request):
             id_chapitre = request.POST.get("chapitre")
             id_ressource = request.POST.get("ressource")
             
+            ressource = None
+            if id_ressource:
+                ressource = get_object_or_404(Ressource, pk = id_ressource)
             niveau = get_object_or_404(Niveau, pk = id_niveau)
             chapitre = get_object_or_404(Chapitre, pk=id_chapitre)
-            ressource = get_object_or_404(Ressource, pk = id_ressource)
             
             if Module.objects.filter(titre = titre.capitalize(), description = description.capitalize(), prix = prix, niveau = niveau, ressource = ressource):
                 messages.warning(request, "Ce module existe déjà !")
                 return redirect('module_enseignant')
             else:
-                Module(
-                    code = code,
-                    titre = titre.capitalize(),
-                    description = description.capitalize(),
-                    prix = prix,
-                    niveau = niveau,
-                    chapitre=chapitre,
-                    ressource = ressource
-                ).save()
-                messages.success(request, "Module modifié avec succès !")
-                return redirect('module_enseignant')
+                if ressource:
+                    Module(
+                        code = code,
+                        titre = titre.capitalize(),
+                        description = description.capitalize(),
+                        prix = prix,
+                        niveau = niveau,
+                        chapitre=chapitre,
+                        ressource = ressource
+                    ).save()
+                    messages.success(request, "Module modifié avec succès !")
+                    return redirect('module_enseignant')
+                else:
+                    module = get_object_or_404(Module, pk = code)
+                    Module(
+                        code = code,
+                        titre = titre.capitalize(),
+                        description = description.capitalize(),
+                        prix = prix,
+                        niveau = niveau,
+                        chapitre=chapitre,
+                        ressource = module.ressource
+                    ).save()
+                    messages.success(request, "Module modifié avec succès !")
+                    return redirect('module_enseignant')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
       return redirect('module_enseignant')
@@ -1105,10 +1162,10 @@ def insertModalitePaie(request):
               module = module
           )
           messages.success(request,"Ajouté avec succès !")
-          return redirect('modalite_paiement')
+          return redirect('modalitepaiement')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-      return redirect('modalite_paiement')
+      return redirect('modalitepaiement')
     return render(request,'Admin/modalitepaiement.html')
 
 def updateModalitePaie(request):
@@ -1116,8 +1173,14 @@ def updateModalitePaie(request):
       if request.method == "POST":
           code = request.POST.get("code")
           tranche = request.POST.get("tranche")
-          montant_fixe = request.POST.get("montant_fixe")
           id_module = request.POST.get("module")
+
+          if tranche == "Une Tranche":
+            montant_fixe = module.prix
+          elif tranche == "Deux Tranches":
+            montant_fixe = module.prix/2
+          else:
+            montant_fixe = module.prix/3
           
           module = get_object_or_404(Module, pk = id_module)
           
@@ -1128,10 +1191,10 @@ def updateModalitePaie(request):
               module = module
           ).save()
           messages.success(request,"Modifié avec succès !")
-          return redirect('modalite_paiement')
+          return redirect('modalitepaiement')
     except Exception as e:
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-      return redirect('modalite_paiement')
+      return redirect('modalitepaiement')
     return render(request,'Admin/modalitepaiement.html')
 
 # =======================================================================================================

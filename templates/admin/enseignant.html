@@ -134,6 +134,7 @@
                             <input type="text" name="nom" class="form-control mb-3" id="" placeholder="Nom" required>
                             <input type="text" name="postnom" class="form-control mb-3" id="" placeholder="Post-Nom" required>
                             <input type="text" name="prenom" class="form-control mb-3" id="" placeholder="Prenom" required>
+                            <input type="email" name="email" class="form-control mb-3" id="" placeholder="Email" required>
                             <input type="text" name="addresse" class="form-control mb-3" id="" placeholder="Adresse" required>
                         </div>
                         <div class="col-md-6 mb-4 ">
@@ -148,14 +149,10 @@
                             </select>
                             <input type="tel" name="contact" class="form-control mb-3" id="" value="+243" required>
                             <input type="text" name="profession" class="form-control mb-3" id="" value="" placeholder="Profession" required>
+                            <input type="file" name="photo" class="form-control mb-3" id="">
 
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-4 ">                              
-                            <input type="file" name="photo" class="form-control mb-3" id="">
-                        </div>
-                    </div>                        
+                    </div>                    
 
                     <div class="col-md-12 text-center">
                         <button name="save" class="btn btn-secondary w-50 fw-bold " type="submit">Enregistrer</button>
@@ -188,6 +185,7 @@
                             <input type="text" name="postnom" class="form-control mb-3" id="" value="{{enseignant.postnom}}" placeholder="Post-Nom" required>
                             <input type="text" name="prenom" class="form-control mb-3" id="" value="{{enseignant.prenom}}" placeholder="Prenom" required>
                             <input type="text" name="addresse" class="form-control mb-3" id="" value="{{enseignant.addresse}}" placeholder="Adresse" required>
+                            <input type="email" name="email" class="form-control mb-3" id="" value="{{enseignant.email}}" placeholder="Email" required>
                         </div>
                         <div class="col-md-6 mb-4 ">
                             <select name="genre" id="" class="form-select mb-3" required>
@@ -204,12 +202,12 @@
                             
                             <input type="tel" name="contact" class="form-control mb-3" id="" value="{{enseignant.contact}}" required>
                             <input type="text" name="profession" class="form-control mb-3" id="" value="{{enseignant.profession}}" placeholder="Profession" required>
+                            <input type="file" name="photo" class="form-control mb-3" id="">
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-4 ">
-                            <input type="file" name="photo" class="form-control mb-3" id="">
                         </div>
                     </div>
                     <div class="col-md-12 text-center">

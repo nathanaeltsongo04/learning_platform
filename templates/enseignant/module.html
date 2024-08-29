@@ -176,7 +176,7 @@ Tableau de Bord
       <div class="modal-body ">
         <form method="POST" action="{% url 'updateModule' %}">
           {% csrf_token %}
-          <input type="hidden" value="{{module.code}}" name="code">
+          <input type="text" value="{{module.code}}" name="code">
           <div class="col-md-12 mb-4 ">
             <div class="input-group has-validation">
               <input type="text" name="titre" class="form-control mb-3" id="titre" value="{{module.titre}}"
@@ -197,7 +197,7 @@ Tableau de Bord
                 <option value="" disabled> --Selectionner Niveau-- </option>
 
                 {%for n in niveaux %}
-                <option value="{{ n.niveau }}">{{ n.designation }}</option>
+                <option value="{{ n.code }}">{{ n.designation }}</option>
                 {% endfor %}
 
               </select>
@@ -212,8 +212,8 @@ Tableau de Bord
               </select>
             </div>
             <div class="input-group has-validation">
-              <select class="form-select" name="ressource" id="" required>
-                <option value="{{module.ressource.code}}" selected>{{ module.ressource.titre }}</option>
+              <select class="form-select" name="ressource" id="" >
+                <option value="{{ module.ressource.code }}" selected>{{ module.ressource.titre }}</option>
                 <option value="" disabled> --Selectionner Ressource-- </option>
 
                 {%for r in ressources %}

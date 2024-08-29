@@ -84,13 +84,13 @@
                                 <td>{{ reponse.questionnaire.question }}</td>
                                 <td>{{ reponse.reponse_alternative }}</td>
                                 <td>
-                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1-{{forloop.counter}}">
-                                        <span class="badge bg-success ">
-                                            <i class="bi bi-pencil-square fa-lg " data-toggle="tooltip"
-                                                data-placement="top" title="Modifier cet élément"></i>
+
+                                    <a class="text-info mx-auto md-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-pencil-square fa-lg" data-toggle="tooltip" data-placement="top" title="Modifier cet élément"></i>
                                         </span>
                                     </a>
+
                                 </td>
                             </tr>
                             {% endfor %}
@@ -157,42 +157,40 @@
 
 </script>
 <!-- Modal Modification Domaine-->
-{% for reponse in reponses %}
-<div class="modal fade" id="exampleModal1-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+<!-- Modal de Modification -->
+<!-- Modal de Modification -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header border-bottom-0 ">
-                <h5 class="modal-title fw-bold" id="exampleModalLabel">Modification Questionnaire</h5>
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel1">Modification Réponse Alternative</h5>
                 <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body ">
+            <div class="modal-body">
+                <!-- Formulaire simplifié sans données -->
                 <form method="POST" action="{% url 'updateReponseAlternative' %}">
                     {% csrf_token %}
-                    <input type='hidden' value="{{reponse.code}}" name='code'>
-                    <div class="col-md-12 mb-4 ">
-                        <input placeholder="Type to search Question" class="form-control mb-3" list="datalistOptions" id="selectedQuestionnaire">
-                        <datalist id="datalistOptions">
-                            {% for question in questions %}
-                            <option value="{{ question.question }}" data-code="{{ question.code }}"></option>
-                            {% endfor %}
-                        </datalist>
-                        <input type="hidden" id="questionnaire" name="questionnaire">
-
-                        <textarea name="reponseAlternative" class="form-control mb-3" id=""></textarea>   
-                    </div>  
-
-                    <div class="col-md-12 text-center">
-                        <button name="save" class="btn btn-success w-50 fw-bold " type="submit">Modifier</button>
+                    <div class="mb-3">
+                        <label for="questionnaire" class="form-label">Question</label>
+                        <input type="text" class="form-control" id="questionnaire" name="questionnaire" placeholder="Saisir la question">
+                    </div>
+                    <div class="mb-3">
+                        <label for="reponseAlternative" class="form-label">Réponse Alternative</label>
+                        <textarea name="reponseAlternative" class="form-control mb-3" id="reponseAlternative"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success w-50 fw-bold">Modifier</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer border-top-0">
-
             </div>
         </div>
     </div>
 </div>
-{% endfor %}
+
+
+
+  
 
 {% endblock %}
