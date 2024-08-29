@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yqccmbzz&$ojuu(#_axkgf!c1uukvqe5ouocjtx5$&@#)!m8%i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,7 +79,7 @@ DAILY_API_KEY = '56b39b0f867d2450098b69cdc80536b5ebe6c1299fe8ccd0c2f392b32c0b362
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eScholar_db',
         'USER': 'root',
         'PASSWORD': '',
