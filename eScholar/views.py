@@ -225,14 +225,6 @@ def passerInterro(request):
       messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
     return render(request, "apprenant/repondre_questions_interro.html")
 
-def chat_apprenant(request):
-    try:
-        formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
-        context = {'formations':formations}
-    except Exception as e:
-      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
-    return render(request, 'apprenant/chat.html', context)
-
 def horaire_apprenant(request):
     return render(request, 'apprenant/horaire.html')
 
@@ -2141,3 +2133,95 @@ def pdf_preview_certificate(request, code):
     aujourdhui = date.today()
     context = {'participation':participation, 'date':aujourdhui}
     return render(request, 'admin/preview_certificate_page.html', context)
+
+# ==============================================================================================================================
+# CHAT
+# ===============================================================================================================================
+
+@login_required
+def chat_apprenant(request):
+        context = {}
+    # try:
+        conversations = []
+        enseignants = []
+        apprenants = []
+
+        if request.user.apprenant:
+            formations = Inscription.objects.filter(apprenant=request.user.apprenant.matricule)
+            conversations = Conversation.objects.filter(apprenant=request.user)
+            enseignants = CompteUtilisateur.objects.filter(enseignant__isnull=False)
+            context["formations"] = formations
+        elif request.user.enseignant:
+            conversations = Conversation.objects.filter(enseignant=request.user)
+            apprenants = CompteUtilisateur.objects.filter(apprenant__isnull=False)
+        context = {
+                # 'formations':formations,
+                'conversations': conversations,
+                'enseignants': enseignants,
+                'apprenants': apprenants
+                }
+    # except Exception as e:
+    #     messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+        return render(request, 'chat.html', context)
+
+@login_required
+def send_message(request, conversation_id):
+    try:
+        conversation = get_object_or_404(Conversation, pk=conversation_id)
+
+        if request.method == 'POST':
+            content = request.POST.get('content')
+            if content:
+                Message.objects.create(
+                    conversation=conversation,
+                    sender=request.user,
+                    content=content
+                )
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return HttpResponseRedirect(reverse('conversation_detail', args=[conversation.id]))
+
+def conversation_detail(request, conversation_id):
+    try:
+        conversation = get_object_or_404(Conversation, pk = conversation_id)
+        messages = Message.objects.filter(conversation = conversation)
+        context = {'messages':messages, 'conversation': conversation}
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'envoyer_message.html', context)
+
+
+def new_conversation_apprenant(request):
+    try:
+        if request.method == "POST":
+            apprenant = request.user
+            enseignant_id = request.POST.get("enseignant_id")
+
+            enseignant = get_object_or_404(CompteUtilisateur, pk = enseignant_id)
+            Conversation.objects.create(
+                apprenant = apprenant,
+                enseignant = enseignant
+            )
+            messages.success(request, "Ajouté avec succès !")
+            return redirect('chat_apprenant')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'chat.html')
+
+def new_conversation_enseignant(request):
+    try:
+        if request.method == "POST":
+            enseignant = request.user
+            id_apprenant = request.POST.get("apprenant_id")
+
+            apprenant = get_object_or_404(CompteUtilisateur, pk = id_apprenant)
+
+            Conversation.objects.create(
+                apprenant = apprenant,
+                enseignant = enseignant
+            )
+            messages.success(request, "Ajouté avec succès !")
+            return redirect('chat_apprenant')
+    except Exception as e:
+      messages.error(request, f"Une erreur s'est produite lors de l'exécution : {str(e)} \n Actualisez la page !")
+    return render(request, 'chat.html')

@@ -122,6 +122,11 @@ urlpatterns = [
     path('voirInterro/<int:code>/<int:question_index>/', views.voirInterro, name='voirInterro'),
     
     path('chat_apprenant', views.chat_apprenant , name='chat_apprenant'),
+    # path('conversations/', views.list_conversations, name='list_conversations'),
+    path('conversation/<int:conversation_id>/', views.conversation_detail, name='conversation_detail'),
+    path('conversation/<int:conversation_id>/send/', views.send_message, name='send_message'),
+    path('new_conversation_apprenant/', views.new_conversation_apprenant, name='new_conversation_apprenant'),
+    path('new_conversation_enseignant/', views.new_conversation_enseignant, name='new_conversation_enseignant'),
 
     path('pdf_preview_recu/<int:code>', views.pdf_preview_recu, name='pdf_preview_recu'),
     path('generate_pdf_recu/<int:code>', views.generate_pdf_recu, name='generate_pdf_recu'),

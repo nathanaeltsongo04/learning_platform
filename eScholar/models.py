@@ -265,3 +265,25 @@ class Evaluation(models.Model):
     class Meta:
         db_table='Evaluation'
         
+class Conversation(models.Model):
+    apprenant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE, related_name='conversations_as_apprenant', null=True)
+    enseignant = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE, related_name='conversations_as_enseignant', null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Conversation'
+
+    def __str__(self):
+        return f"Conversation between {self.apprenant} and {self.enseignant}"
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(CompteUtilisateur, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Message'
+
+    def __str__(self):
+        return f"Message from {self.sender} at {self.timestamp}"

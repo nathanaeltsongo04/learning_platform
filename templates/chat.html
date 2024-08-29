@@ -1,0 +1,210 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}eScholar{% endblock %}
+
+{% block sidebar%}
+{% if request.user.apprenant %}
+    {% include 'partials/learner_sidebar.html' %}
+{% else %}
+    {% include 'partials/teacher_sidebar.html' %}
+{% endif %}
+{% endblock %}
+{% block Dashboard %}Chat{% endblock %}
+
+{% block ContentTitle %}
+    Apprenant
+{% endblock %}
+
+{% block ContentSubTitle %}
+    Tableau de Bord
+{% endblock %}
+
+{% block content %}
+
+
+<script>
+    {% if messages %}
+    {% for msg in messages %}
+    var messageType = "{{ msg.tags }}";
+    var messageText = "{{ msg|escapejs }}";
+    if (messageType === "success"){
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else if (messageType === "warning"){
+            Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {});
+    }
+    else {
+            Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: messageText,
+            showConfirmButton: false,
+            timer: 5000
+        }).then(function() {});
+    }
+    
+    {% endfor %}
+    {% endif %}
+</script>
+
+<style>
+    .chat-container {
+            height: 90vh;
+            display: flex;
+        }
+        .chat-list {
+            background-color: #fff;
+            /* border-right: 1px solid #ddd; */
+            overflow-y: auto;
+        }
+        .chat-list .list-group-item {
+            cursor: pointer;
+        }
+        .chat-list .list-group-item:hover {
+            color: #8b8b8b;
+        }
+</style>
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+            <div class="filter">
+                <a class="icon " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle-fill h4"></i></a>
+            </div>
+          <div class="card-body">
+            <div class="col-4 chat-list p-0  mt-3" >
+                <ul class="list-group list-group-flush">
+                    {% for conversation in conversations %}
+                    <li class="list mb-3">
+                        {% if request.user.apprenant %}
+                            <a class="d-flex align-items-center" href="{% url 'conversation_detail' conversation.id %}">
+                                {% if conversation.enseignant.enseignant.photo %}
+                                <img src="{{ conversation.enseignant.enseignant.photo.url }}" class="rounded-circle me-3" alt="User Image">
+                                {% else %}
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User Image">
+                                {% endif %}
+                                
+                                <div>
+                                    <h5 class="mb-0"><strong>{{ conversation.enseignant.enseignant.nom }} {{ conversation.enseignant.enseignant.postnom }} {{ conversation.enseignant.enseignant.prenom }}</strong></h5>
+                                    <p class="text-muted mb-0">Last message preview...</p>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a class="d-flex align-items-center" href="{% url 'conversation_detail' conversation.id %}">
+                                {% if conversation.apprenant.apprenant.photo %}
+                                <img src="{{ conversation.apprenant.apprenant.photo.url }}" class="rounded-circle me-3" style="width:40px; heidth:40px;"  alt="User Image">
+                                {% else %}
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" style="width:40px; heidth:40px;" alt="User Image">
+                                {% endif %}
+                                <div>
+                                    <h5 class="mb-0"><strong>{{ conversation.apprenant.apprenant.nom }} {{ conversation.apprenant.apprenant.postnom }} {{ conversation.apprenant.apprenant.prenom }}</strong></h5>
+                                    <p class="text-muted mb-0">Last message preview...</p>
+                                </div>
+                            </a>
+                        {% endif %}
+                    </li>
+                    {% empty %}
+                        <h5>Vous n'avez pas encore de conversations.</h5>
+                    {% endfor %}
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 ">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Nouvelle Conversation</h5>
+                <button type="button" class="btn-close h2 fw-bold" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                {% if request.user.apprenant %}
+                <form method="POST" action="{% url 'new_conversation_apprenant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <input placeholder="Type to search Teacher" class="form-control mb-3" list="datalistTeachers" id="selectedTeacher">
+                            <datalist id="datalistTeachers">
+                                {% for enseignant in enseignants %}
+                                    <option value="{{ enseignant.enseignant.nom }} {{ enseignant.enseignant.postnom }} {{ enseignant.enseignant.prenom }}" data-id="{{ enseignant.id }}"></option>
+                                {% endfor %}
+                            </datalist>
+                            <input type="hidden" id="enseignant_id" name="enseignant_id">
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button name="save" class="btn btn-secondary w-50 fw-bold" type="submit">Enregistrer</button>
+                        </div>
+                    </div>
+                </form>
+                {% elif request.user.enseignant %}
+                <form method="POST" action="{% url 'new_conversation_enseignant' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <input placeholder="Type to search Student" class="form-control mb-3" list="datalistStudents" id="selectedStudent">
+                            <datalist id="datalistStudents">
+                                {% for apprenant in apprenants %}
+                                    <option value="{{ apprenant.apprenant.nom }} {{ apprenant.apprenant.postnom }} {{ apprenant.apprenant.prenom }}" data-id="{{ apprenant.id }}"></option>
+                                {% endfor %}
+                            </datalist>
+                            <input type="text" id="apprenant_id" name="apprenant_id">
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button name="save" class="btn btn-secondary w-50 fw-bold" type="submit">Enregistrer</button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+            </div>
+            <div class="modal-footer border-top-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Handle the selection of Teacher (for Apprenant)
+    document.getElementById('selectedTeacher')?.addEventListener('input', function() {
+        var selectedValue = this.value;
+        var options = document.querySelectorAll('#datalistTeachers option');
+        
+        options.forEach(function(option) {
+            if (option.value === selectedValue) {
+                var id = option.getAttribute('data-id');
+                document.getElementById('enseignant_id').value = id;
+            }
+        });
+    });
+
+    // Handle the selection of Student (for Enseignant)
+    document.getElementById('selectedStudent')?.addEventListener('input', function() {
+        var selectedValue = this.value;
+        var options = document.querySelectorAll('#datalistStudents option');
+        
+        options.forEach(function(option) {
+            if (option.value === selectedValue) {
+                var id = option.getAttribute('data-id');
+                document.getElementById('apprenant_id').value = id;
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}
